@@ -1,0 +1,14 @@
+import { cn } from "@/utils/cn";
+
+export default function Button({ children }) {
+  return (
+    <button
+      type="submit"
+      className={cn(
+        "w-full py-2 bg-primary hover:bg-primary/90 cursor-pointer text-sm md:text-base 2xl:text-lg text-white rounded-full font-medium transition-colors"
+      )}
+    >
+      {children}
+    </button>
+  );
+}
