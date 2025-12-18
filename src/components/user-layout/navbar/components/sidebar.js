@@ -4,32 +4,12 @@ import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BsMeta } from "react-icons/bs";
-import { FiHome, FiUser } from "react-icons/fi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 
-const navItems = [
-  {
-    name: "Home",
-    href: "/",
-    Icon: <FiHome className="lg:w-[18px] lg:h-[18px] 2xl:w-[24px] 2xl:h-[24px]" />,
-  },
-  {
-    name: "Explore",
-    href: "/explore",
-    Icon: <BsMeta className="lg:w-[18px] lg:h-[18px] 2xl:w-[24px] 2xl:h-[24px]" />,
-  },
-  {
-    name: "Profile",
-    href: "/profile",
-    Icon: <FiUser className="lg:w-[18px] lg:h-[18px] 2xl:w-[24px] 2xl:h-[24px]" />,
-  },
-];
-
-export default function UserSidebar() {
+export default function UserSidebar({ navItems }) {
   const pathname = usePathname();
   return (
-    <div className="bg-primary text-white lg:w-[100px] 2xl:w-[110px] py-7 rounded-4xl flex flex-col justify-between items-center">
+    <div className="bg-primary text-white lg:w-[100px] 2xl:w-[110px] py-7 rounded-4xl  flex-col justify-between items-center hidden lg:flex">
       <div className="flex items-center flex-col">
         <div className="bg-white lg:mb-8 2xl:mb-9 lg:w-[60%] flex items-center justify-center aspect-square text-primary rounded-full font-semibold lg:text-base 2xl:text-xl">
           Ai
@@ -45,7 +25,9 @@ export default function UserSidebar() {
               )}
             >
               {item.Icon}
-              <span className="font-medium lg:text-xs 2xl:text-sm">{item.name}</span>
+              <span className="font-medium lg:text-xs 2xl:text-sm">
+                {item.name}
+              </span>
             </Link>
           ))}
         </div>

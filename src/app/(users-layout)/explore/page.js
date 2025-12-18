@@ -1,7 +1,7 @@
 "use client";
 
-import { IoSearchOutline } from "react-icons/io5";
 import { useState } from "react";
+import { IoSearchOutline } from "react-icons/io5";
 
 const opportunities = [
   {
@@ -83,6 +83,45 @@ export default function Page() {
   const [activeFilter, setActiveFilter] = useState("all-roles");
   const [currentPage, setCurrentPage] = useState(2);
 
+  const totalPages = 17;
+  // const currentPage = page;
+  const siblingCount = 1;
+
+  const getPaginationRange = () => {
+    const totalNumbers = siblingCount * 2 + 3;
+    const totalBlocks = totalNumbers + 2;
+
+    if (totalPages <= totalBlocks) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
+
+    const leftSibling = Math.max(currentPage - siblingCount, 1);
+    const rightSibling = Math.min(currentPage + siblingCount, totalPages);
+
+    const showLeftDots = leftSibling > 2;
+    const showRightDots = rightSibling < totalPages - 1;
+
+    const range = [];
+
+    if (!showLeftDots && showRightDots) {
+      for (let i = 1; i <= 5; i++) range.push(i);
+      range.push("...");
+      range.push(totalPages);
+    } else if (showLeftDots && !showRightDots) {
+      range.push(1);
+      range.push("...");
+      for (let i = totalPages - 4; i <= totalPages; i++) range.push(i);
+    } else {
+      range.push(1);
+      range.push("...");
+      for (let i = leftSibling; i <= rightSibling; i++) range.push(i);
+      range.push("...");
+      range.push(totalPages);
+    }
+
+    return range;
+  };
+
   const getStatusStyles = (status) => {
     switch (status) {
       case "ACTIVE":
@@ -98,66 +137,68 @@ export default function Page() {
   };
 
   return (
-    <div className="mx-auto h-full overflow-y-auto bg-white p-8 rounded-4xl shadow-lg shadow-secondary flex flex-col">
+    <div className="mx-auto h-full overflow-y-auto  flex flex-col">
       <div className="h-fit">
-        <h1 className="mb-8 text-3xl font-bold text-gray-900">
+        <h1 className="mb-4 md:mb-6 lg:mb-8 text-2xl md:text-3xl font-bold text-text-primary">
           Explore opportunities
         </h1>
 
         {/* Search Bar and Filters */}
-        <div className="mb-8 flex items-center gap-4">
-          <div className="relative flex-1">
-            <IoSearchOutline className="absolute left-4 top-1/2 h-6 w-6 -translate-y-1/2 text-gray-400" />
+        <div className="mb-6 md:mb-8 flex flex-col md:flex-row items-center gap-4">
+          <div className="relative flex-1 w-full md:w-auto">
+            <IoSearchOutline className="absolute left-4 top-1/2 w-5 h-5 md:h-6 md:w-6 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Type to search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-full border border-secondary py-2.5 pl-12 pr-4  placeholder:font-medium placeholder:text-text-gray focus:border-gray-400 focus:outline-none"
+              className="w-full rounded-full border border-secondary py-2.5 lg:py-3 pl-10 md:pl-12 pr-4  placeholder:font-medium placeholder:text-text-gray focus:border-gray-400 focus:outline-none text-sm md:text-base"
             />
           </div>
 
-          <span className="text-text-gray font-medium">Show</span>
+          <div className="flex items-center w-full md:w-auto gap-4 px-2 lg:px-0 text-sm md:text-base lg:text-lg">
+            <span className="text-text-gray font-medium">Show</span>
 
-          <div className="grid grid-cols-2 items-center  border p-1 border-secondary rounded-full">
-            <button
-              onClick={() => setActiveFilter("all-roles")}
-              className={`rounded-full px-4 py-1 font-medium transition-colors ${
-                activeFilter === "all-roles"
-                  ? "bg-secondary text-primary"
-                  : "text-text-gray"
-              }`}
-            >
-              All roles
-            </button>
+            <div className="grid grid-cols-2 items-center  border p-1 border-secondary rounded-full">
+              <button
+                onClick={() => setActiveFilter("all-roles")}
+                className={`rounded-full px-4 cursor-pointer py-1 font-medium transition-colors ${
+                  activeFilter === "all-roles"
+                    ? "bg-secondary text-primary"
+                    : "text-text-gray"
+                }`}
+              >
+                All roles
+              </button>
 
-            <button
-              onClick={() => setActiveFilter("saved")}
-              className={`rounded-full px-4 py-1 font-medium transition-colors ${
-                activeFilter === "saved"
-                  ? "bg-secondary text-primary"
-                  : " text-text-gray"
-              }`}
-            >
-              Saved
-            </button>
+              <button
+                onClick={() => setActiveFilter("saved")}
+                className={`rounded-full px-4 cursor-pointer py-1 font-medium transition-colors ${
+                  activeFilter === "saved"
+                    ? "bg-secondary text-primary"
+                    : " text-text-gray"
+                }`}
+              >
+                Saved
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Opportunities Grid */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 2xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2 2xl:grid-cols-3">
         {opportunities.map((opportunity) => (
           <div
             key={opportunity.id}
-            className="rounded-3xl border border-secondary bg-white p-6 transition-shadow hover:shadow-md"
+            className="rounded-xl md:rounded-3xl border border-secondary bg-white p-4 md:p-6 transition-shadow hover:shadow-md shadow-secondary"
           >
             <div className="mb-4 flex items-start justify-between">
-              <h3 className="text-xl font-bold text-gray-900">
+              <h3 className="text-base md:text-xl lg:text-[22px] font-bold text-gray-900">
                 {opportunity.title}
               </h3>
               <span
-                className={`ml-2 whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
+                className={`ml-2 text-[10px] md:text-sm lg:text-base whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
                   opportunity.status
                 )}`}
               >
@@ -165,11 +206,11 @@ export default function Page() {
               </span>
             </div>
 
-            <p className="mb-6 leading-relaxed text-text-gray text-lg">
+            <p className="mb-6 leading-relaxed text-text-gray text-sm md:text-base lg:text-xl">
               {opportunity.description}
             </p>
 
-            <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] md:text-sm text-gray-500">
               {Object.values(opportunity.metadata).map((item, index) => (
                 <span key={index}>{item}</span>
               ))}
@@ -179,7 +220,7 @@ export default function Page() {
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-center gap-2 flex-1 py-10">
+      {/* <div className="flex items-center justify-center gap-2 flex-1 py-10">
         {[1, 2, 3, 4].map((page) => (
           <button
             key={page}
@@ -209,6 +250,35 @@ export default function Page() {
             {page}
           </button>
         ))}
+      </div> */}
+
+      <div className="flex flex-1 items-center justify-center gap-1 sm:gap-2 py-8">
+
+
+        {/* Pages */}
+        {getPaginationRange().map((item, index) =>
+          item === "..." ? (
+            <span
+              key={index}
+              className="hidden sm:flex h-9 w-9 items-center justify-center text-gray-400"
+            >
+              ...
+            </span>
+          ) : (
+            <button
+              key={item}
+              onClick={() => setCurrentPage(item)}
+              className={`h-9 w-9 sm:h-10 sm:w-10 rounded-full border text-sm font-medium transition
+          ${
+            currentPage === item
+              ? "bg-primary text-white border-primary"
+              : "border-secondary text-text-gray hover:bg-gray-100"
+          }`}
+            >
+              {item}
+            </button>
+          )
+        )}
       </div>
     </div>
   );
