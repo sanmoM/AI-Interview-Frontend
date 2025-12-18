@@ -31,7 +31,7 @@ export default function UserSidebar() {
   return (
     <div className="bg-primary text-white lg:w-[100px] 2xl:w-[110px] py-7 rounded-4xl flex flex-col justify-between items-center">
       <div className="flex items-center flex-col">
-        <div className="bg-white lg:mb-8 2xl:mb-10 lg:w-[45%] 2xl:w-[40%] flex items-center justify-center aspect-square text-primary rounded-full font-semibold">
+        <div className="bg-white lg:mb-8 2xl:mb-9 lg:w-[60%] flex items-center justify-center aspect-square text-primary rounded-full font-semibold lg:text-base 2xl:text-xl">
           Ai
         </div>
         <div className="space-y-5">
@@ -50,7 +50,7 @@ export default function UserSidebar() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col items-center lg:gap-10 2xl:gap-14 mb-4">
+      <div className="flex flex-col items-center lg:gap-10 2xl:gap-12 mb-4">
         <IoMdNotificationsOutline size={30} />
         <Image
           src={"/images/user-avatar.png"}
