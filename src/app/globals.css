@@ -22,3 +22,42 @@
 * {
   font-family: var(--font-montserrat);
 }
+
+
+/* Width */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+}
+
+/* Track (background) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 50%;
+}
+
+/* Handle (thumb) */
+::-webkit-scrollbar-thumb {
+  background: #64748b;
+  /* slate-500 */
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+  /* slate-600 */
+}
+
+/* Hide scrollbar but keep scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE & old Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari */
+}

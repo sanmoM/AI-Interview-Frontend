@@ -32,7 +32,7 @@ const Header = ({ navLinks }) => {
   return (
     <>
       {/* HEADER */}
-      <header className=" bg-white lg:hidden px-4 py-3 sticky top-0">
+      <header className=" bg-white lg:hidden px-4 py-3 sticky top-0 z-10">
         {/* LEFT */}
         <div className="flex items-center gap-3">
           {/* Mobile menu */}
