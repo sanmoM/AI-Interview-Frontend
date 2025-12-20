@@ -1,9 +1,6 @@
 "use client";
 
-import ExploreFilter from "@/components/explore/explore-filter";
-import Jobs from "@/components/explore/jobs";
-import Pagination from "@/components/shared/pagination";
-import Wrapper from "@/components/shared/wrapper";
+import Link from "next/link";
 
 const opportunities = [
   {
@@ -80,12 +77,52 @@ const opportunities = [
   },
 ];
 
-export default function Page() {
+export default function Jobs() {
+  const getStatusStyles = (status) => {
+    switch (status) {
+      case "ACTIVE":
+        return "text-green-400";
+      case "CLIENT":
+      case "DEMO":
+        return "bg-secondary text-primary";
+      case "TEMPLATE":
+        return "text-text-gray";
+      default:
+        return "text-text-gray";
+    }
+  };
   return (
-    <Wrapper className="flex flex-col">
-      <ExploreFilter />
-      <Jobs />
-      <Pagination />
-    </Wrapper>
+    <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2 2xl:grid-cols-3">
+      {opportunities.map((opportunity) => (
+        <Link
+          href={`/explore/${opportunity.id}`}
+          key={opportunity.id}
+          className="block rounded-xl md:rounded-3xl border border-secondary bg-white p-4 md:p-6 transition-shadow hover:shadow-md shadow-secondary"
+        >
+          <div className="mb-4 flex items-start justify-between">
+            <h3 className="text-base md:text-xl lg:text-[22px] font-bold text-gray-900">
+              {opportunity.title}
+            </h3>
+            <span
+              className={`ml-2 text-[10px] md:text-sm lg:text-base whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
+                opportunity.status
+              )}`}
+            >
+              {opportunity.status}
+            </span>
+          </div>
+
+          <p className="mb-6 leading-relaxed text-text-gray text-sm md:text-base lg:text-xl">
+            {opportunity.description}
+          </p>
+
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] md:text-sm text-gray-500">
+            {Object.values(opportunity.metadata).map((item, index) => (
+              <span key={index}>{item}</span>
+            ))}
+          </div>
+        </Link>
+      ))}
+    </div>
   );
 }
