@@ -1,5 +1,6 @@
 import { IoSearchSharp } from "react-icons/io5";
 import Wrapper from "../shared/wrapper";
+import Searchbox from "../ui/searchbox";
 
 const companies = [
   {
@@ -46,31 +47,22 @@ const companies = [
 
 export default function SingleJobSidebar() {
   return (
-    <Wrapper className="mx-auto w-[30%] h-full">
+    <Wrapper className="mx-auto w-[30%] xl:w-[25%] h-full">
       {/* Header with search */}
-      <div className="mb-6 flex items-center justify-between gap-4">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Explore opportunities
-        </h1>
-        <div className="relative flex-1 max-w-xs">
-          <IoSearchSharp className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <input
-            type="search"
-            placeholder="Type to search"
-            className="w-full rounded-lg border border-gray-200 bg-white py-2 pl-9 pr-4 text-sm text-gray-900 placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-          />
-        </div>
+      <div className="mb-6 flex flex-col 2xl:flex-row  xl:items-center justify-between gap-4 xl:gap-4 2xl:gap-8">
+        <h1 className="text-nowrap font-bold text-gray-900 lg:text-lg 2xl:text-base">Explore opportunities</h1>
+        <Searchbox inputClassName={"py-1.5 lg:py-2 xl:py-2.5 lg:text-xs lg:pl-10 lg:w-full"} iconClassName={"lg:w-4 lg:h-4"} containerClassName={"w-full 2xl:w-auto"} />
       </div>
 
       {/* Filter tabs */}
-      <div className="mb-6 flex gap-2">
-        <button className="rounded-full bg-slate-700 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800">
+      <div className="mb-6 flex flex-wrap gap-2">
+        <button className="rounded-full bg-primary px-4 py-1.5 text-nowrap lg:text-xs xl:text-sm font-medium text-white transition-colors hover:bg-slate-800">
           Best match
         </button>
-        <button className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
+        <button className="rounded-full border border-secondary bg-white px-4 py-1.5 text-nowrap lg:text-xs xl:text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
           Trending
         </button>
-        <button className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
+        <button className="rounded-full border border-secondary bg-white px-4 py-1.5 text-nowrap lg:text-xs xl:text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
           Newest
         </button>
       </div>
@@ -80,11 +72,11 @@ export default function SingleJobSidebar() {
         {companies.map((company) => (
           <button
             key={company.id}
-            className="w-full rounded-3xl border border-gray-200 bg-white p-4 text-left transition-all hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-xl xl:rounded-2xl 2xl:rounded-3xl border border-secondary bg-white p-3 xl:p-4 text-left transition-all hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
           >
             <div className="flex items-center justify-between gap-4">
               <div className="flex-1">
-                <h2 className="mb-2 font-semibold text-gray-900">
+                <h2 className="mb-2 font-bold text-text-primary">
                   {company.name}
                 </h2>
                 <div className="flex items-center gap-2">
@@ -102,7 +94,7 @@ export default function SingleJobSidebar() {
                       </div>
                     ))}
                   </div>
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-text-gray">
                     {company.interviews} interviews
                   </span>
                 </div>

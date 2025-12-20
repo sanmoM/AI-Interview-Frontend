@@ -97,14 +97,14 @@ export default function Jobs() {
         <Link
           href={`/explore/${opportunity.id}`}
           key={opportunity.id}
-          className="block rounded-xl md:rounded-3xl border border-secondary bg-white p-4 md:p-6 transition-shadow hover:shadow-md shadow-secondary"
+          className="block rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6 transition-shadow hover:shadow-md shadow-secondary"
         >
-          <div className="mb-4 flex items-start justify-between">
-            <h3 className="text-base md:text-xl lg:text-[22px] font-bold text-gray-900">
+          <div className="mb-2 xl:mb-4 flex items-start justify-between">
+            <h3 className="text-base md:text-xl xl:text-[22px] font-bold text-gray-900">
               {opportunity.title}
             </h3>
             <span
-              className={`ml-2 text-[10px] md:text-sm lg:text-base whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
+              className={`ml-2 text-[10px] md:text-sm lg:text-xs xl:text-base whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
                 opportunity.status
               )}`}
             >
@@ -112,11 +112,11 @@ export default function Jobs() {
             </span>
           </div>
 
-          <p className="mb-6 leading-relaxed text-text-gray text-sm md:text-base lg:text-xl">
+          <p className="mb-4 xl:mb-6 leading-relaxed text-text-gray text-sm md:text-base xl:text-xl">
             {opportunity.description}
           </p>
 
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] md:text-sm text-gray-500">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] md:text-xs xl:text-sm text-gray-500">
             {Object.values(opportunity.metadata).map((item, index) => (
               <span key={index}>{item}</span>
             ))}
