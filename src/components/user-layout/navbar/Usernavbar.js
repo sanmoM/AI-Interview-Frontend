@@ -29,7 +29,7 @@ const navLinks = [
 
 export default function UserNavbar() {
   return (
-    <div className="lg:py-6 lg:h-full">
+    <div className="lg:py-6 lg:h-full sticky top-0 z-10">
       <Header navLinks={navLinks} />
       <UserSidebar navItems={navLinks} />
     </div >
