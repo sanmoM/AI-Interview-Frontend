@@ -37,10 +37,10 @@ export default function ResumeUpload() {
     <Wrapper className="flex-1 flex flex-col h-full">
       <div className="bg-white flex-1 flex flex-col">
         <div className=" flex-1 flex flex-col">
-          <h1 className="mb-2 text-3xl font-bold text-gray-900">
+          <h1 className="mb-2 text-2xl lg:text-3xl font-bold text-gray-900">
             Upload resume
           </h1>
-          <p className="mb-8 text-text-gray">
+          <p className="mb-8 text-text-gray text-sm lg:text-base">
             Please upload your resume to initiate the application process.
           </p>
 
@@ -95,15 +95,15 @@ export default function ResumeUpload() {
               </div>
             ) : (
               <>
-                <div className="mb-2 inline-flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
-                  <FiUpload className="h-8 w-8 text-primary" />
+                <div className="mb-2 inline-flex h-12 w-12 lg:h-16 lg:w-16 items-center justify-center rounded-full bg-secondary">
+                  <FiUpload className="w-6 h-6 lg:h-8 lg:w-8 text-primary" />
                 </div>
 
-                <p className="mb-2 text-lg font-semibold text-gray-900">
+                <p className="mb-2 text-sm lg:text-lg font-semibold text-gray-900">
                   Drop your resume here
                 </p>
 
-                <p className="mb-1 text-sm text-gray-500 whitespace-nowrap flex gap-1">
+                <p className="mb-1 text-xs lg:text-sm text-gray-500 whitespace-nowrap flex gap-1">
                   <span>or</span>
                   <label
                     htmlFor="file-upload"

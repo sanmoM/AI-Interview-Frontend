@@ -14,18 +14,18 @@ export default function CodeSession() {
         <Wrapper className="lg:col-span-2 h-full overflow-y-auto">
           <div className=" h-full flex flex-col">
             {/* Header */}
-            <div className="mb-4 flex items-center gap-3">
-              <h1 className="text-3xl font-bold text-text-primary">
+            <div className="mb-2 lg:mb-4 flex items-center gap-3">
+              <h1 className="text-xl lg:text-3xl font-bold text-text-primary">
                 Code Review Session
               </h1>
-              <span className="rounded-full bg-secondary px-3 py-1 text-sm font-semibold text-primary">
+              <span className="rounded-full bg-secondary px-2 lg:px-3 py-1 text-xs lg:text-sm font-semibold text-primary">
                 29 min
               </span>
             </div>
-            <p className="mb-6 text-text-gray">Debug some pieces of code</p>
+            <p className="mb-4 lg:mb-6 text-text-gray">Debug some pieces of code</p>
 
             {/* Camera permission card */}
-            <div className="mb-6 flex flex-1 flex-col items-center justify-center rounded-2xl bg-gray-900 p-12">
+            <div className="mb-6 flex flex-1 flex-col items-center justify-center rounded-2xl bg-gray-900 p-6 lg:p-12">
               {/* Camera off icon */}
               <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-slate-700">
                 <IoVideocamOffOutline className="h-8 w-8 text-slate-400" strokeWidth={1.5} />
@@ -33,10 +33,10 @@ export default function CodeSession() {
               </div>
 
               {/* Permission text */}
-              <h2 className="mb-3 text-xl font-semibold text-white">
+              <h2 className="mb-2 lg:mb-3 text-base lg:text-xl font-semibold text-white">
                 Camera permission required
               </h2>
-              <p className="mb-8 text-center text-sm text-secondary">
+              <p className="mb-4 lg:mb-8 text-center text-xs lg:text-sm text-secondary">
                 You must enable camera access before joining the AI interview.
               </p>
 
