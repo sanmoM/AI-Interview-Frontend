@@ -85,10 +85,10 @@ export default function page() {
               required
             />
           </div>
-          <Link href="/auth/signin" className="block">
+          <Button>Continue</Button>
+          <Link href="/signup" className="block">
             <BorderButton>Create Account</BorderButton>
           </Link>
-          <Button>Create account</Button>
         </form>
 
         {/* Divider */}
