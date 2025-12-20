@@ -76,7 +76,7 @@ export default function SingleJobSidebar() {
 
       {/* Company cards */}
       <div className="max-w-full overflow-x-auto scrollbar-hide">
-        <div className="lg:space-y-3 flex gap-4 lg:block min-w-max">
+        <div className="lg:space-y-3 flex gap-4 lg:block min-w-max lg:min-w-auto">
           {companies.map((company) => (
             <button
               key={company.id}

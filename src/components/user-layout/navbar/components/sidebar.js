@@ -9,7 +9,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 export default function UserSidebar({ navItems }) {
   const pathname = usePathname();
   return (
-    <div className="bg-primary text-white lg:w-[80px] xl:w-[100px] 2xl:w-[110px] py-7 lg:rounded-2xl xl:rounded-3xl 2xl:rounded-4xl  flex-col justify-between items-center hidden lg:flex">
+    <div className="h-full bg-primary text-white lg:w-[80px] xl:w-[100px] 2xl:w-[110px] py-7 lg:rounded-2xl xl:rounded-3xl 2xl:rounded-4xl  flex-col justify-between items-center hidden lg:flex">
       <div className="flex items-center flex-col">
         <div className="bg-white lg:mb-8 2xl:mb-9 lg:w-[60%] flex items-center justify-center aspect-square text-primary rounded-full font-semibold lg:text-base 2xl:text-xl">
           Ai
