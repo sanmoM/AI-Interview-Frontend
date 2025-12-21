@@ -1,20 +1,23 @@
-
-
 "use client";
 
 import BorderButton from "@/components/ui/buttons/border-button";
 import Button from "@/components/ui/buttons/button";
 import TextInput from "@/components/ui/inputs/text-input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function page() {
   const [email, setEmail] = useState("");
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("[v0] Email submitted:", email);
-    // Add your sign-up logic here
+    document.cookie = "token=token; path=/; max-age=86400; SameSite=Lax";
+    toast.success("You have successfully signed up!");
+    router.push("/explore");
   };
 
   const handleGoogleSignIn = () => {
@@ -63,7 +66,10 @@ export default function page() {
         </div>
 
         {/* Email Form */}
-        <form onSubmit={handleSubmit} className="space-y-3 lg:space-y-4 2xl:space-y-6">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-3 lg:space-y-4 2xl:space-y-6"
+        >
           <div>
             <div className="flex items-center justify-between mb-2">
               <label
@@ -147,4 +153,3 @@ export default function page() {
     </div>
   );
 }
-
