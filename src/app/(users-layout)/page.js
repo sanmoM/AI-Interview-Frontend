@@ -1,9 +1,103 @@
+"use client";
+
 import Wrapper from "@/components/shared/wrapper";
+import { cn } from "@/utils/cn";
+import { useState } from "react";
+import { GoBriefcase } from "react-icons/go";
+import { TfiHelpAlt } from "react-icons/tfi";
+import { VscSettings } from "react-icons/vsc";
+
+const tabs = [
+  { label: "Contracts", value: "contracts" },
+  { label: "Transcript", value: "transcript" },
+  { label: "Applications", value: "applications" },
+  { label: "Assessments", value: "assessments" },
+  { label: "Saved", value: "saved" },
+];
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("contracts");
   return (
-    <Wrapper className="h-full flex justify-center items-center">
-      <h1 className="text-2xl font-bold">There will be home page soon</h1>
+    <Wrapper className="h-full">
+      {/* Header */}
+      <div className="mx-auto py-4 flex flex-col gap-4 lg:gap-0 lg:flex-row lg:items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-text-primary">
+            Welcome back!
+          </h1>
+          <p className="text-text-gray mt-1">
+            Continue where you left off with your contracts and offers.
+          </p>
+        </div>
+        <div className="flex items-center gap-6">
+          <button className="flex items-center gap-2 text-text-gray transition-colors">
+            <TfiHelpAlt className="w-5 h-5" />
+            <span>Support</span>
+          </button>
+          <button className="flex items-center gap-2 text-text-gray transition-colors">
+            <VscSettings className="w-5 h-5" />
+            <span>Settings</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="mx-auto py-2 lg:py-8">
+        {/* Important Tasks Section */}
+        <section className="mb-4 lg:mb-8">
+          <h2 className="text-lg font-medium text-text-primary mb-4">
+            Important Tasks (2)
+          </h2>
+
+          {/* Task Card */}
+          <div className="bg-bg-gray border border-secondary rounded-2xl p-6 w-fit">
+            <h3 className="text-lg font-medium mb-2 text-text-primary">
+              Complete Your Profile
+            </h3>
+            <p className="text-text-gray mb-4">
+              Completed profiles are more likely to be discovered and hired by
+              companies.
+            </p>
+            {/* <Button className="bg-slate-700 hover:bg-slate-800 text-white rounded-lg px-6">
+              Complete now
+            </Button> */}
+          </div>
+        </section>
+
+        {/* Tabs Navigation */}
+        <nav className="border-b border-secondary mb-4 lg:mb-8 w-full overflow-x-auto scrollbar-hide">
+          <div className="flex gap-8">
+            {tabs.map((tab) => (
+              <button
+                key={tab.value}
+                className={cn(
+                  "py-3 text-text-gray text-sm md:text-base font-medium cursor-pointer transition-colors",
+                  activeTab === tab.value ? "text-primary border-b-2 border-primary" : "text-text-gray"
+                )}
+                onClick={() => setActiveTab(tab.value)}
+              >
+                {console.log(activeTab === tab.value)}
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </nav>
+
+        {/* Empty State */}
+        <div className="flex flex-col items-center justify-center py-6 md:py-10 lg:py-16">
+          <div className="w-14 h-14 md:w-20 md:h-20 bg-gray-100 rounded-4xl flex items-center justify-center mb-6">
+            <GoBriefcase
+              className="w-6 h-6 md:w-10 md:h-10 text-gray-400"
+              strokeWidth={1.5}
+            />
+          </div>
+          <h3 className=" md:text-lg font-medium text-text-gray mb-2">
+            You don't have any contracts yet
+          </h3>
+          <p className="text-text-gray text-sm md:text-base text-center">
+            You will be notified when companies reach out to you.
+          </p>
+        </div>
+      </div>
     </Wrapper>
   );
 }
