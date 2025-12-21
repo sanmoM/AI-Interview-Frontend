@@ -7,6 +7,7 @@ export default function Searchbox({
   searchQuery,
   containerClassName,
   iconClassName,
+  placeholder="Type to search",
 }) {
   return (
     <div className={cn("relative ", containerClassName)}>
@@ -18,7 +19,7 @@ export default function Searchbox({
       />
       <input
         type="text"
-        placeholder="Type to search"
+        placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         className={cn(

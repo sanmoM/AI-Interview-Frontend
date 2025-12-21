@@ -1,9 +1,10 @@
 "use client";
 
+import Contracts from "@/components/home/contracts";
+import { Transcript } from "@/components/home/transcript";
 import Wrapper from "@/components/shared/wrapper";
 import { cn } from "@/utils/cn";
 import { useState } from "react";
-import { GoBriefcase } from "react-icons/go";
 import { TfiHelpAlt } from "react-icons/tfi";
 import { VscSettings } from "react-icons/vsc";
 
@@ -71,7 +72,9 @@ export default function Home() {
                 key={tab.value}
                 className={cn(
                   "py-3 text-text-gray text-sm md:text-base font-medium cursor-pointer transition-colors",
-                  activeTab === tab.value ? "text-primary border-b-2 border-primary" : "text-text-gray"
+                  activeTab === tab.value
+                    ? "text-primary border-b-2 border-primary"
+                    : "text-text-gray"
                 )}
                 onClick={() => setActiveTab(tab.value)}
               >
@@ -82,21 +85,8 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* Empty State */}
-        <div className="flex flex-col items-center justify-center py-6 md:py-10 lg:py-16">
-          <div className="w-14 h-14 md:w-20 md:h-20 bg-gray-100 rounded-4xl flex items-center justify-center mb-6">
-            <GoBriefcase
-              className="w-6 h-6 md:w-10 md:h-10 text-gray-400"
-              strokeWidth={1.5}
-            />
-          </div>
-          <h3 className=" md:text-lg font-medium text-text-gray mb-2">
-            You don't have any contracts yet
-          </h3>
-          <p className="text-text-gray text-sm md:text-base text-center">
-            You will be notified when companies reach out to you.
-          </p>
-        </div>
+        {activeTab === "contracts" && <Contracts />}
+        {activeTab === "transcript" && <Transcript />}
       </div>
     </Wrapper>
   );
