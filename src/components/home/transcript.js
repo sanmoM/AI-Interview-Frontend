@@ -46,28 +46,28 @@ export function Transcript() {
   return (
     <div className="mx-auto">
       {/* Header */}
-      <div className="mb-6 flex items-center gap-28">
+      <div className="mb-6 flex flex-col lg:flex-row lg:items-center gap-3 md:gap-10 lg:gap-28">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary">
+          <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full bg-secondary">
             <CgFileDocument className="h-6 w-6 text-primary" />
           </div>
-          <div>
+          <div className="shrink">
             <h1 className="text-xl font-semibold text-text-primary">
               Transcript
             </h1>
-            <p className="text-[15px] text-text-gray font-medium">
+            <p className="text-xs md:text-[15px] text-text-gray font-medium">
               Full, time-stamped conversation with speaker labels.
             </p>
           </div>
         </div>
-        <Badge className={"text-xs py-1.5 px-3"}>Search & export</Badge>
+        <Badge className={"text-xs py-1.5 px-3 w-fit"}>Search & export</Badge>
       </div>
 
       {/* Search and Export Bar */}
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <Searchbox
           placeholder="Search transcript by keyword or phrase"
-          containerClassName={"w-sm"}
+          containerClassName={"w-[350px] lg:w-sm"}
         />
         <button className="flex items-center gap-2 rounded-full bg-bg-gray px-4 py-2.5 text-sm font-medium text-gray-700 cursor-pointer">
           <TbDownload className="h-4 w-4" />
@@ -109,7 +109,7 @@ export function Transcript() {
         </div>
       </div>
 
-      <div className="w-1/2 flex justify-between text-xs font-medium mt-8">
+      <div className="lg:w-1/2 flex justify-between text-xs font-medium mt-8">
         <p className="text-text-gray ">
           Transcript generated automatically · Edit in-place to correct <br />{" "}
           names or details.
