@@ -11,7 +11,7 @@ export default function CodeSession({ handleNext, handleBack }) {
     <div className="flex-1 h-full flex flex-col">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 flex-1 h-full">
         {/* Main content area - left side */}
-        <Wrapper className="lg:col-span-2 h-full overflow-y-auto">
+        <Wrapper className="lg:col-span-2 h-full overflow-y-auto gap-6 lg:gap-8">
           <div className=" h-full flex flex-col">
             {/* Header */}
             <div className="mb-2 lg:mb-4 flex items-center gap-3">
@@ -56,9 +56,9 @@ export default function CodeSession({ handleNext, handleBack }) {
             </div>
 
             {/* Status indicators */}
-            <div className="mb-3 grid grid-cols-3 gap-4 text-sm px-2">
-              <div className="">
-                <div className="mb-2 flex items-center gap-2">
+            <div className="mb-3 grid md:grid-cols-3 gap-2.5 lg:gap-4 text-sm px-2">
+              <div className="flex md:block items-center justify-between">
+                <div className="lg:mb-2 flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
                   <span className="font-medium text-gray-600">
                     Permission required
@@ -69,7 +69,7 @@ export default function CodeSession({ handleNext, handleBack }) {
                 </button>
               </div>
 
-              <div className="text-center">
+              <div className="flex md:block items-center justify-between md:text-center">
                 <p className="mb-2 font-medium text-gray-600">
                   No device selected
                 </p>
@@ -78,7 +78,7 @@ export default function CodeSession({ handleNext, handleBack }) {
                 </button>
               </div>
 
-              <div className="text-right">
+              <div className="flex md:block items-center justify-between md:text-right">
                 <p className="mb-2 font-medium text-gray-600">
                   Permission required
                 </p>
@@ -89,7 +89,7 @@ export default function CodeSession({ handleNext, handleBack }) {
             </div>
 
             {/* Troubleshooting link */}
-            <div className="mb-8 text-center bg-bg-gray py-3 rounded-full">
+            <div className="mb-8 text-center bg-bg-gray py-3 rounded-full text-sm lg:text-base">
               <span className=" text-text-gray font-medium">
                 Troubleshooting help{" "}
               </span>

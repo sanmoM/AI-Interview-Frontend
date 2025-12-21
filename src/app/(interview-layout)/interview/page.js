@@ -58,7 +58,7 @@ export default function ResumeUploadPage() {
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 flex-1 py-6 lg:h-[calc(100%-200px)] mx-4 lg:m-0">
         {/* Left Sidebar */}
         <aside className="lg:w-80 lg:h-full">
-          <div className="mb-6 rounded-2xl border-2 border-secondary bg-white p-6 h-full">
+          <div className="mb-0 lg:mb-6 rounded-2xl border-2 border-secondary bg-white p-6 h-full">
             <h1 className="mb-2 text-lg font-bold text-gray-900">
               Senior/Staff Code Review Experts
             </h1>
