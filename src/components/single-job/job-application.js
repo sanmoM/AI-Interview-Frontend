@@ -4,9 +4,12 @@ import { useState } from "react";
 import { LuClock4, LuEarth } from "react-icons/lu";
 import Wrapper from "../shared/wrapper";
 import Button from "../ui/buttons/button";
+import RadioInput from "../ui/inputs/radio-input";
+import Link from "next/link";
 
 export default function JobApplication() {
   const [activeFilter, setActiveFilter] = useState("Best match");
+  const [selected, setSelected] = useState("resume");
   const [expandedFaq, setExpandedFaq] = useState(null);
 
   const toggleFaq = (index) => {
@@ -75,10 +78,12 @@ export default function JobApplication() {
             <div className="space-y-3 mb-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="h-5 w-5 rounded-full border-2 border-gray-300" />
-                  <span className="text-text-gray text-[10px] md:text-base">
-                    Resume
-                  </span>
+                  {/* <div className="h-5 w-5 rounded-full border-2 border-gray-300" /> */}
+                  <RadioInput
+                    option={{ label: "Resume", value: "resume" }}
+                    selected={selected}
+                    setSelected={setSelected}
+                  />
                 </div>
                 <span className="text-sm text-text-gray text-[10px] md:text-base">
                   Not done
@@ -87,17 +92,25 @@ export default function JobApplication() {
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="h-5 w-5 rounded-full border-2 border-gray-300" />
-                  <span className="text-text-gray text-[10px] md:text-base">
-                    Code Review Session
-                  </span>
+                  <RadioInput
+                    option={{
+                      label: "Code Review Session",
+                      value: "code-session",
+                    }}
+                    selected={selected}
+                    setSelected={setSelected}
+                  />
                 </div>
                 <span className="text-sm text-text-gray text-[10px] md:text-base">
                   Not done
                 </span>
               </div>
             </div>
-            <Button className={"lg:py-2"}>Start Application</Button>
+            <Link href="/interview" className="block">
+              <Button className={"lg:py-2 lg:mt-8 2xl:mt-16"}>
+                Start Application
+              </Button>
+            </Link>
           </div>
           <div className="border-b my-4 lg:my-6 border-secondary" />
 
@@ -240,9 +253,11 @@ export default function JobApplication() {
             </div>
           </div>
 
-          <Button className={"lg:py-2 lg:mt-8 2xl:mt-16"}>
-            Start Application
-          </Button>
+          <Link href="/interview" className="block">
+            <Button className={"lg:py-2 lg:mt-8 2xl:mt-16"}>
+              Start Application
+            </Button>
+          </Link>
         </div>
       </Wrapper>
     </div>

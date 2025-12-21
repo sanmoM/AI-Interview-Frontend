@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
-import Searchbox from "../ui/searchbox";
+import Searchbox from "../ui/inputs/searchbox";
 
 export default function ExploreFilter() {
   const [searchQuery, setSearchQuery] = useState("");

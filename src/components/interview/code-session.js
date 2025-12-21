@@ -6,7 +6,7 @@ import Wrapper from "../shared/wrapper";
 import BorderButton from "../ui/buttons/border-button";
 import Button from "../ui/buttons/button";
 
-export default function CodeSession() {
+export default function CodeSession({ handleNext, handleBack }) {
   return (
     <div className="flex-1 h-full flex flex-col">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 flex-1 h-full">
@@ -22,14 +22,18 @@ export default function CodeSession() {
                 29 min
               </span>
             </div>
-            <p className="mb-4 lg:mb-6 text-text-gray">Debug some pieces of code</p>
+            <p className="mb-4 lg:mb-6 text-text-gray">
+              Debug some pieces of code
+            </p>
 
             {/* Camera permission card */}
             <div className="mb-6 flex flex-1 flex-col items-center justify-center rounded-2xl bg-gray-900 p-6 lg:p-12">
               {/* Camera off icon */}
               <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-slate-700">
-                <IoVideocamOffOutline className="h-8 w-8 text-slate-400" strokeWidth={1.5} />
-
+                <IoVideocamOffOutline
+                  className="h-8 w-8 text-slate-400"
+                  strokeWidth={1.5}
+                />
               </div>
 
               {/* Permission text */}
@@ -96,7 +100,10 @@ export default function CodeSession() {
 
             {/* Bottom buttons */}
             <div className="flex items-center justify-between">
-              <BorderButton className={"w-fit px-6 2xl:py-1.5 2xl:text-sm"}>
+              <BorderButton
+                className={"w-fit px-6 2xl:py-1.5 2xl:text-sm"}
+                onClick={handleBack}
+              >
                 Back
               </BorderButton>
               <Button className={"w-fit px-6 2xl:py-2 2xl:text-sm"}>
@@ -183,7 +190,7 @@ export default function CodeSession() {
             {/* <button className="mt-8 w-full rounded-lg bg-slate-700 py-3 text-sm font-semibold text-white hover:bg-slate-800 transition-colors">
               Test screen share
             </button> */}
-            <Button className={"mt-8 w-full 2xl:py-2"}>
+            <Button className={"mt-8 w-full 2xl:py-2"} onClick={handleNext}>
               Test screen share
             </Button>
             <p className="mt-3 text-center text-xs text-gray-500">

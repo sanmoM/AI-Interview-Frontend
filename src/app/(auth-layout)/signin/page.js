@@ -4,7 +4,7 @@
 
 import BorderButton from "@/components/ui/buttons/border-button";
 import Button from "@/components/ui/buttons/button";
-import TextInput from "@/components/ui/text-input";
+import TextInput from "@/components/ui/inputs/text-input";
 import Link from "next/link";
 import { useState } from "react";
 

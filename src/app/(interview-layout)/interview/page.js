@@ -4,17 +4,27 @@ import CodeSession from "@/components/interview/code-session";
 import ResumeUpload from "@/components/interview/resume-upload";
 import BorderButton from "@/components/ui/buttons/border-button";
 import { cn } from "@/utils/cn";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { GoChevronLeft } from "react-icons/go";
 
 export default function ResumeUploadPage() {
   const [activeTab, setActiveTab] = useState("resume");
 
+  const router = useRouter();
+
   return (
     <div className="lg:h-full flex flex-col">
       <div className="flex flex-col lg:flex-row justify-between items-center sticky top-0 bg-bg-gray py-4 lg:py-0">
         <div className="flex flex-col lg:flex-row gap-2 lg:gap-4 w-full lg:w-auto px-4 lg:items-center">
-          <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-lg lg:text-base">
+          <button
+            onClick={() =>
+              setActiveTab(
+                activeTab === "code-session" ? "resume" : router.back()
+              )
+            }
+            className="flex cursor-pointer items-center gap-1 text-gray-600 hover:text-gray-900 text-lg lg:text-base"
+          >
             <GoChevronLeft className="w-6 h-6" />
             Go back
           </button>
@@ -55,7 +65,12 @@ export default function ResumeUploadPage() {
             <p className="mb-4 text-sm text-gray-500">0 of 2 steps done</p>
 
             <div className="mb-6 h-2 w-full overflow-hidden rounded-full bg-gray-200">
-              <div className="h-full w-full bg-cyan-400 transition-all" />
+              <div
+                className="h-full bg-cyan-400 transition-all"
+                style={{
+                  width: activeTab === "resume" ? "0px" : "50%",
+                }}
+              />
             </div>
 
             <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-gray-500">
@@ -68,7 +83,7 @@ export default function ResumeUploadPage() {
                   "flex items-center gap-3 cursor-pointer rounded-lg  px-4 py-3",
                   activeTab === "resume" && "bg-secondary"
                 )}
-                onClick={() => setActiveTab("resume")}
+                // onClick={() => setActiveTab("resume")}
               >
                 <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-primary  text-sm font-semibold text-primary">
                   1
@@ -82,7 +97,7 @@ export default function ResumeUploadPage() {
                   "flex items-center gap-3 cursor-pointer rounded-lg px-4 py-3",
                   activeTab === "code-session" && " bg-secondary"
                 )}
-                onClick={() => setActiveTab("code-session")}
+                // onClick={() => setActiveTab("code-session")}
               >
                 <div className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-primary  text-sm font-semibold text-primary">
                   2
@@ -95,8 +110,15 @@ export default function ResumeUploadPage() {
           </div>
         </aside>
 
-        {activeTab === "resume" && <ResumeUpload />}
-        {activeTab === "code-session" && <CodeSession />}
+        {activeTab === "resume" && (
+          <ResumeUpload handleNext={() => setActiveTab("code-session")} />
+        )}
+        {activeTab === "code-session" && (
+          <CodeSession
+            handleNext={() => {}}
+            handleBack={() => setActiveTab("resume")}
+          />
+        )}
       </div>
 
       {/* Bottom Next button */}

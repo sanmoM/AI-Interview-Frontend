@@ -4,7 +4,7 @@ import { HiChevronRight } from "react-icons/hi2";
 import Wrapper from "../shared/wrapper";
 import Button from "../ui/buttons/button";
 
-export default function ResumeUpload() {
+export default function ResumeUpload({ handleNext }) {
   const [dragActive, setDragActive] = useState(false);
   const [file, setFile] = useState(null);
   const handleDrag = (e) => {
@@ -119,7 +119,10 @@ export default function ResumeUpload() {
         </div>
 
         <div className="flex justify-end items-center pt-6">
-          <Button className={"flex items-center w-fit px-5 lg:py-1.5"}>
+          <Button
+            className={"flex items-center w-fit px-5 lg:py-1.5"}
+            onClick={() => handleNext()}
+          >
             Next
             <HiChevronRight className="h-4 w-4" />
           </Button>

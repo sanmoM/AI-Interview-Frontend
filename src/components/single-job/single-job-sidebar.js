@@ -1,5 +1,10 @@
+"use client";
+
+import Link from "next/link";
 import Wrapper from "../shared/wrapper";
-import Searchbox from "../ui/searchbox";
+import Searchbox from "../ui/inputs/searchbox";
+import { cn } from "@/utils/cn";
+import { useState } from "react";
 
 const companies = [
   {
@@ -44,7 +49,14 @@ const companies = [
   },
 ];
 
+const matchOptions = [
+  { label: "Best match", value: "best-match" },
+  { label: "Trending", value: "trending" },
+  { label: "Newest", value: "newest" },
+];
+
 export default function SingleJobSidebar() {
+  const [currentFilter, setCurrentFilter] = useState("best-match");
   return (
     <Wrapper className="mx-auto w-full lg:w-[30%] xl:w-[25%] lg:h-full overflow-visible lg:overflow-auto">
       {/* Header with search */}
@@ -63,7 +75,7 @@ export default function SingleJobSidebar() {
 
       {/* Filter tabs */}
       <div className="mb-6 flex flex-wrap gap-2">
-        <button className="rounded-full bg-primary px-4 py-1.5 text-nowrap text-[11px] md:text-sm lg:text-xs xl:text-sm font-medium text-white transition-colors hover:bg-slate-800">
+        {/* <button className="rounded-full bg-primary px-4 py-1.5 text-nowrap text-[11px] md:text-sm lg:text-xs xl:text-sm font-medium text-white transition-colors hover:bg-slate-800">
           Best match
         </button>
         <button className="rounded-full border border-secondary bg-white px-4 py-1.5 text-nowrap text-[11px] md:text-sm lg:text-xs xl:text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
@@ -71,16 +83,28 @@ export default function SingleJobSidebar() {
         </button>
         <button className="rounded-full border border-secondary bg-white px-4 py-1.5 text-nowrap text-[11px] md:text-sm lg:text-xs xl:text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50">
           Newest
-        </button>
+        </button> */}
+        {matchOptions.map((option) => (
+          <button
+            className={cn(
+              "rounded-full border border-secondary bg-white px-4 py-1.5 text-nowrap text-[11px] md:text-sm lg:text-xs xl:text-sm font-medium text-text-gray transition-colors cursor-pointer",
+              option.value === currentFilter && "bg-primary text-white"
+            )}
+            onClick={() => setCurrentFilter(option.value)}
+          >
+            {option.label}
+          </button>
+        ))}
       </div>
 
       {/* Company cards */}
       <div className="max-w-full overflow-x-auto scrollbar-hide">
         <div className="lg:space-y-3 flex gap-4 lg:block min-w-max lg:min-w-auto">
           {companies.map((company) => (
-            <button
+            <Link
+              href={`/explore/${company.id}`}
               key={company.id}
-              className="w-full rounded-xl xl:rounded-2xl 2xl:rounded-3xl border border-secondary bg-white p-3 xl:p-4 text-left transition-all hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+              className="w-full rounded-xl block cursor-pointer xl:rounded-2xl 2xl:rounded-3xl border border-secondary bg-white p-3 xl:p-4 text-left transition-all hover:bg-gray-50 hover:border-gray-300 focus:outline-none"
             >
               <div className="flex items-center justify-between gap-4">
                 <div className="flex-1">
@@ -108,7 +132,7 @@ export default function SingleJobSidebar() {
                   </div>
                 </div>
               </div>
-            </button>
+            </Link>
           ))}
         </div>
       </div>
