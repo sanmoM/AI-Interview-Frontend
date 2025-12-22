@@ -80,27 +80,34 @@ export function Transcript() {
       </div>
 
       {/* Transcript Messages */}
-      <div className="rounded-2xl border border-secondary p-6 bg-bg-gray">
+      <div className="rounded-2xl border border-secondary p-4 lg:p-6 bg-bg-gray">
         <div className="">
           {transcriptMessages.map((msg, index) => (
             <div
               key={index}
-              className="flex gap-4 odd:bg-white px-10 py-3 rounded-full"
+              className="flex gap-4 odd:bg-white px-4 lg:px-10 py-3 rounded-lg lg:rounded-full"
             >
-              <div className="w-16 flex-shrink-0 pt-1">
+              <div className="w-16 flex-shrink-0 pt-1 hidden lg:block">
                 <span className="text-sm font-medium text-text-gray">
                   {msg.timestamp}
                 </span>
               </div>
               <div className="flex-1 space-y-2">
-                <div
-                  className={`text-sm font-medium ${
-                    msg.role === "caller" ? "text-emerald-600" : "text-primary"
-                  }`}
-                >
-                  {msg.speaker}
+                <div className="flex justify-between">
+                  <div
+                    className={`text-sm font-medium ${
+                      msg.role === "caller"
+                        ? "text-emerald-600"
+                        : "text-primary"
+                    }`}
+                  >
+                    {msg.speaker}
+                  </div>
+                  <span className="text-sm lg:hidden font-medium text-text-gray">
+                    {msg.timestamp}
+                  </span>
                 </div>
-                <div className="text-sm leading-relaxed text-text-primary font-medium">
+                <div className="text-xs lg:text-sm leading-relaxed text-text-primary font-medium">
                   {msg.message}
                 </div>
               </div>

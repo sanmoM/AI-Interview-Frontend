@@ -1,5 +1,6 @@
 "use client";
 
+import Application from "@/components/home/application";
 import Contracts from "@/components/home/contracts";
 import { Transcript } from "@/components/home/transcript";
 import Wrapper from "@/components/shared/wrapper";
@@ -87,6 +88,7 @@ export default function Home() {
 
         {activeTab === "contracts" && <Contracts />}
         {activeTab === "transcript" && <Transcript />}
+        {activeTab === "applications" && <Application />}
       </div>
     </Wrapper>
   );
