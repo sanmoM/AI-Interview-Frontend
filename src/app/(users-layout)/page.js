@@ -1,9 +1,12 @@
 "use client";
 
 import Application from "@/components/home/application";
+import Assessments from "@/components/home/Assessments";
 import Contracts from "@/components/home/contracts";
+import SavedJobs from "@/components/home/saved-jobs";
 import { Transcript } from "@/components/home/transcript";
 import Wrapper from "@/components/shared/wrapper";
+import Button from "@/components/ui/buttons/button";
 import { cn } from "@/utils/cn";
 import { useState } from "react";
 import { TfiHelpAlt } from "react-icons/tfi";
@@ -20,9 +23,9 @@ const tabs = [
 export default function Home() {
   const [activeTab, setActiveTab] = useState("contracts");
   return (
-    <Wrapper className="h-full">
+    <Wrapper className="h-full flex flex-col">
       {/* Header */}
-      <div className="mx-auto py-4 flex flex-col gap-4 lg:gap-0 lg:flex-row lg:items-center justify-between">
+      <div className="py-4 flex flex-col gap-4 lg:gap-0 lg:flex-row lg:items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-text-primary">
             Welcome back!
@@ -43,7 +46,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mx-auto py-2 lg:py-8">
+      <div className="py-2 lg:py-8 flex-1 flex flex-col">
         {/* Important Tasks Section */}
         <section className="mb-4 lg:mb-8">
           <h2 className="text-lg font-medium text-text-primary mb-4">
@@ -55,13 +58,15 @@ export default function Home() {
             <h3 className="text-lg font-medium mb-2 text-text-primary">
               Complete Your Profile
             </h3>
-            <p className="text-text-gray mb-4">
+            <p className="text-sm md:text-base text-text-gray mb-4">
               Completed profiles are more likely to be discovered and hired by
               companies.
             </p>
-            {/* <Button className="bg-slate-700 hover:bg-slate-800 text-white rounded-lg px-6">
+            <Button
+              className={"w-fit text-xs md:text-sm lg:text-sm 2xl:text-sm px-6"}
+            >
               Complete now
-            </Button> */}
+            </Button>
           </div>
         </section>
 
@@ -86,9 +91,13 @@ export default function Home() {
           </div>
         </nav>
 
-        {activeTab === "contracts" && <Contracts />}
-        {activeTab === "transcript" && <Transcript />}
-        {activeTab === "applications" && <Application />}
+        <div className="flex-1">
+          {activeTab === "contracts" && <Contracts />}
+          {activeTab === "transcript" && <Transcript />}
+          {activeTab === "applications" && <Application />}
+          {activeTab === "assessments" && <Assessments />}
+          {activeTab === "saved" && <SavedJobs />}
+        </div>
       </div>
     </Wrapper>
   );
