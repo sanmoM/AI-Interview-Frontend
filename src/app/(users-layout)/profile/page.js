@@ -1,6 +1,8 @@
 "use client";
 
+import Account from "@/components/profile/account";
 import Availability from "@/components/profile/availability";
+import Communications from "@/components/profile/communications";
 import Resume from "@/components/profile/resume";
 import WorkPreferences from "@/components/profile/work-preferences";
 import Tabs from "@/components/shared/tabs";
@@ -18,17 +20,23 @@ const tabs = [
 export default function page() {
   const [activeTab, setActiveTab] = useState("resume");
   return (
-    <Wrapper>
-      <div className="">
-        {/* Header */}
-        <h1 className="mb-2 md:mb-4 text-3xl font-bold text-text-primary">
-          Profile
-        </h1>
-        <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+    <Wrapper className={"!pt-0"}>
+      <div className="flex flex-col">
+        <div className="sticky top-0 bg-white z-[4] pt-4 lg:pt-6 pb-2">
+          {/* Header */}
+          <h1 className="mb-2 md:mb-4 text-3xl font-bold text-text-primary">
+            Profile
+          </h1>
+          <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+        </div>
 
-        {activeTab === "resume" && <Resume />}
-        {activeTab === "availability" && <Availability />}
-        {activeTab === "workPreferences" && <WorkPreferences />}
+        <div className="flex-1 overflow-y-auto scrollbar-hide ">
+          {activeTab === "resume" && <Resume />}
+          {activeTab === "availability" && <Availability />}
+          {activeTab === "workPreferences" && <WorkPreferences />}
+          {activeTab === "communications" && <Communications />}
+          {activeTab === "account" && <Account />}
+        </div>
       </div>
     </Wrapper>
   );
