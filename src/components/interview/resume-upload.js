@@ -3,36 +3,11 @@ import { FiUpload } from "react-icons/fi";
 import { HiChevronRight } from "react-icons/hi2";
 import Wrapper from "../shared/wrapper";
 import Button from "../ui/buttons/button";
+import FileInput from "../ui/inputs/file-input";
 
 export default function ResumeUpload({ handleNext }) {
-  const [dragActive, setDragActive] = useState(false);
   const [file, setFile] = useState(null);
-  const handleDrag = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
 
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      setFile(e.dataTransfer.files[0]);
-    }
-  };
-
-  const handleChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-    }
-  };
   return (
     <Wrapper className="flex-1 flex flex-col h-full">
       <div className="bg-white flex-1 flex flex-col">
@@ -44,7 +19,7 @@ export default function ResumeUpload({ handleNext }) {
             Please upload your resume to initiate the application process.
           </p>
 
-          <div
+          {/* <div
             className={`relative flex flex-1 flex-col items-center justify-center rounded-xl border-2 border-dashed bg-bg-gray p-12 transition-colors ${
               dragActive ? "border-secondary bg-cyan-50" : "border-secondary"
             }`}
@@ -115,7 +90,8 @@ export default function ResumeUpload({ handleNext }) {
                 </p>
               </>
             )}
-          </div>
+          </div> */}
+          <FileInput file={file} setFile={setFile} />
         </div>
 
         <div className="flex justify-end items-center pt-6">

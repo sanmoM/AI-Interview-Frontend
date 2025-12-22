@@ -5,9 +5,9 @@ import Assessments from "@/components/home/Assessments";
 import Contracts from "@/components/home/contracts";
 import SavedJobs from "@/components/home/saved-jobs";
 import { Transcript } from "@/components/home/transcript";
+import Tabs from "@/components/shared/tabs";
 import Wrapper from "@/components/shared/wrapper";
 import Button from "@/components/ui/buttons/button";
-import { cn } from "@/utils/cn";
 import { useState } from "react";
 import { TfiHelpAlt } from "react-icons/tfi";
 import { VscSettings } from "react-icons/vsc";
@@ -72,7 +72,7 @@ export default function Home() {
 
         {/* Tabs Navigation */}
         <nav className="border-b border-secondary mb-4 lg:mb-8 w-full overflow-x-auto scrollbar-hide">
-          <div className="flex gap-8">
+          {/* <div className="flex gap-8">
             {tabs.map((tab) => (
               <button
                 key={tab.value}
@@ -88,7 +88,8 @@ export default function Home() {
                 {tab.label}
               </button>
             ))}
-          </div>
+          </div> */}
+          <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
         </nav>
 
         <div className="flex-1">

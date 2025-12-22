@@ -1,4 +1,5 @@
 import { cn } from "@/utils/cn";
+import { FiChevronDown } from "react-icons/fi";
 
 const sizeClasses = {
   xs: {
@@ -29,13 +30,13 @@ const sizeClasses = {
   },
 };
 
-export default function TextInput({
-  placeholder,
+export default function SelectBox({
+  placeholder = "Select option",
   label,
-  type = "text",
   size = "md",
   error,
   containerClassName,
+  options,
   description,
   ...props
 }) {
@@ -55,22 +56,32 @@ export default function TextInput({
       {description && (
         <p
           className={cn(
-            "text-text-primary 2xl:text-xl font-medium flex gap-1",
+            "text-text-gray 2xl:text-xl font-medium flex gap-1 text-xs mb-1",
             sizeClasses[size]?.descriptionClass
           )}
         >
           {description}
         </p>
       )}
-      <input
-        type={type}
-        placeholder={placeholder}
-        className={cn(
-          "py-2.5 px-4 2xl:px-5 bg-bg-gray rounded-full font-normal border border-secondary text-sm lg:text-base 2xl:text-lg placeholder:text-text-gray focus:outline-none focus:ring-0",
-          sizeClasses[size]?.inputClass
-        )}
-        {...props}
-      />
+      <div className="relative">
+        <select
+          className={cn(
+            "w-full py-2.5 px-4 2xl:px-5 bg-bg-gray rounded-full font-normal border border-secondary  text-text-gray focus:outline-none focus:ring-0 appearance-none cursor-pointer pr-12",
+            sizeClasses[size]?.inputClass
+          )}
+          {...props}
+        >
+          <option value="" disabled className="">
+            {placeholder}
+          </option>
+          {options?.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+      </div>
       {error && (
         <span className={cn("text-red-600", sizeClasses[size]?.inputClass)}>
           {error}

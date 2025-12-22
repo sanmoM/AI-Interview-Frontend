@@ -97,7 +97,7 @@ export default function Jobs() {
         <Link
           href={`/explore/${opportunity.id}`}
           key={opportunity.id}
-          className="block rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6 transition-shadow hover:shadow-md shadow-secondary"
+          className="block rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6"
         >
           <div className="mb-2 xl:mb-4 flex items-start justify-between">
             <h3 className="text-base md:text-xl xl:text-[22px] font-bold text-gray-900">
