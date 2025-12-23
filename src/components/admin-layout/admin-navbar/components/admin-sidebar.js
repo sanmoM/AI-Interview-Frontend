@@ -5,10 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { PiCaretUpDown } from "react-icons/pi";
 
-export default function AdminSidebar({navItems}) {
+export default function AdminSidebar({ navItems }) {
   const [activeNav, setActiveNav] = useState("ventures");
-
- 
 
   return (
     <aside className="hidden lg:flex w-64 2xl:w-72 bg-white border-r border-gray-200 flex-col h-full sticky top-0 px-6 py-6 2xl:py-8 rounded-4xl shadow-2xl">
@@ -32,7 +30,7 @@ export default function AdminSidebar({navItems}) {
 
         <div className="space-y-2">
           {navItems.map((item) => {
-            const Icon = item.icon;
+            const Icon = item.Icon;
             const isActive = activeNav === item.id;
 
             return (
@@ -46,8 +44,8 @@ export default function AdminSidebar({navItems}) {
                     : "text-text-gray"
                 }`}
               >
-                <Icon className="w-5 h-5 flex-shrink-0" />
-                {item.label}
+                {Icon}
+                {item.name}
               </Link>
             );
           })}
@@ -61,7 +59,9 @@ export default function AdminSidebar({navItems}) {
           <p className="text-base 2xl:text-lg text-text-primary font-medium truncate">
             Alex Rivera
           </p>
-          <p className="text-xs 2xl:text-sm text-gray-500 truncate">Partner • Global</p>
+          <p className="text-xs 2xl:text-sm text-gray-500 truncate">
+            Partner • Global
+          </p>
           <p className="text-xs 2xl:text-sm text-gray-400">Ventures</p>
         </div>
         <PiCaretUpDown className="w-4 h-4 text-text-primary shrink-0 transition-opacity" />

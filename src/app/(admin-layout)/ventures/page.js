@@ -144,7 +144,7 @@ export default function VenturesPage() {
 
       {/* Venture cards grid */}
       <div className="mt-4 md:mt-12">
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 mb-4 lg:mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-6 mb-4 md:mb-8 lg:mb-10">
           {ventures.map((venture) => (
             <VentureCard key={venture.id} item={venture} />
           ))}

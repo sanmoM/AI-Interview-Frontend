@@ -1,4 +1,8 @@
-import Header from "@/components/shared/layout/header";
+"use client";
+
+import NavLink from "@/components/shared/layout/header/components/nav-link";
+import Header from "@/components/shared/layout/header/header";
+import { useState } from "react";
 import { BsMeta } from "react-icons/bs";
 import { FiHome, FiUser } from "react-icons/fi";
 import UserSidebar from "./components/sidebar";
@@ -28,10 +32,33 @@ const navLinks = [
 ];
 
 export default function UserNavbar() {
+  const [open, setOpen] = useState(false);
   return (
     <div className="lg:py-6 lg:h-full sticky top-0 z-10">
-      <Header navLinks={navLinks} />
+      <Header open={open} setOpen={setOpen}>
+        {/* Sidebar Content */}
+
+        {/* NAV LINKS */}
+        <ul className="space-y-1  text-gray-500">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <NavLink link={link} setOpen={setOpen} />
+            </li>
+          ))}
+        </ul>
+
+        {/* BOTTOM BUTTON */}
+        {/* <div className="py-6">
+            <Button
+              size="lg"
+              variant="secondary"
+              className="w-full rounded-full"
+            >
+              Be a Model
+            </Button>
+          </div> */}
+      </Header>
       <UserSidebar navItems={navLinks} />
-    </div >
+    </div>
   );
 }
