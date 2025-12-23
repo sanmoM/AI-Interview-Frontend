@@ -28,6 +28,7 @@ const navItems = [
   {
     id: "faqs",
     name: "FAQs",
+    href: "/faqs",
     Icon: (
       <TfiHelpAlt className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
@@ -55,7 +56,7 @@ export default function AdminNavbar() {
       <Header open={open} setOpen={setOpen}>
         <ul className="space-y-1  text-gray-500">
           {navItems.map((link) => (
-            <li key={link.href}>
+            <li key={link.id}>
               <NavLink link={link} setOpen={setOpen} />
             </li>
           ))}
