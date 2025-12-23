@@ -25,8 +25,8 @@ export default function page() {
     <div className="rounded-2xl lg:rounded-3xl border border-secondary overflow-hidden max-w-[350px] md:max-w-[500px] lg:max-w-[600px] 2xl:max-w-[550px] w-full bg-white">
       <div className="py-3 lg:py-6 xl:py-7 px-4 md:px-6 lg:px-8 xl:px-10">
         {/* Logo and Need Help */}
-        <div className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 2xl:w-14 2xl:h-14 rounded-full bg-sky-200 flex items-center justify-center mx-auto">
-          <span className="text-sm md:text-base lg:text-lg 2xl:text-xl text-white">
+        <div className="w-14 h-14 rounded-full bg-sky-200 flex items-center justify-center mx-auto">
+          <span className="text-xl text-white">
             Ai
           </span>
         </div>
@@ -63,7 +63,7 @@ export default function page() {
           />
           <Button>Login</Button>
         </form>
-        <div className="flex justify-between items-center mt-4 font-medium">
+        <div className="flex justify-between items-center mt-4 font-medium text-xs md:text-base">
           <p className="text-text-gray">Secured admin access</p>
           <Link href={"#"} className="text-primary">
             Forgot password?

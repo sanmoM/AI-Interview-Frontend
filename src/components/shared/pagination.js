@@ -42,7 +42,7 @@ export default function Pagination() {
     return range;
   };
   return (
-    <div className="flex flex-1 items-center justify-center gap-1 sm:gap-2 pt-6 xl:py-8">
+    <div className="flex flex-1 items-center justify-center gap-1 sm:gap-2 xl:py-8">
       {/* Pages */}
       {getPaginationRange().map((item, index) =>
         item === "..." ? (

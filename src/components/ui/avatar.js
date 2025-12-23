@@ -1,5 +1,7 @@
 "use client";
 
+import { cn } from "@/utils/cn";
+
 const sizeClasses = {
   xs: "w-6 h-6 border",
   sm: "w-8 h-8 border",
@@ -13,14 +15,17 @@ export default function Avatar({
   size = "md",
   src = "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
   alt = "User avatar",
+  className,
 }) {
   return (
-    <div
-      className={`rounded-full border-gray-200 overflow-hidden flex-shrink-0 bg-gray-100 ${
-        sizeClasses[size] || sizeClasses.md
-      }`}
-    >
-      <img src={src} alt={alt} className="w-full h-full object-cover" />
-    </div>
+    <img
+      src={src}
+      alt={alt}
+      className={cn(
+        "w-full h-full object-cove rounded-full border-gray-200 overflow-hidden flex-shrink-0 bg-gray-100",
+        sizeClasses[size] || sizeClasses.md,
+        className
+      )}
+    />
   );
 }

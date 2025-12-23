@@ -1,26 +1,17 @@
 "use client";
 
+import Avatar from "@/components/ui/avatar";
 import Link from "next/link";
 import { useState } from "react";
-import { GoBriefcase } from "react-icons/go";
-import { LuPhoneCall } from "react-icons/lu";
-import { MdGridView } from "react-icons/md";
-import { PiCaretUpDown, PiGearFineLight } from "react-icons/pi";
-import { TfiHelpAlt } from "react-icons/tfi";
+import { PiCaretUpDown } from "react-icons/pi";
 
-export default function AdminSidebar() {
+export default function AdminSidebar({navItems}) {
   const [activeNav, setActiveNav] = useState("ventures");
 
-  const navItems = [
-    { id: "ventures", label: "Ventures", icon: MdGridView },
-    { id: "engine", label: "Engine", icon: PiGearFineLight },
-    { id: "faqs", label: "FAQs", icon: TfiHelpAlt },
-    { id: "jobs", label: "Jobs", icon: GoBriefcase },
-    { id: "calls", label: "Calls", icon: LuPhoneCall },
-  ];
+ 
 
   return (
-    <aside className="w-64 2xl:w-72 bg-white border-r border-gray-200 flex flex-col h-full sticky top-0 px-6 py-6 2xl:py-8 rounded-4xl shadow-2xl">
+    <aside className="hidden lg:flex w-64 2xl:w-72 bg-white border-r border-gray-200 flex-col h-full sticky top-0 px-6 py-6 2xl:py-8 rounded-4xl shadow-2xl">
       <div className="flex items-center gap-3 mb-7">
         <div className="w-12 h-12 bg-primary rounded-full flex-shrink-0" />
         <div>
@@ -64,18 +55,14 @@ export default function AdminSidebar() {
       </nav>
 
       {/* User section */}
-      <button className="w-full flex items-center gap-3 px-2 rounded-lg transition-colors group">
-        <img
-          src="/diverse-group-profile.png"
-          alt="User profile"
-          className="w-10 h-10 rounded-full bg-gray-200 shrink-0"
-        />
+      <button className="w-full flex items-center gap-3 rounded-lg transition-colors group">
+        <Avatar size="xl" className={"w-[30%] aspect-square h-auto"} />
         <div className="flex-1 text-left min-w-0">
-          <p className="text-lg text-text-primary font-medium truncate">
+          <p className="text-base 2xl:text-lg text-text-primary font-medium truncate">
             Alex Rivera
           </p>
-          <p className="text-sm text-gray-500 truncate">Partner • Global</p>
-          <p className="text-sm text-gray-400">Ventures</p>
+          <p className="text-xs 2xl:text-sm text-gray-500 truncate">Partner • Global</p>
+          <p className="text-xs 2xl:text-sm text-gray-400">Ventures</p>
         </div>
         <PiCaretUpDown className="w-4 h-4 text-text-primary shrink-0 transition-opacity" />
       </button>

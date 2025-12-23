@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import VentureCard from "../shared/venture-card";
 
 const opportunities = [
   {
@@ -78,28 +79,16 @@ const opportunities = [
 ];
 
 export default function Jobs() {
-  const getStatusStyles = (status) => {
-    switch (status) {
-      case "ACTIVE":
-        return "text-green-400";
-      case "CLIENT":
-      case "DEMO":
-        return "bg-secondary text-primary";
-      case "TEMPLATE":
-        return "text-text-gray";
-      default:
-        return "text-text-gray";
-    }
-  };
+
   return (
     <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2 2xl:grid-cols-3">
       {opportunities.map((opportunity) => (
         <Link
           href={`/explore/${opportunity.id}`}
           key={opportunity.id}
-          className="block rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6"
+          className="block"
         >
-          <div className="mb-2 xl:mb-4 flex items-start justify-between">
+          {/* <div className="mb-2 xl:mb-4 flex items-start justify-between">
             <h3 className="text-base md:text-xl xl:text-[22px] font-bold text-gray-900">
               {opportunity.title}
             </h3>
@@ -120,7 +109,8 @@ export default function Jobs() {
             {Object.values(opportunity.metadata).map((item, index) => (
               <span key={index}>{item}</span>
             ))}
-          </div>
+          </div> */}
+          <VentureCard item={opportunity} />
         </Link>
       ))}
     </div>

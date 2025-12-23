@@ -6,15 +6,13 @@ export default function FilterTabs({ filters }) {
   const [activeFilter, setActiveFilter] = useState(0);
 
   return (
-    <div className="flex items-center gap-2 overflow-x-auto">
+    <div className="flex items-center gap-2 flex-1 overflow-x-auto min-w-0 scrollbar-hide">
       {filters.map((filter, idx) => (
         <button
           key={idx}
           onClick={() => setActiveFilter(idx)}
-          className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-            activeFilter === idx
-              ? "bg-blue-900 text-white"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          className={`px-4 py-2 rounded-full text-sm md:text-base cursor-pointer text-nowrap  transition-colors ${
+            activeFilter === idx ? "bg-primary text-white" : "text-text-gray"
           }`}
         >
           {filter.label}{" "}
