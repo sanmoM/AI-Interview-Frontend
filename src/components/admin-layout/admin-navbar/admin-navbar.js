@@ -14,6 +14,7 @@ const navItems = [
   {
     id: "ventures",
     name: "Ventures",
+    href: "/ventures",
     Icon: (
       <MdGridView className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
@@ -21,6 +22,7 @@ const navItems = [
   {
     id: "engine",
     name: "Engine",
+    href: "/engine",
     Icon: (
       <PiGearFineLight className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
@@ -36,6 +38,7 @@ const navItems = [
   {
     id: "jobs",
     name: "Jobs",
+    href: "/jobs",
     Icon: (
       <GoBriefcase className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
@@ -43,6 +46,7 @@ const navItems = [
   {
     id: "calls",
     name: "Calls",
+    href: "/calls",
     Icon: (
       <LuPhoneCall className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),

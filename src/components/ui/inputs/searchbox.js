@@ -84,7 +84,7 @@ export default function Searchbox({
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         className={cn(
-          "w-full rounded-full border border-secondary placeholder:font-medium placeholder:text-text-gray focus:border-gray-400 focus:outline-none",
+          "w-full rounded-full border border-secondary placeholder:font-medium placeholder:text-text-gray focus:outline-none",
           currentSize.input,
           inputClassName
         )}
