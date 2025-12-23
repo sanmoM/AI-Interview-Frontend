@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import Searchbox from "../ui/inputs/searchbox";
+import SectionHeading from "../ui/headings/section-heading";
 
 export default function ExploreFilter() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("all-roles");
   return (
     <div className="h-fit">
-      <h1 className="mb-4 md:mb-6 lg:mb-8 text-2xl xl:text-3xl font-bold text-text-primary">
+      <SectionHeading className={"mb-4 md:mb-6 lg:mb-8"}>
         Explore opportunities
-      </h1>
+      </SectionHeading>
 
       {/* Search Bar and Filters */}
       <div className="mb-6 md:mb-8 flex flex-col md:flex-row items-center gap-4">

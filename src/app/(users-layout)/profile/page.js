@@ -7,6 +7,7 @@ import Resume from "@/components/profile/resume";
 import WorkPreferences from "@/components/profile/work-preferences";
 import Tabs from "@/components/shared/tabs";
 import Wrapper from "@/components/shared/wrapper";
+import SectionHeading from "@/components/ui/headings/section-heading";
 import { useState } from "react";
 
 const tabs = [
@@ -23,10 +24,7 @@ export default function page() {
     <Wrapper className={"!pt-0"}>
       <div className="flex flex-col">
         <div className="sticky top-0 bg-white z-[4] pt-4 lg:pt-6 pb-2">
-          {/* Header */}
-          <h1 className="mb-2 md:mb-4 text-3xl font-bold text-text-primary">
-            Profile
-          </h1>
+          <SectionHeading className={"mb-2 md:mb-4"}>Profile</SectionHeading>
           <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
 

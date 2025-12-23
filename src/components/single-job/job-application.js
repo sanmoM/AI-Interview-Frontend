@@ -6,6 +6,7 @@ import Wrapper from "../shared/wrapper";
 import Button from "../ui/buttons/button";
 import RadioInput from "../ui/inputs/radio-input";
 import Link from "next/link";
+import SectionHeading from "../ui/headings/section-heading";
 
 export default function JobApplication() {
   const [activeFilter, setActiveFilter] = useState("Best match");
@@ -29,9 +30,9 @@ export default function JobApplication() {
         <div className="mx-auto">
           {/* Job title and badges */}
           <div className="mb-6">
-            <h1 className="mb-3 text-xl  md:text-2xl 2xl:text-3xl font-bold text-text-primary">
+            <SectionHeading className={"mb-3"}>
               Senior/Staff Code Review Experts
-            </h1>
+            </SectionHeading>
             <div className="flex gap-2">
               <span className="inline-flex items-center gap-1 rounded-full border border-secondary text-text-gray bg-white px-3 py-1 text-[10px] md:text-sm text-gray-700">
                 <LuClock4 className="w-2 h-2 md:w-3 md:h-3 lg:h-4 lg:w-4" />

@@ -8,6 +8,8 @@ import { Transcript } from "@/components/home/transcript";
 import Tabs from "@/components/shared/tabs";
 import Wrapper from "@/components/shared/wrapper";
 import Button from "@/components/ui/buttons/button";
+import SectionHeading from "@/components/ui/headings/section-heading";
+import SubHeading from "@/components/ui/headings/sub-heading";
 import { useState } from "react";
 import { TfiHelpAlt } from "react-icons/tfi";
 import { VscSettings } from "react-icons/vsc";
@@ -27,12 +29,10 @@ export default function Home() {
       {/* Header */}
       <div className="py-4 flex flex-col gap-4 lg:gap-0 lg:flex-row lg:items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-text-primary">
-            Welcome back!
-          </h1>
-          <p className="text-text-gray mt-1">
+          <SectionHeading>Welcome back!</SectionHeading>
+          <SubHeading>
             Continue where you left off with your contracts and offers.
-          </p>
+          </SubHeading>
         </div>
         <div className="flex items-center gap-6">
           <button className="flex items-center gap-2 text-text-gray transition-colors">
