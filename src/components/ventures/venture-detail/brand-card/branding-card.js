@@ -1,35 +1,27 @@
 "use client";
 
+import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
+import SingleVentureInnerDivHeader from "@/components/single-venture/single-venture";
 import Avatar from "@/components/ui/avatar";
 import { useState } from "react";
 import { IoColorPaletteOutline } from "react-icons/io5";
 import Color from "./components/color";
-import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
+import ContentWrapper from "@/components/shared/wrapper/content-wrapper";
 
 export default function BrandingCard() {
     const [selectedColor, setSelectedColor] = useState("primary");
 
     return (
         <InnerWrapper>
-            <div>
-                <div className="flex justify-between items-center md:items-start mb-3 md:mb-6">
-                    <div className="flex items-center md:items-start gap-4">
-                        <div className="w-10 h-10 rounded-full bg-secondary text-primary flex items-center justify-center shrink-0">
-                            <IoColorPaletteOutline className="w-6 h-6" />
-                        </div>
-                        <div>
-                            <h2 className="text-lg font-semibold text-gray-900 leading-tight">Branding</h2>
-                            <p className="text-text-gray text-sm mt-0.5 hidden md:block">Logo, colors, and wording applied to this venture.</p>
-                        </div>
-                    </div>
-                    <span className="bg-secondary text-primary text-[11px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
-                        Editable
-                    </span>
-                </div>
-                <p className="text-text-gray text-sm md:hidden">Logo, colors, and wording applied to this venture.</p>
-            </div>
+            <SingleVentureInnerDivHeader
+                Icon={IoColorPaletteOutline}
+                title="Branding"
+                description="Logo, colors, and wording applied to this venture."
+                badgeLabel="Editable"
+                containerClassName={"mb-6 md:mb-0"}
+            />
 
-            <div className="flex flex-col xl:flex-row gap-4 md:gap-8 mb-4 md:mb-8 mt-4 md:mt-0">
+            <div className="flex flex-col 2xl:flex-row gap-4 md:gap-8 mb-4 md:mb-8 ">
                 {/* Logo Section */}
                 <div className="flex-1 min-w-[120px]">
                     <p className="text-sm font-medium text-text-gray mb-3">Logo</p>
@@ -58,12 +50,12 @@ export default function BrandingCard() {
             {/* Wording & Labels */}
             <div className="mt-auto">
                 <p className="text-sm font-medium text-text-gray mb-3">Wording & labels</p>
-                <div className="bg-bg-gray border border-secondary rounded-3xl p-2 md:p-4 mb-2">
+                <ContentWrapper>
                     <p className="text-text-gray text-xs md:text-sm font-medium leading-relaxed">
                         &quot;Interview&quot; → &quot;Session&quot; · &quot;Candidate&quot; → &quot;Driver&quot;. Update headings, button labels, and static helper copy to match Aurora&apos;s language.
                     </p>
-                </div>
-                <p className="text-text-gray font-medium text-xs">
+                </ContentWrapper>
+                <p className="text-text-gray font-medium text-xs mt-2">
                     This wording is used across the entire interview experience.
                 </p>
             </div>

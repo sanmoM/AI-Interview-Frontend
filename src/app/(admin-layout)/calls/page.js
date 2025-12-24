@@ -302,7 +302,7 @@ export default function CallsPage() {
                 {/* Pagination */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mt-4 md:mt-6 px-2">
                     <p className="text-gray-400 text-xs md:text-sm font-medium">Showing 1–25 of 132 calls</p>
-                    <Pagination size="xs" previous={<button className="text-gray-400 text-xs md:text-base hover:text-[#304E77] px-3 py-1">Prev</button>} next={<button className="text-gray-400 text-xs md:text-base hover:text-[#304E77] px-3 py-1">Next</button>} containerClassName={"flex-0"} />
+                    <Pagination size="xs" previous={<button className="text-text-gray text-xs md:text-base px-3 py-1 hover:text-primary">Prev</button>} next={<button className="text-text-gray text-xs md:text-base px-3 py-1 hover:text-primary">Next</button>} containerClassName={"flex-0"} />
                 </div>
             </div>
 

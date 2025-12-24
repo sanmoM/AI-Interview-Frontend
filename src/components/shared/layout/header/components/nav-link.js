@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 
 export default function NavLink({ link, setOpen }) {
   const pathname = usePathname();
-  console.log(link);
   return (
     <Link
       href={link?.href || "#"}

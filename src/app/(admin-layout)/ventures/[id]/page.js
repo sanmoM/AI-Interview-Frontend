@@ -8,7 +8,7 @@ import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
 import BrandingCard from "@/components/ventures/venture-detail/brand-card/branding-card";
-import FAQsCard from "@/components/ventures/venture-detail/faqs-card";
+import FAQs from "@/components/ventures/venture-detail/faq-card/faqs";
 import KnowledgeFilesCard from "@/components/ventures/venture-detail/knowledge-files-card";
 import SystemPromptCard from "@/components/ventures/venture-detail/system-prompt-card";
 import ToneCard from "@/components/ventures/venture-detail/tone-card";
@@ -20,7 +20,7 @@ export default function VentureDetailPage() {
             {/* Top Header */}
             <div className="flex flex-1 flex-col xl:flex-row justify-between xl:items-start gap-6 mb-8">
                 <div className="">
-                    <p className="text-text-gray text-sm font-medium mb-3 flex items-center gap-1.5">
+                    <p className="text-text-gray text-xs md:text-sm font-medium mb-3 flex items-center gap-1.5">
                         <span className="text-text-gray">Venture profiles b7</span>
                         <span className="text-text-primary font-semibold">Aurora Mobility Labs</span>
                     </p>
@@ -65,7 +65,7 @@ export default function VentureDetailPage() {
             <div className="grid grid-cols-1 xl:grid-cols-[60%_40%] gap-6">
                 {/* Left Column (Branding & Tone) */}
                 <BrandingCard />
-                <FAQsCard />
+                <FAQs />
 
                 {/* Right Column (FAQs, System Prompt, Knowledge) */}
                 <ToneCard />

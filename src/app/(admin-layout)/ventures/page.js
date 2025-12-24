@@ -106,7 +106,7 @@ export default function VenturesPage() {
       {/* Header */}
       <StickyHeader>
         <div className="flex flex-col xl:flex-row justify-between gap-4 xl:gap-10">
-          <div className="mb-3">
+          <div className="mb-3 max-w-5xl">
             <SectionHeading className={"mb-2 lg:mb-4"}>
               Venture Profiles
             </SectionHeading>
@@ -149,13 +149,13 @@ export default function VenturesPage() {
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-6 mb-4 md:mb-8 lg:mb-10">
           {ventures.map((venture) => (
             <Link className="block" href={`/ventures/${venture.id}`}>
-              <VentureCard key={venture.id} item={venture} />
+              <VentureCard key={venture.id} item={venture} className={"h-full"} />
             </Link>
 
           ))}
         </div>
 
-        <Pagination />
+        <Pagination size="sm" containerClassName={"2xl:mt-20"} />
       </div>
     </SecondaryWrapper>
   );

@@ -1,6 +1,7 @@
+import { cn } from "@/utils/cn";
 import React from "react";
 
-export default function VentureCard({ item }) {
+export default function VentureCard({ item, className }) {
   const getStatusStyles = (status) => {
     switch (status) {
       case "ACTIVE":
@@ -15,7 +16,7 @@ export default function VentureCard({ item }) {
     }
   };
   return (
-    <div className=" rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6">
+    <div className={cn(" rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6", className)}>
       <div className="mb-2 xl:mb-4 flex items-start justify-between">
         <h3 className="text-base md:text-xl xl:text-[22px] font-bold text-gray-900">
           {item.title}

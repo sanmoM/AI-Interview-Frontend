@@ -1,27 +1,20 @@
 "use client";
 
+import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
+import SingleVentureInnerDivHeader from "@/components/single-venture/single-venture";
 import BorderButton from "@/components/ui/buttons/border-button";
 import { FiFolder, FiUploadCloud } from "react-icons/fi";
 
 export default function KnowledgeFilesCard() {
     return (
-        <div className="bg-white rounded-4xl p-6 lg:p-8 shadow-lg h-fit">
-            <div className="flex justify-between items-start mb-6">
-                <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shrink-0">
-                        <FiFolder className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                        <div className="flex items-center gap-2">
-                            <h2 className="text-lg font-semibold text-text-primary leading-tight">Knowledge files</h2>
-                        </div>
-                        <p className="text-text-gray text-sm mt-0.5">Docs the assistant can reference during the interview.</p>
-                    </div>
-                    <span className="bg-secondary text-primary text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-gray-200">
-                        Linked
-                    </span>
-                </div>
-            </div>
+        <InnerWrapper>
+            <SingleVentureInnerDivHeader
+                Icon={FiFolder}
+                title="Knowledge files"
+                description="Docs the assistant can reference during the interview."
+                containerClassName={"mb-6 md:mb-0"}
+                badgeLabel={"Linked"}
+            />
 
             <div className="space-y-3 mb-6">
                 {/* File Item 1 */}
@@ -57,6 +50,6 @@ export default function KnowledgeFilesCard() {
                 <FiUploadCloud className="w-5 h-5 text-text-gray" />
                 Upload knowledge file
             </BorderButton>
-        </div>
+        </InnerWrapper>
     );
 }
