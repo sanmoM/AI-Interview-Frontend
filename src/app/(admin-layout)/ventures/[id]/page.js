@@ -19,14 +19,14 @@ export default function VentureDetailPage() {
     return (
         <SecondaryWrapper>
             {/* Top Header */}
-            <div className="flex flex-1 flex-col xl:flex-row justify-between xl:items-start gap-6 mb-8">
+            <div className="flex flex-1 flex-col 2xl:flex-row justify-between xl:items-start gap-6 mb-8">
                 <div className="">
                     <p className="text-text-gray text-xs md:text-sm font-medium mb-3 flex items-center gap-1.5">
                         <span className="text-text-gray">Venture profiles b7</span>
                         <span className="text-text-primary font-semibold">Aurora Mobility Labs</span>
                     </p>
                     <div className="flex flex-col md:flex-row items-start gap-5">
-                        <div className="w-14 h-14 rounded-3xl bg-secondary flex items-center justify-center shrink-0 text-xl text-primary mx-auto md:mx-0">
+                        <div className="w-14 h-14 rounded-3xl bg-secondary flex items-center justify-center shrink-0 text-xl text-primary">
                             AM
                         </div>
                         <div>
@@ -53,8 +53,8 @@ export default function VentureDetailPage() {
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-3 mt-2 self-start xl:self-start w-full xl:w-auto items-center">
-                    <Searchbox placeholder="Search within venture" containerClassName="w-full 2xl:w-[270px]" />
+                <div className="flex flex-col md:flex-row gap-3 mt-2 self-start xl:self-start items-center w-full 2xl:w-auto">
+                    <Searchbox placeholder="Search within venture" containerClassName="w-full 2xl:w-[270px] flex-1" />
                     <BorderButton className="flex items-center justify-center gap-2 px-5 py-2 text-sm text-primary md:w-fit">
                         <FiExternalLink className="w-4 h-4" />
                         Live candidate link
@@ -63,7 +63,7 @@ export default function VentureDetailPage() {
             </div>
 
             {/* Content Grid */}
-            <div className="grid grid-cols-1 xl:grid-cols-[60%_40%] gap-6">
+            <div className="grid grid-cols-1 2xl:grid-cols-[60%_40%] gap-6">
                 {/* Left Column (Branding & Tone) */}
                 <BrandingCard />
                 <FAQs />
@@ -82,9 +82,9 @@ export default function VentureDetailPage() {
                     <Badge className="text-[13px] py-1 w-fit mx-auto md:mx-0">
                         Config on venture
                     </Badge>
-                    <span className="text-[13px]"> Branding, tone, FAQs, system prompt, and knowledge were initially set on creation and remain fully editable.</span>
+                    <span className="text-[13px] text-center md:text-left"> Branding, tone, FAQs, system prompt, and knowledge were initially set on creation and remain fully editable.</span>
                 </p>
-                <div className="flex flex-col md:flex-row gap-2">
+                <div className="flex flex-col md:flex-row gap-3">
                     <BorderButton className="text-gray-600 hover:text-gray-900 !text-sm font-semibold px-4 py-2 hover:bg-gray-100 rounded-full transition-colors whitespace-nowrap">
                         Discard unsaved changes
                     </BorderButton>
