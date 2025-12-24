@@ -54,7 +54,7 @@ export default function AdminSidebar({ navItems }) {
 
       {/* User section */}
       <button className="w-full flex items-center gap-3 rounded-lg transition-colors group">
-        <Avatar size="xl" className={"w-[30%] aspect-square h-auto"} />
+        <Avatar size="lg" className={"w-[25%] aspect-square h-auto"} />
         <div className="flex-1 text-left min-w-0">
           <p className="text-base 2xl:text-lg text-text-primary font-medium truncate">
             Alex Rivera

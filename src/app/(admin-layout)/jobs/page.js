@@ -80,12 +80,9 @@ export default function JobPage() {
                 </div>
             </div>
 
-            {/* Footer Floating Bar
-            <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
-               
-            </div> */}
+            {/* Footer Floating Bar*/}
             <div className="flex flex-col gap-5 xl:gap-8 2xl:flex-row justify-between items-center mt-8">
-                 <div className="flex flex-col md:flex-row items-center gap-3">
+                <div className="flex flex-col md:flex-row items-center gap-3">
                     <Badge className="text-xs px-3 py-1">AI Developer Assistant</Badge>
                     <span className="text-gray-500 text-sm font-medium text-center md:text-left">Review responsibilities and qualifications, then save or preview the candidate-facing page.</span>
                 </div>
