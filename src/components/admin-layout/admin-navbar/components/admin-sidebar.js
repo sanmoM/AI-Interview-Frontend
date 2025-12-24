@@ -9,7 +9,7 @@ export default function AdminSidebar({ navItems }) {
   const [activeNav, setActiveNav] = useState("ventures");
 
   return (
-    <aside className="hidden lg:flex w-64 2xl:w-72 bg-white border-r border-gray-200 flex-col h-full sticky top-0 px-6 py-6 2xl:py-8 rounded-4xl shadow-lg">
+    <aside className="hidden lg:flex w-64 2xl:w-72 bg-white border-r border-gray-200 flex-col h-full sticky top-0 px-6 py-6 2xl:py-8 rounded-4xl shadow-[0_4px_25px_0_rgba(23,26,31,0.25)]">
       <div className="flex items-center gap-3 mb-7">
         <div className="w-12 h-12 bg-primary rounded-full flex-shrink-0" />
         <div>
@@ -38,11 +38,10 @@ export default function AdminSidebar({ navItems }) {
                 href={item.href}
                 key={item.id}
                 onClick={() => setActiveNav(item.id)}
-                className={`w-full flex cursor-pointer items-center gap-3 px-4 py-2.5 rounded-full  transition-all 2xl:text-lg ${
-                  isActive
+                className={`w-full flex cursor-pointer items-center gap-3 px-4 py-2.5 rounded-full  transition-all 2xl:text-lg ${isActive
                     ? "bg-primary text-white font-medium"
                     : "text-text-gray"
-                }`}
+                  }`}
               >
                 {Icon}
                 {item.name}
