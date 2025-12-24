@@ -11,6 +11,8 @@ import { useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import { BsTelephone } from "react-icons/bs";
 import Pagination from "@/components/shared/pagination";
+import SecondaryWrapper from "@/components/shared/wrapper/secondary-wrapper";
+import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
 
 const STATS_DATA = [
     {
@@ -110,7 +112,7 @@ export default function CallsPage() {
     const [activeFilter, setActiveFilter] = useState("All calls");
 
     return (
-        <Wrapper className="shadow-[#00000010] pb-20">
+        <SecondaryWrapper>
             <p className="text-text-gray text-xs md:text-sm font-medium mb-4">Aurora Mobility Labs · <span className="text-text-primary">Calls</span></p>
             {/* Header */}
             <div className="flex flex-col 2xl:flex-row justify-between md:items-start mb-6 gap-4">
@@ -156,7 +158,7 @@ export default function CallsPage() {
             </div>
 
             {/* Main Content Card */}
-            <div className="bg-white rounded-4xl border border-gray-100 shadow-lg p-6 md:p-8">
+            <InnerWrapper>
                 {/* Card Header */}
                 <div className="flex  flex-col md:flex-row justify-between items-start mb-4 lg:mb-8">
                     <div className="flex items-start gap-4">
@@ -304,7 +306,7 @@ export default function CallsPage() {
                     <p className="text-gray-400 text-xs md:text-sm font-medium">Showing 1–25 of 132 calls</p>
                     <Pagination size="xs" previous={<button className="text-text-gray text-xs md:text-base px-3 py-1 hover:text-primary">Prev</button>} next={<button className="text-text-gray text-xs md:text-base px-3 py-1 hover:text-primary">Next</button>} containerClassName={"flex-0"} />
                 </div>
-            </div>
+            </InnerWrapper>
 
             {/* Bottom Floating Bar */}
             <div className="flex flex-col lg:flex-row justify-between items-center mt-6 lg:mt-12 gap-6 px-1">
@@ -325,6 +327,6 @@ export default function CallsPage() {
                     </Button>
                 </div>
             </div>
-        </Wrapper>
+        </SecondaryWrapper>
     );
 }

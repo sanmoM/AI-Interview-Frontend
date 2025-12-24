@@ -77,7 +77,7 @@ export default function VentureDetailPage() {
             </div>
 
             {/* Floating Action Bar */}
-            <div className="flex flex-col gap-5 lg:flex-row justify-between items-center mt-8">
+            <div className="flex flex-col gap-5 xl:gap-8 2xl:flex-row justify-between items-center mt-8">
                 <p className="text-gray-500 max-w-3xl font-medium flex flex-col md:flex-row md:items-center gap-2">
                     <span className="bg-secondary w-fit text-primary text-xs font-bold px-2 py-1 rounded-full mr-2 uppercase tracking-wide text-nowrap gap-2">Config on venture</span>
                     <span className="text-sm"> Branding, tone, FAQs, system prompt, and knowledge were initially set on creation and remain fully editable.</span>
