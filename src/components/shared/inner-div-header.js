@@ -12,18 +12,26 @@ export default function InnerDivHeader({ Icon, title, description, badgeLabel, c
                     <div className='flex-1'>
                         <div className='flex flex-wrap justify-between items-center gap-1'>
                             <h2 className="text-lg md:text-xl font-bold text-gray-900 leading-tight">{title}</h2>
-                            <Badge className={"text-[10px] p-1 px-3 font-medium md:hidden"}>
-                                {badgeLabel}
-                            </Badge>
+                            {
+                                badgeLabel && (
+                                    <Badge className={"text-[10px] p-1 px-3 font-medium md:hidden"}>
+                                        {badgeLabel}
+                                    </Badge>
+                                )
+                            }
 
                         </div>
 
                         <p className="text-text-gray mt-0.5 hidden md:block">{description}</p>
                     </div>
                 </div>
-                <Badge className={"text-xs p-1 px-3 font-medium hidden md:block"}>
-                    {badgeLabel}
-                </Badge>
+                {
+                    badgeLabel && (
+                        <Badge className={"text-xs p-1 px-3 font-medium hidden md:block"}>
+                            {badgeLabel}
+                        </Badge>
+                    )
+                }
             </div>
             <p className="text-text-gray text-sm md:hidden">{description}</p>
         </div>

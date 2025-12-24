@@ -13,7 +13,7 @@ export default function Badge({ children, className, status = "default" }) {
   return (
     <span
       className={cn(
-        "rounded-full bg-secondary px-4 py-2 text-sm font-medium text-primary text-nowrap",
+        "rounded-full bg-secondary px-4 py-2 text-sm font-medium text-primary text-nowrap w-fit",
         className,
         statusColors[status]
       )}
