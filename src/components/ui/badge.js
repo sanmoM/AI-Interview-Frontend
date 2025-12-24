@@ -5,6 +5,8 @@ const statusColors = {
   green: "bg-green-100 text-green-600",
   default: "bg-secondary text-primary",
   Completed: "bg-green-600",
+  blue: "bg-blue-100 text-blue-600",
+  gray: "bg-bg-gray text-text-gray",
 };
 
 export default function Badge({ children, className, status = "default" }) {

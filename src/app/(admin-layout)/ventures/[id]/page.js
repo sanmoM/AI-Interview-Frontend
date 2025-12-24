@@ -2,16 +2,17 @@
 
 import SecondaryWrapper from "@/components/shared/wrapper/secondary-wrapper";
 import Wrapper from "@/components/shared/wrapper/wrapper";
+import Badge from "@/components/ui/badge";
 import BorderButton from "@/components/ui/buttons/border-button";
 import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
-import BrandingCard from "@/components/ventures/venture-detail/brand-card/branding-card";
-import FAQs from "@/components/ventures/venture-detail/faq-card/faqs";
-import KnowledgeFilesCard from "@/components/ventures/venture-detail/knowledge-files-card";
-import SystemPromptCard from "@/components/ventures/venture-detail/system-prompt-card";
-import ToneCard from "@/components/ventures/venture-detail/tone-card";
+import BrandingCard from "@/components/ventures/brand-card/branding-card";
+import FAQs from "@/components/ventures/faq-card/faqs";
+import Knowledge from "@/components/ventures/knowledge/knowledge";
+import SystemPromptCard from "@/components/ventures/system-prompt-card";
+import ToneCard from "@/components/ventures/tone-card";
 import { FiExternalLink } from "react-icons/fi";
 
 export default function VentureDetailPage() {
@@ -35,18 +36,18 @@ export default function VentureDetailPage() {
                             </SubHeading>
 
                             <div className="flex flex-wrap gap-2.5 mt-4">
-                                <span className="bg-[#ECFDF3] text-[#027A48] text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-[#ABEFC6]">
+                                <Badge status="green" className={"text-[13px] px-3 py-0.5"}>
                                     Active
-                                </span>
-                                <span className="bg-[#EFF8FF] text-[#175CD3] text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-[#B2DDFF]">
+                                </Badge>
+                                <Badge status="blue" className={"text-[13px] px-3 py-0.5"}>
                                     Stage: Fit testing
-                                </span>
-                                <span className="bg-[#F2F4F7] text-[#344054] text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-[#D0D5DD]">
+                                </Badge>
+                                <Badge status="gray" className={"text-[13px] px-3 py-0.5"}>
                                     Owner: D. Chen
-                                </span>
-                                <span className="bg-[#F2F4F7] text-[#344054] text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-[#D0D5DD]">
+                                </Badge>
+                                <Badge status="gray" className={"text-[13px] px-3 py-0.5"}>
                                     12 interviews
-                                </span>
+                                </Badge>
                             </div>
                         </div>
                     </div>
@@ -71,17 +72,17 @@ export default function VentureDetailPage() {
                 <ToneCard />
                 <div className="flex flex-col gap-6">
                     <SystemPromptCard />
-                    <KnowledgeFilesCard />
+                    <Knowledge />
                 </div>
             </div>
 
             {/* Floating Action Bar */}
-            <div className="flex justify-between items-center mt-8">
-                <p className="text-gray-500 max-w-3xl font-medium hidden md:flex items-center gap-2">
-                    <span className="bg-secondary text-primary text-xs font-bold px-2 py-1 rounded-full mr-2 uppercase tracking-wide text-nowrap">Config on venture</span>
+            <div className="flex flex-col gap-5 lg:flex-row justify-between items-center mt-8">
+                <p className="text-gray-500 max-w-3xl font-medium flex flex-col md:flex-row md:items-center gap-2">
+                    <span className="bg-secondary w-fit text-primary text-xs font-bold px-2 py-1 rounded-full mr-2 uppercase tracking-wide text-nowrap gap-2">Config on venture</span>
                     <span className="text-sm"> Branding, tone, FAQs, system prompt, and knowledge were initially set on creation and remain fully editable.</span>
                 </p>
-                <div className="flex gap-2">
+                <div className="flex flex-col md:flex-row gap-2">
                     <BorderButton className="text-gray-600 hover:text-gray-900 !text-sm font-semibold px-4 py-2 hover:bg-gray-100 rounded-full transition-colors whitespace-nowrap">
                         Discard unsaved changes
                     </BorderButton>
