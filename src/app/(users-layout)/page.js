@@ -6,7 +6,7 @@ import Contracts from "@/components/home/contracts";
 import SavedJobs from "@/components/home/saved-jobs";
 import { Transcript } from "@/components/home/transcript";
 import Tabs from "@/components/shared/tabs";
-import Wrapper from "@/components/shared/wrapper";
+import Wrapper from "@/components/shared/wrapper/wrapper";
 import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";

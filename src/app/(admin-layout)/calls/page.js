@@ -1,6 +1,6 @@
 "use client";
 
-import Wrapper from "@/components/shared/wrapper";
+import Wrapper from "@/components/shared/wrapper/wrapper";
 import BorderButton from "@/components/ui/buttons/border-button";
 import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";

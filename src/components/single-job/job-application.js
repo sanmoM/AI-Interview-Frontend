@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { LuClock4, LuEarth } from "react-icons/lu";
-import Wrapper from "../shared/wrapper";
+import Wrapper from "../shared/wrapper/wrapper";
 import Button from "../ui/buttons/button";
 import RadioInput from "../ui/inputs/radio-input";
 import Link from "next/link";

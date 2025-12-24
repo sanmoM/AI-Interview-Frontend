@@ -3,13 +3,15 @@
 import Pagination from "@/components/shared/pagination";
 import StickyHeader from "@/components/shared/sticky-header";
 import VentureCard from "@/components/shared/venture-card";
-import Wrapper from "@/components/shared/wrapper";
+import SecondaryWrapper from "@/components/shared/wrapper/secondary-wrapper";
+import Wrapper from "@/components/shared/wrapper/wrapper";
 import Avatar from "@/components/ui/avatar";
 import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
 import FilterTabs from "@/components/ventures/filter";
+import Link from "next/link";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
 
@@ -100,7 +102,7 @@ export default function VenturesPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <Wrapper className="shadow-[#00000025] grow min-w-0 !pt-0">
+    <SecondaryWrapper className="grow min-w-0 !pt-0">
       {/* Header */}
       <StickyHeader>
         <div className="flex flex-col xl:flex-row justify-between gap-4 xl:gap-10">
@@ -124,9 +126,9 @@ export default function VenturesPage() {
             <div className="flex items-center gap-6 w-full lg:w-auto flex-1 xl:flex-none">
               <Searchbox
                 placeholder="Search ventures, tags, interviews"
-                containerClassName="flex-1 min-w-[250px]"
+                containerClassName="flex-1 md:min-w-[250px]"
               />
-              <Avatar size="lg" />
+              <Avatar size="lg" className={""} />
             </div>
           </div>
         </div>
@@ -146,12 +148,15 @@ export default function VenturesPage() {
       <div className="mt-4 md:mt-12">
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-6 mb-4 md:mb-8 lg:mb-10">
           {ventures.map((venture) => (
-            <VentureCard key={venture.id} item={venture} />
+            <Link className="block" href={`/ventures/${venture.id}`}>
+              <VentureCard key={venture.id} item={venture} />
+            </Link>
+
           ))}
         </div>
 
         <Pagination />
       </div>
-    </Wrapper>
+    </SecondaryWrapper>
   );
 }

@@ -3,7 +3,7 @@
 import ExploreFilter from "@/components/explore/explore-filter";
 import Jobs from "@/components/explore/jobs";
 import Pagination from "@/components/shared/pagination";
-import Wrapper from "@/components/shared/wrapper";
+import Wrapper from "@/components/shared/wrapper/wrapper";
 
 const opportunities = [
   {

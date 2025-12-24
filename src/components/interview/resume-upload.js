@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiUpload } from "react-icons/fi";
 import { HiChevronRight } from "react-icons/hi2";
-import Wrapper from "../shared/wrapper";
+import Wrapper from "../shared/wrapper/wrapper";
 import Button from "../ui/buttons/button";
 import FileInput from "../ui/inputs/file-input";
 

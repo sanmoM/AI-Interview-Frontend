@@ -2,7 +2,7 @@ import { FiClock, FiVideo } from "react-icons/fi";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { IoMic, IoShieldOutline, IoVideocamOffOutline } from "react-icons/io5";
 import { LuRotateCcw } from "react-icons/lu";
-import Wrapper from "../shared/wrapper";
+import Wrapper from "../shared/wrapper/wrapper";
 import BorderButton from "../ui/buttons/border-button";
 import Button from "../ui/buttons/button";
 

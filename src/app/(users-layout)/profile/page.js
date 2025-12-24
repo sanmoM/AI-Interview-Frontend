@@ -6,7 +6,7 @@ import Communications from "@/components/profile/communications";
 import Resume from "@/components/profile/resume";
 import WorkPreferences from "@/components/profile/work-preferences";
 import Tabs from "@/components/shared/tabs";
-import Wrapper from "@/components/shared/wrapper";
+import Wrapper from "@/components/shared/wrapper/wrapper";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import { useState } from "react";
 

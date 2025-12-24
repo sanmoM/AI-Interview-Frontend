@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Wrapper from "../shared/wrapper";
+import Wrapper from "../shared/wrapper/wrapper";
 import Searchbox from "../ui/inputs/searchbox";
 import { cn } from "@/utils/cn";
 import { useState } from "react";
