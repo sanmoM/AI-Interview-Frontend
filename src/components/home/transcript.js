@@ -116,7 +116,7 @@ export function Transcript() {
         </div>
       </div>
 
-      <div className="lg:w-1/2 flex justify-between text-xs font-medium mt-8">
+      <div className="lg:w-1/2 flex flex-col gap-3 md:flex-row text-center md:text-left justify-between text-xs font-medium mt-8">
         <p className="text-text-gray ">
           Transcript generated automatically · Edit in-place to correct <br />{" "}
           names or details.

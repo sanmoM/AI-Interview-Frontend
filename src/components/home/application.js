@@ -49,7 +49,7 @@ export default function Application() {
             key={project.id}
             className="rounded-2xl flex lg:block justify-between items-center border border-secondary bg-white p-4 md:p-6"
           >
-            <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:justify-between">
+            <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:justify-between w-full md:w-auto">
               <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4">
                 {/* Icon */}
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gray-100">
