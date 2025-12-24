@@ -10,7 +10,7 @@ import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
-import FilterTabs from "@/components/ventures/filter";
+import FilterTabs from "@/components/ventures/single-venture/filter";
 import Link from "next/link";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";

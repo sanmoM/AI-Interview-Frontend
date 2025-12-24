@@ -1,7 +1,7 @@
 "use client";
 
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
-import SingleVentureInnerDivHeader from "@/components/single-venture/single-venture";
+import InnerDivHeader from "@/components/shared/inner-div-header";
 import BorderButton from "@/components/ui/buttons/border-button";
 import { FiHelpCircle, FiPlus } from "react-icons/fi";
 import FAQCard from "./components/faq-card";
@@ -9,12 +9,12 @@ import FAQCard from "./components/faq-card";
 export default function FAQs() {
     return (
         <InnerWrapper>
-            <SingleVentureInnerDivHeader
+            <InnerDivHeader
                 Icon={FiHelpCircle}
                 title="FAQs"
                 description="Venture-specific questions candidates can search."
                 badgeLabel="18 items"
-                 containerClassName={"mb-6 md:mb-0"}
+                containerClassName={"mb-6 md:mb-0"}
             />
 
             <div className="space-y-4 mb-6">

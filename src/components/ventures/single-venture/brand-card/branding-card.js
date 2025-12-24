@@ -1,7 +1,7 @@
 "use client";
 
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
-import SingleVentureInnerDivHeader from "@/components/single-venture/single-venture";
+import InnerDivHeader from "@/components/shared/inner-div-header";
 import Avatar from "@/components/ui/avatar";
 import { useState } from "react";
 import { IoColorPaletteOutline } from "react-icons/io5";
@@ -13,7 +13,7 @@ export default function BrandingCard() {
 
     return (
         <InnerWrapper>
-            <SingleVentureInnerDivHeader
+            <InnerDivHeader
                 Icon={IoColorPaletteOutline}
                 title="Branding"
                 description="Logo, colors, and wording applied to this venture."

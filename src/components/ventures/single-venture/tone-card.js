@@ -2,7 +2,7 @@
 
 import ContentWrapper from "@/components/shared/wrapper/content-wrapper";
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
-import SingleVentureInnerDivHeader from "@/components/single-venture/single-venture";
+import InnerDivHeader from "@/components/shared/inner-div-header";
 import BorderButton from "@/components/ui/buttons/border-button";
 import SelectBox from "@/components/ui/inputs/select-box";
 import { cn } from "@/utils/cn";
@@ -14,7 +14,7 @@ export default function ToneCard() {
 
     return (
         <InnerWrapper className={"h-fit"}>
-            <SingleVentureInnerDivHeader
+            <InnerDivHeader
                 Icon={FiMessageSquare}
                 title="Tone & writing style"
                 description="How Aurora speaks to candidates."

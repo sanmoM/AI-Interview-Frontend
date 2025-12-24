@@ -1,7 +1,7 @@
 "use client";
 
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
-import SingleVentureInnerDivHeader from "@/components/single-venture/single-venture";
+import InnerDivHeader from "@/components/shared/inner-div-header";
 import BorderButton from "@/components/ui/buttons/border-button";
 import { FiFolder, FiUploadCloud } from "react-icons/fi";
 import FIleCard from "./components/file-card";
@@ -9,7 +9,7 @@ import FIleCard from "./components/file-card";
 export default function Knowledge() {
     return (
         <InnerWrapper>
-            <SingleVentureInnerDivHeader
+            <InnerDivHeader
                 Icon={FiFolder}
                 title="Knowledge files"
                 description="Docs the assistant can reference during the interview."

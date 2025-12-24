@@ -8,11 +8,11 @@ import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
-import BrandingCard from "@/components/ventures/brand-card/branding-card";
-import FAQs from "@/components/ventures/faq-card/faqs";
-import Knowledge from "@/components/ventures/knowledge/knowledge";
-import SystemPromptCard from "@/components/ventures/system-prompt-card";
-import ToneCard from "@/components/ventures/tone-card";
+import BrandingCard from "@/components/ventures/single-venture/brand-card/branding-card";
+import FAQs from "@/components/ventures/single-venture/faq-card/faqs";
+import Knowledge from "@/components/ventures/single-venture/knowledge/knowledge";
+import SystemPromptCard from "@/components/ventures/single-venture/system-prompt-card";
+import ToneCard from "@/components/ventures/single-venture/tone-card";
 import { FiExternalLink } from "react-icons/fi";
 
 export default function VentureDetailPage() {
@@ -79,8 +79,10 @@ export default function VentureDetailPage() {
             {/* Floating Action Bar */}
             <div className="flex flex-col gap-5 xl:gap-8 2xl:flex-row justify-between items-center mt-8">
                 <p className="text-gray-500 max-w-3xl font-medium flex flex-col md:flex-row md:items-center gap-2">
-                    <span className="bg-secondary w-fit text-primary text-xs font-bold px-2 py-1 rounded-full mr-2 uppercase tracking-wide text-nowrap gap-2">Config on venture</span>
-                    <span className="text-sm"> Branding, tone, FAQs, system prompt, and knowledge were initially set on creation and remain fully editable.</span>
+                    <Badge className="text-[13px] py-1 w-fit mx-auto md:mx-0">
+                        Config on venture
+                    </Badge>
+                    <span className="text-[13px]"> Branding, tone, FAQs, system prompt, and knowledge were initially set on creation and remain fully editable.</span>
                 </p>
                 <div className="flex flex-col md:flex-row gap-2">
                     <BorderButton className="text-gray-600 hover:text-gray-900 !text-sm font-semibold px-4 py-2 hover:bg-gray-100 rounded-full transition-colors whitespace-nowrap">

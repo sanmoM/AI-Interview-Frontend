@@ -1,8 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { FiUploadCloud, FiTrash2 } from "react-icons/fi";
-import { IoColorPaletteOutline, IoImageOutline } from "react-icons/io5";
+import { FiUploadCloud } from "react-icons/fi";
+import { IoColorPaletteOutline } from "react-icons/io5";
+import InnerDivHeader from "../../shared/inner-div-header";
+import InnerWrapper from "../../shared/wrapper/inner-wrapper";
+import Button from "../../ui/buttons/button";
+import Color from "./components/color";
+import TitleSubtitle from "../shared/title-subtitle";
 
 function ColorInput({ label, color, hex, onChange }) {
     return (
@@ -32,42 +37,33 @@ export default function BrandingCard() {
     });
 
     return (
-        <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
-            {/* Header */}
-            <div className="flex justify-between items-start mb-8">
-                <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#E0F2FE] flex items-center justify-center shrink-0">
-                        <IoColorPaletteOutline className="w-6 h-6 text-[#0BA5EC]" />
-                    </div>
-                    <div>
-                        <h2 className="text-xl font-bold text-gray-900 leading-tight">Branding</h2>
-                        <p className="text-gray-500 text-sm mt-1">Logo and colors that appear across the interview.</p>
-                    </div>
-                </div>
-                <span className="bg-[#E0F2FE] text-[#0BA5EC] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
-                    Candidate-facing
-                </span>
-            </div>
+        <InnerWrapper>
+            <InnerDivHeader
+                Icon={IoColorPaletteOutline}
+                title="Branding"
+                description="Logo and colors that appear across the interview."
+                badgeLabel="Candidate-facing"
+                containerClassName={"mb-6 md:mb-0"}
+            />
 
             <div className="flex flex-col xl:flex-row gap-10">
                 {/* Logo Section */}
                 <div className="flex-1">
-                    <p className="text-sm font-bold text-gray-900 mb-1">Logo</p>
-                    <p className="text-gray-500 text-xs mb-4">Shown on all interview screens.</p>
+                    <TitleSubtitle title="Logo" description="Shown on all interview screens." />
 
-                    <div className="flex items-center gap-4">
-                        <div className="w-20 h-20 rounded-2xl bg-[#87CEEB] flex items-center justify-center text-[#1e3a8a] text-2xl font-bold border border-black/5 shadow-inner">
+                    <div className="flex lg:items-center gap-4">
+                        <div className="w-14 h-14 md:w-20 md:h-20 shrink-0 rounded-2xl bg-[#87CEEB] flex items-center justify-center text-[#1e3a8a] text-xl md:text-2xl border border-black/5 shadow-inner">
                             VP
                         </div>
                         <div className="flex flex-col gap-1.5">
-                            <p className="text-sm font-bold text-gray-900">Venture logo</p>
-                            <p className="text-gray-400 text-xs">PNG or SVG, square, transparent background.</p>
+                            <p className="text-sm 2xl:text-base text-text-primary font-medium">Venture logo</p>
+                            <p className="text-text-gray text-xs ">PNG or SVG, square, transparent background.</p>
                             <div className="flex items-center gap-4 mt-1">
-                                <button className="flex items-center gap-2 bg-[#344054] hover:bg-[#1D2939] text-white text-xs font-bold px-4 py-2.5 rounded-full transition-colors shadow-sm">
+                                <Button className="flex items-center gap-2 justify-center !py-1.5 lg:!py-2 w-fit px-4 !text-sm">
                                     <FiUploadCloud className="w-4 h-4" />
                                     Upload logo
-                                </button>
-                                <button className="text-gray-400 hover:text-red-500 text-xs font-medium transition-colors">
+                                </Button>
+                                <button className="text-text-gray hover:text-red-500 text-xs font-medium transition-colors">
                                     Remove
                                 </button>
                             </div>
@@ -77,11 +73,10 @@ export default function BrandingCard() {
 
                 {/* Colors Section */}
                 <div className="flex-[1.5]">
-                    <p className="text-sm font-bold text-gray-900 mb-1">Colors</p>
-                    <p className="text-gray-500 text-xs mb-4">Fast presets for primary, secondary, and accent.</p>
+                    <TitleSubtitle title="Colors" description="Fast presets for primary, secondary, and accent." />
 
-                    <div className="flex gap-4">
-                        <div className="flex-1 bg-[#F9FAFB] border border-gray-200 rounded-2xl p-3 relative group focus-within:ring-2 focus-within:ring-[#3E63DD]/20 focus-within:border-[#3E63DD]">
+                    <div className="flex overflow-x-auto scrollbar-hide gap-4">
+                        {/* <div className="flex-1 bg-[#F9FAFB] border border-gray-200 rounded-2xl p-3 relative group focus-within:ring-2 focus-within:ring-[#3E63DD]/20 focus-within:border-[#3E63DD]">
                             <div className="flex justify-between items-center mb-2">
                                 <label className="text-xs font-bold text-gray-700">Primary</label>
                                 <div className="w-8 h-4 rounded-full bg-[#304E77]"></div>
@@ -112,10 +107,13 @@ export default function BrandingCard() {
                                 <span className="text-gray-400 text-xs mr-1">#</span>
                                 <input type="text" defaultValue="1D1F28" className="w-full text-xs font-medium text-gray-600 focus:outline-none uppercase" />
                             </div>
-                        </div>
+                        </div> */}
+                        <Color title="Primary" color="#304E77" />
+                        <Color title="Secondary" color="#87CEEB" />
+                        <Color title="Accent" color="#1D1F28" />
                     </div>
                 </div>
             </div>
-        </div>
+        </InnerWrapper>
     );
 }

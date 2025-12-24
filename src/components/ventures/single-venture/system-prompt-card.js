@@ -1,7 +1,7 @@
 "use client";
 
 import ContentWrapper from "@/components/shared/wrapper/content-wrapper";
-import SingleVentureInnerDivHeader from "@/components/single-venture/single-venture";
+import InnerDivHeader from "@/components/shared/inner-div-header";
 import { IoSparklesOutline } from "react-icons/io5";
 
 export default function SystemPromptCard() {
@@ -23,7 +23,7 @@ export default function SystemPromptCard() {
                     </span>
                 </div>
             </div> */}
-            <SingleVentureInnerDivHeader
+            <InnerDivHeader
                 Icon={IoSparklesOutline}
                 title="System prompt"
                 description="Global instructions that drive assistant behaviour."
