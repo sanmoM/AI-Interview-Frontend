@@ -21,9 +21,9 @@ export default function ToneCard() {
                 containerClassName={"mb-6 md:mb-8"}
             />
 
-            <div className="flex flex-col xl:flex-row gap-10">
+            <div className="flex flex-col xl:flex-row gap-4 md:gap-10">
                 <div className="flex-1">
-                    <div className="mb-6">
+                    <div className="mb-4 md:mb-6">
                         <TitleSubtitle title="Tone" description="Choose the overall personality." />
                         <SelectBox
                             options={[
