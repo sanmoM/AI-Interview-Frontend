@@ -1,9 +1,9 @@
 import { cn } from '@/utils/cn'
 import Badge from '../ui/badge'
 
-export default function InnerDivHeader({ Icon, title, description, badgeLabel, containerClassName, descriptionClassName, titleClassName }) {
+export default function InnerDivHeader({ Icon, title, description, badgeLabel, containerClassName, descriptionClassName, titleClassName, badgeComponent }) {
     return (
-        <div className={cn("mb-4 md:mb-6 lg:mb-0", containerClassName)}>
+        <div className={cn("mb-4 md:mb-6", containerClassName)}>
             <div className="flex justify-between items-center md:items-start mb-1 md:mb-0">
                 <div className="flex items-center md:items-start gap-4 w-full">
                     {
@@ -24,6 +24,14 @@ export default function InnerDivHeader({ Icon, title, description, badgeLabel, c
                                 )
                             }
 
+                            {
+                                badgeComponent && (
+                                    <div className="md:hidden">
+                                        {badgeComponent}
+                                    </div>
+                                )
+                            }
+
                         </div>
 
                         <p className={cn("text-text-gray mt-0.5 hidden md:block", descriptionClassName)}>{description}</p>
@@ -34,6 +42,13 @@ export default function InnerDivHeader({ Icon, title, description, badgeLabel, c
                         <Badge className={"text-xs p-1 px-3 font-medium hidden md:block"}>
                             {badgeLabel}
                         </Badge>
+                    )
+                }
+                {
+                    badgeComponent && (
+                        <div className="hidden md:block">
+                            {badgeComponent}
+                        </div>
                     )
                 }
             </div>
