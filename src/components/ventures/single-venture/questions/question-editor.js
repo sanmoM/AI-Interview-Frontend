@@ -12,12 +12,13 @@ export default function QuestionEditor() {
     return (
         <SecondaryWrapper>
             {/* Header */}
-            <div className="flex flex-col lg:flex-row justify-between items-start mb-6">
+            <div className="flex flex-col 2xl:flex-row justify-between items-start mb-6">
                 <InnerDivHeader
                     title="Editing question Q-01"
                     description="Describe your venture in one sentence."
                     descriptionClassName="text-sm"
                     titleClassName="text-lg font-normal"
+                    containerClassName={"mb-4 md:mb-6 lg:mb-6 2xl:mb-0"}
                 />
                 <div className="flex md:flex-row flex-col items-center gap-3 w-full lg:w-fit">
                     <Button className={"flex items-center gap-2 !text-sm px-3 w-full lg:w-fit"}>

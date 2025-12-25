@@ -14,7 +14,7 @@ import Badge from '@/components/ui/badge';
 export default function QuestionsSidebar() {
     return (
         <SecondaryWrapper className={"!h-fit w-full 2xl:w-[470px] flex-shrink-0"}>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-3">
                 <InnerDivHeader
                     title="Question tools"
                     description="Upload knowledge, ask AI for drafts, and define how it should act."
