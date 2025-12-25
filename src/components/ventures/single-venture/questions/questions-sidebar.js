@@ -9,6 +9,7 @@ import BorderButton from '@/components/ui/buttons/border-button';
 import Button from '@/components/ui/buttons/button';
 import TextAreaInput from '@/components/ui/inputs/text-area-input';
 import BadgeWithText from '@/components/shared/badge-with-text';
+import Badge from '@/components/ui/badge';
 
 export default function QuestionsSidebar() {
     return (
@@ -78,11 +79,13 @@ export default function QuestionsSidebar() {
                             <h3 className="font-semibold text-gray-900">How should AI act?</h3>
                             <p className="text-xs text-gray-500 mt-0.5">High-level behavior for this interview flow.</p>
                         </div>
-                        <span className="px-2 py-1 bg-blue-100 text-blue-600 text-[10px] font-bold rounded">AI mode</span>
+                        <Badge status='blue' className="text-[10px] py-1 px-2">
+                            AI mode
+                        </Badge>
                     </div>
                     <TextAreaInput
                         size='xs'
-                        inputClassName={"rounded-4xl h-32 resize-none bg-white"}
+                        inputClassName={"h-24 lg:h-28 2xl:h-32 resize-none bg-white"}
                         placeholder="System prompt"
                     />
 
@@ -98,7 +101,7 @@ export default function QuestionsSidebar() {
 
                 <div className="flex items-start justify-between mt-2 px-1">
                     <BadgeWithText
-                        containerClassName={"justify-between gap-10"}
+                        containerClassName={"justify-between lg:gap-10"}
                         badgeLabel="12 questions in this flow"
                         text="Select any question to refine it on the right."
                     />

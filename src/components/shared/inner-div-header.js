@@ -3,8 +3,8 @@ import Badge from '../ui/badge'
 
 export default function InnerDivHeader({ Icon, title, description, badgeLabel, containerClassName, descriptionClassName, titleClassName }) {
     return (
-        <div className={cn("mb-6 md:mb-0", containerClassName)}>
-            <div className="flex justify-between items-center md:items-start mb-2 md:mb-0">
+        <div className={cn("mb-4 md:mb-6 lg:mb-0", containerClassName)}>
+            <div className="flex justify-between items-center md:items-start mb-1 md:mb-0">
                 <div className="flex items-center md:items-start gap-4 w-full">
                     {
                         Icon && (

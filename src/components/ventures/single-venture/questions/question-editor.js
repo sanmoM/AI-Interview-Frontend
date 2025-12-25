@@ -12,23 +12,23 @@ export default function QuestionEditor() {
     return (
         <SecondaryWrapper>
             {/* Header */}
-            <div className="flex justify-between items-start mb-6">
+            <div className="flex flex-col lg:flex-row justify-between items-start mb-6">
                 <InnerDivHeader
                     title="Editing question Q-01"
                     description="Describe your venture in one sentence."
                     descriptionClassName="text-sm"
                     titleClassName="text-lg font-normal"
                 />
-                <div className="flex items-center gap-3">
-                    <Button className={"flex items-center gap-2 !text-sm px-3"}>
+                <div className="flex md:flex-row flex-col items-center gap-3 w-full lg:w-fit">
+                    <Button className={"flex items-center gap-2 !text-sm px-3 w-full lg:w-fit"}>
                         <FiPlus size={16} />
                         New question
                     </Button>
-                    <BorderButton className={"flex items-center gap-2 !text-sm px-3"}>
+                    <BorderButton className={"flex items-center gap-2 !text-sm px-3 w-full lg:w-fit"}>
                         <FiCopy size={16} />
                         Duplicate
                     </BorderButton>
-                    <BorderButton className={"flex items-center gap-2 !text-sm px-3 border-red-500 text-red-500"}>
+                    <BorderButton className={"flex items-center gap-2 !text-sm px-3 border-red-500 text-red-500 w-full lg:w-fit"}>
                         <FiTrash2 size={16} />
                         Delete
                     </BorderButton>
@@ -55,33 +55,7 @@ export default function QuestionEditor() {
                 </div>
 
                 {/* Settings */}
-                <div className="grid grid-cols-2 gap-6 pt-2">
-                    {/* <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Answer type</label>
-                        <div className="relative">
-                            <select className="appearance-none w-full p-3.5 border border-gray-200 rounded-xl text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-sm font-medium">
-                                <option>Long text response</option>
-                                <option>Short text response</option>
-                                <option>Multiple choice</option>
-                                <option>Video response</option>
-                            </select>
-                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
-                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Required</label>
-                        <div className="relative">
-                            <select className="appearance-none w-full p-3.5 border border-gray-200 rounded-xl text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-sm font-medium">
-                                <option>Yes • must be answered</option>
-                                <option>No • optional</option>
-                            </select>
-                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
-                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                            </div>
-                        </div>
-                    </div> */}
+                <div className="grid lg:grid-cols-2 gap-6 pt-2">
                     <SelectBox
                         label="Answer type"
                         options={[

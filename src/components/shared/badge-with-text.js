@@ -12,7 +12,7 @@ export default function BadgeWithText({
             <Badge className={cn("text-[13px] py-1 w-fit mx-auto md:mx-0", badgeClassName)}>
                 {badgeLabel}
             </Badge>
-            <span className={cn("text-[13px]", textClassName)}>{text}</span>
+            <span className={cn("text-[13px] text-center", textClassName)}>{text}</span>
         </p>
     )
 }
