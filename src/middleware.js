@@ -14,8 +14,22 @@ export function middleware(request) {
   // loginUrl.searchParams.set("redirect", pathname);
   // return NextResponse.redirect(loginUrl);
   //   }
+  const adminProtectedRoutes = [
+    "/call-details",
+    "/calls",
+    "/engine",
+    "/faqs",
+    "/jobs",
+    "/questions",
+    "/ventures",
+  ];
+
   if (!token) {
-    return NextResponse.redirect(new URL("/signin", request.url));
+    if (adminProtectedRoutes.some((route) => pathname.startsWith(route))) {
+      return NextResponse.redirect(new URL("/admin-signin", request.url));
+    } else {
+      return NextResponse.redirect(new URL("/signin", request.url));
+    }
   }
 
   // if (pathname.startsWith("/login") && token) {
@@ -30,5 +44,5 @@ export function middleware(request) {
 // };
 
 export const config = {
-  matcher: ["/((?!signin|signup|_next|api|favicon.ico).*)"],
+  matcher: ["/((?!signin|signup|admin-signin|_next|api|favicon.ico).*)"],
 };
