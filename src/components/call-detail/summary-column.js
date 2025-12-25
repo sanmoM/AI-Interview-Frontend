@@ -18,7 +18,7 @@ export default function SummaryColumn() {
                 </BorderButton>}
             />
 
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
                 <Badge className={"text-[11px] py-1 px-2"}>
                     Intent · High
                 </Badge>
@@ -29,7 +29,7 @@ export default function SummaryColumn() {
                     Channel · Inbound
                 </Badge>
             </div>
-            <div className="grid lg:grid-cols-2 gap-4 lg:gap-6 mb-4">
+            <div className="grid lg:grid-cols-2 gap-4 2xl:gap-6 mb-4 md:mb-6">
                 <Badge status="gray" className={"w-full text-sm md:text-base 2xl:text-lg"}>
                     Region · Berlin
                 </Badge>
@@ -38,7 +38,7 @@ export default function SummaryColumn() {
                 </Badge>
             </div>
 
-            <h3 className="text-lg text-text-primary mb-4">Overview</h3>
+            <h3 className="text-lg text-text-primary mb-3 md:mb-4">Overview</h3>
             <ContentWrapper>
                 <div>
                     <h3 className="text-sm font-bold text-gray-800 mb-1">Call objective</h3>
@@ -65,7 +65,7 @@ export default function SummaryColumn() {
                 </div>
             </ContentWrapper>
 
-            <div className="mt-6 flex flex-col gap-3 2xl:gap-0 2xl:flex-row items-center justify-between">
+            <div className="mt-6 flex flex-col gap-3 lg:gap-0 lg:flex-row items-center justify-between">
                 {/* <span className="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold border border-green-100">Outcome · High intent</span> */}
                 <Badge status="green" className="text-xs font-bold">Outcome · High intent</Badge>
                 <p className="text-sm font-medium text-text-gray">Ready to progress to pilot proposal.</p>

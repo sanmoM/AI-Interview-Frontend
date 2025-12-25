@@ -115,7 +115,7 @@ export default function TranscriptColumn() {
                 ))}
             </div>
 
-            <div className="mt-4 pt-4 text-xs font-medium flex justify-between">
+            <div className="mt-4 pt-4 text-xs font-medium flex flex-col 2xl:flex-row text-center lg:text-left gap-3 justify-between">
                 <p className="text-text-gray ">Transcript generated automatically · Edit in-place to correct
                     names or details.</p>
                 <p className="text-primary">Open full transcript view</p>
