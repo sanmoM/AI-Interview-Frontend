@@ -66,7 +66,6 @@ export default function SummaryColumn() {
             </ContentWrapper>
 
             <div className="mt-6 flex flex-col gap-3 lg:gap-0 lg:flex-row items-center justify-between">
-                {/* <span className="px-3 py-1 bg-green-50 text-green-700 rounded-full text-xs font-bold border border-green-100">Outcome · High intent</span> */}
                 <Badge status="green" className="text-xs font-bold">Outcome · High intent</Badge>
                 <p className="text-sm font-medium text-text-gray">Ready to progress to pilot proposal.</p>
                 <button className="text-sm font-medium text-primary hover:text-blue-900 flex items-center gap-2">
