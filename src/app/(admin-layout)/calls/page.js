@@ -10,6 +10,7 @@ import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
 import { cn } from "@/utils/cn";
+import Link from "next/link";
 import { useState } from "react";
 import { BsTelephone } from "react-icons/bs";
 import { FiFilter } from "react-icons/fi";
@@ -239,7 +240,9 @@ export default function CallsPage() {
                 {/* Timeline List */}
                 <div className="space-y-3 w-full overflow-x-auto grid grid-cols-1">
                     {CALLS_DATA.map((call) => (
-                        <CallCard call={call} />
+                        <Link href={`/call-details`} key={call.id}>
+                            <CallCard call={call} />
+                        </Link>
                     ))}
                 </div>
 

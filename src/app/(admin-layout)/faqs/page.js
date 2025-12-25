@@ -7,6 +7,7 @@ import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
 import { cn } from "@/utils/cn";
+import Link from "next/link";
 import { useState } from "react";
 import { FiEdit2, FiPlus, FiTrash2 } from "react-icons/fi";
 
@@ -140,40 +141,42 @@ export default function FAQPage() {
         {/* FAQ List */}
         <div className="space-y-4">
           {filteredData.map((faq) => (
-            <div
-              key={faq.id}
-              className="group flex flex-col md:grid md:grid-cols-12 gap-4 items-center even:bg-bg-gray md:bg-transparent p-4 md:p-3 rounded-2xl transition-colors"
-            >
-              {/* Question */}
-              <div className="col-span-6 w-full">
-                <h3 className="font-medium text-text-primary mb-1  md:text-lg">
-                  {faq.question}
-                </h3>
-                <p className="text-text-gray text-xs md:text-sm">{faq.answer}</p>
-              </div>
+            <Link className="block" href="/questions">
+              <div
+                key={faq.id}
+                className="group flex flex-col md:grid md:grid-cols-12 gap-4 items-center even:bg-bg-gray md:bg-transparent p-4 md:p-3 rounded-2xl transition-colors"
+              >
+                {/* Question */}
+                <div className="col-span-6 w-full">
+                  <h3 className="font-medium text-text-primary mb-1  md:text-lg">
+                    {faq.question}
+                  </h3>
+                  <p className="text-text-gray text-xs md:text-sm">{faq.answer}</p>
+                </div>
 
-              {/* Category */}
-              <div className="col-span-2 text-center w-full md:w-auto flex md:block justify-start text-xs md:text-sm">
-                <span className={cn("font-medium", CATEGORY_COLORS[faq.category] || "text-text-gray")}>
-                  {faq.category}
-                </span>
-              </div>
+                {/* Category */}
+                <div className="col-span-2 text-center w-full md:w-auto flex md:block justify-start text-xs md:text-sm">
+                  <span className={cn("font-medium", CATEGORY_COLORS[faq.category] || "text-text-gray")}>
+                    {faq.category}
+                  </span>
+                </div>
 
-              {/* Tags */}
-              <div className="col-span-3 text-text-gray text-sm hidden md:block">
-                {faq.tags.join(", ")}
-              </div>
+                {/* Tags */}
+                <div className="col-span-3 text-text-gray text-sm hidden md:block">
+                  {faq.tags.join(", ")}
+                </div>
 
-              {/* Actions */}
-              <div className="col-span-1 flex justify-end gap-3 w-full md:w-auto">
-                <button className="text-text-gray hover:text-[#304E77] transition-colors">
-                  <FiEdit2 className="w-5 h-5" />
-                </button>
-                <button className="text-text-gray hover:text-red-500 transition-colors">
-                  <FiTrash2 className="w-5 h-5" />
-                </button>
+                {/* Actions */}
+                <div className="col-span-1 flex justify-end gap-3 w-full md:w-auto">
+                  <button className="text-text-gray hover:text-[#304E77] transition-colors">
+                    <FiEdit2 className="w-5 h-5" />
+                  </button>
+                  <button className="text-text-gray hover:text-red-500 transition-colors">
+                    <FiTrash2 className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
