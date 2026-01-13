@@ -27,7 +27,7 @@ export default function page() {
     dispatch(login(res?.data));
     document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
     toast.success("You have successfully signed up!");
-    router.push("/explore");
+    router.push("/ventures");
   };
 
   const handleGoogleSignIn = () => {

@@ -2,23 +2,34 @@
 
 import Button from "@/components/ui/buttons/button";
 import TextInput from "@/components/ui/inputs/text-input";
+import useAxios from "@/hooks/useAxios";
+import { login } from "@/store/features/auth-slice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 export default function page() {
-  const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const axios = useAxios();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("[v0] Email submitted:", email);
-    document.cookie = "token=token; path=/; max-age=86400; SameSite=Lax";
+    setLoading(true);
+    const res = await axios.post("/auth/login", {
+      email,
+      password,
+    });
+    dispatch(login(res?.data));
+    document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
     toast.success("You have successfully signed up!");
     router.push("/ventures");
-    // Add your sign-up logic here
+    setLoading(false);
   };
 
   return (
@@ -26,9 +37,7 @@ export default function page() {
       <div className="py-3 lg:py-6 xl:py-7 px-4 md:px-6 lg:px-8 xl:px-10">
         {/* Logo and Need Help */}
         <div className="w-14 h-14 rounded-full bg-sky-200 flex items-center justify-center mx-auto">
-          <span className="text-xl text-white">
-            Ai
-          </span>
+          <span className="text-xl text-white">Ai</span>
         </div>
 
         {/* Welcome Section */}
@@ -47,11 +56,12 @@ export default function page() {
           className="space-y-3 lg:space-y-4 2xl:space-y-6"
         >
           <TextInput
-            id="username"
+            id="email"
             placeholder="admin@company.com"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            label={"username"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            label={"Email"}
+            required
           />
           <TextInput
             id="email"
@@ -60,8 +70,11 @@ export default function page() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             label={"password"}
+            required
           />
-          <Button>Login</Button>
+          <Button loading={loading} disabled={loading}>
+            Login
+          </Button>
         </form>
         <div className="flex justify-between items-center mt-4 font-medium text-xs md:text-base">
           <p className="text-text-gray">Secured admin access</p>
