@@ -3,19 +3,29 @@
 import BorderButton from "@/components/ui/buttons/border-button";
 import Button from "@/components/ui/buttons/button";
 import TextInput from "@/components/ui/inputs/text-input";
+import useAxios from "@/hooks/useAxios";
+import { login } from "@/store/features/auth-slice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 export default function page() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
+  const dispatch = useDispatch();
+  const axios = useAxios();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("[v0] Email submitted:", email);
-    document.cookie = "token=token; path=/; max-age=86400; SameSite=Lax";
+    const res = await axios.post("/auth/login", {
+      email,
+      password,
+    });
+    dispatch(login(res?.data));
+    document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
     toast.success("You have successfully signed up!");
     router.push("/explore");
   };
@@ -74,9 +84,10 @@ export default function page() {
             <div className="flex items-center justify-between mb-2">
               <label
                 htmlFor="email"
-                className="text-sm 2xl:text-base text-text-primary font-medium"
+                className="text-sm md:text-base 2xl:text-lg text-text-primary font-medium flex gap-1"
               >
-                Email address
+                <span>Email address</span>
+                <span className="text-red-600">*</span>
               </label>
               <span className="text-[10px] md:text-xs 2xl:text-sm font-medium text-text-gray">
                 Work email preferred
@@ -88,6 +99,16 @@ export default function page() {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
+              containerClassName="mb-4"
+            />
+            <TextInput
+              id="password"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              label={"Password"}
               required
             />
           </div>

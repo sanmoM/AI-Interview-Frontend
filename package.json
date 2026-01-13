@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "axios": "^1.13.2",
     "clsx": "^2.1.1",
     "imask": "^7.6.1",
     "intl-tel-input": "^25.14.0",
@@ -17,6 +19,8 @@
     "react-dom": "19.2.1",
     "react-hot-toast": "^2.6.0",
     "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
