@@ -21,14 +21,18 @@ export default function page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const res = await axios.post("/auth/login", {
-      email,
-      password,
-    });
-    dispatch(login(res?.data));
-    document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
-    toast.success("You have successfully signed up!");
-    router.push("/ventures");
+    try {
+      const res = await axios.post("/auth/login", {
+        email,
+        password,
+      });
+      dispatch(login(res?.data));
+      document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
+      toast.success("You have successfully signed up!");
+      router.push("/ventures");
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
     setLoading(false);
   };
 

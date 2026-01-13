@@ -1,7 +1,6 @@
 "use client";
 
 import SecondaryWrapper from "@/components/shared/wrapper/secondary-wrapper";
-import Wrapper from "@/components/shared/wrapper/wrapper";
 import Badge from "@/components/ui/badge";
 import BorderButton from "@/components/ui/buttons/border-button";
 import Button from "@/components/ui/buttons/button";

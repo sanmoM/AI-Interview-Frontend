@@ -1,5 +1,6 @@
 import { cn } from "@/utils/cn";
 import { FiChevronDown } from "react-icons/fi";
+import Label from "../label";
 
 const sizeClasses = {
   xs: {
@@ -43,15 +44,10 @@ export default function SelectBox({
   return (
     <div className={cn("flex flex-col gap-1", containerClassName)}>
       {label && (
-        <label
-          className={cn(
-            "text-text-primary 2xl:text-xl font-medium flex gap-1",
-            sizeClasses[size]?.labelClass
-          )}
-        >
+        <Label className={sizeClasses[size]?.labelClass}>
           <span>{label}</span>
           {props.required && <span className="text-red-600">*</span>}
-        </label>
+        </Label>
       )}
       {description && (
         <p

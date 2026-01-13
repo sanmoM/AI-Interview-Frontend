@@ -4,91 +4,16 @@ import Pagination from "@/components/shared/pagination";
 import StickyHeader from "@/components/shared/sticky-header";
 import VentureCard from "@/components/shared/venture-card";
 import SecondaryWrapper from "@/components/shared/wrapper/secondary-wrapper";
-import Wrapper from "@/components/shared/wrapper/wrapper";
 import Avatar from "@/components/ui/avatar";
 import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
 import FilterTabs from "@/components/ventures/single-venture/filter";
+import useAuthAxios from "@/hooks/useAuthAxios";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
-
-const ventures = [
-  {
-    id: 1,
-    title: "Aurora Mobility Labs",
-    status: "ACTIVE",
-    description:
-      "Urban e-mobility platform piloting with three OEM partners across EU and LATAM.",
-    metadata: {
-      interviews: "12 interviews",
-      stage: "Stage: Fit testing",
-      owner: "Owner: D. Chen",
-    },
-  },
-  {
-    id: 2,
-    title: "Northline Retail Cloud",
-    status: "CLIENT",
-    description:
-      "White-labeled decision engine powering merchandising experiments for Tier-1 retailers.",
-    metadata: {
-      interviews: "8 interviews",
-      program: "Program: Q2 Enterprise",
-      client: "Client: Northline Group",
-    },
-  },
-  {
-    id: 3,
-    title: "Signal Foundry",
-    status: "DEMO",
-    description:
-      "Internal sandbox for testing new pricing and packaging narratives across segments.",
-    metadata: {
-      interviews: "5 interviews",
-      cluster: "Cluster: PLG SaaS",
-      owner: "Owner: A. Singh",
-    },
-  },
-  {
-    id: 4,
-    title: "Atlas Health OS",
-    status: "ACTIVE",
-    description:
-      "Modular care navigation stack focused on employer-sponsored health plans in the US.",
-    metadata: {
-      interviews: "16 interviews",
-      cohort: "Cohort: Healthcare",
-      risk: "Risk: Med-high",
-    },
-  },
-  {
-    id: 5,
-    title: "Helio Insights Studio",
-    status: "TEMPLATE",
-    description:
-      "Reusable interview script and asset library for new vertical discovery sprints.",
-    metadata: {
-      interviews: "0 interviews",
-      type: "Template pack",
-      updated: "Last updated 3d ago",
-    },
-  },
-  {
-    id: 6,
-    title: "Bluewave Commerce OS",
-    status: "CLIENT",
-    description:
-      "Client-branded experimentation hub for cross-border e-commerce and payments.",
-    metadata: {
-      interviews: "9 interviews",
-      region: "Region: APAC",
-      client: "Client: Bluewave Holdings",
-    },
-  },
-];
 
 const filters = [
   { label: "All brands", count: 182 },
@@ -99,7 +24,25 @@ const filters = [
 ];
 
 export default function VenturesPage() {
+  const [ventures, setVentures] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [lastPage, setLastPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const axios = useAuthAxios();
+
+  useEffect(() => {
+    async function fetchVentures() {
+      const res = await axios.get("/super/ventures", {
+        params: {
+          page: currentPage,
+        },
+      });
+      setVentures(res?.data?.data);
+      setLastPage(res?.data?.lastPage);
+      setCurrentPage(res?.data?.currentPage);
+    }
+    fetchVentures();
+  }, [currentPage]);
 
   return (
     <SecondaryWrapper className="grow min-w-0 !pt-0">
@@ -117,10 +60,12 @@ export default function VenturesPage() {
             </SubHeading>
           </div>
           <div className="flex flex-col lg:flex-row xl:flex-col items-center gap-4">
-            <Button className="flex items-center justify-center gap-2 px-4 !py-2.5 2xl:py-1.5 lg:w-fit ml-auto mb-1 lg:mb-0">
-              <FiPlus className="w-5 h-5" />
-              New Venture
-            </Button>
+            <Link href="/ventures/create-venture" className="block lg:w-fit ml-auto w-full">
+              <Button className="flex items-center justify-center gap-2 px-4 !py-2.5 2xl:py-1.5 mb-1 lg:mb-0">
+                <FiPlus className="w-5 h-5" />
+                New Venture
+              </Button>
+            </Link>
 
             {/* Search bar */}
             <div className="flex items-center gap-6 w-full lg:w-auto flex-1 xl:flex-none">
@@ -149,13 +94,22 @@ export default function VenturesPage() {
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-6 mb-4 md:mb-8 lg:mb-10">
           {ventures.map((venture) => (
             <Link className="block" href={`/ventures/${venture.id}`}>
-              <VentureCard key={venture.id} item={venture} className={"h-full"} />
+              <VentureCard
+                key={venture.id}
+                item={venture}
+                className={"h-full"}
+              />
             </Link>
-
           ))}
         </div>
 
-        <Pagination size="sm" containerClassName={"2xl:mt-20"} />
+        <Pagination
+          size="sm"
+          containerClassName={"2xl:mt-20"}
+          lastPage={lastPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </SecondaryWrapper>
   );
