@@ -40,14 +40,8 @@ export default function VentureCard({ item, className }) {
       <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg">
         {brandingData?.description}
       </p>
-
-      {/* <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] md:text-xs xl:text-sm text-gray-500">
-        {Object.values(item.metadata).map((item, index) => (
-          <span key={index}>{item}</span>
-        ))}
-      </div> */}
       <div className="flex justify-between mt-3">
-        <p className="text-sm text-primary">Phone: {brandingData?.phone}</p>
+        <p className="text-sm text-primary"><span className="font-bold">Phone:</span> {brandingData?.phone}</p>
         <Link
           className="text-sm text-primary font-bold"
           href={brandingData?.websiteLink}
