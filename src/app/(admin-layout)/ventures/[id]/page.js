@@ -8,7 +8,7 @@ import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
-import AddRole from "@/components/ventures/single-venture/add-role";
+import Roles from "@/components/ventures/single-venture/roles";
 import AssignAdmin from "@/components/ventures/single-venture/assign-admin";
 import BrandingCard from "@/components/ventures/single-venture/brand-card/branding-card";
 import FAQs from "@/components/ventures/single-venture/faq-card/faqs";

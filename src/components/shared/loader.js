@@ -12,7 +12,7 @@ export default function Loader({ containerClassName, loaderClassName }) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 200 200"
-        className={cn("w-1/4", loaderClassName)}
+        className={cn("w-[10%]", loaderClassName)}
       >
         <circle
           fill="#304E77"

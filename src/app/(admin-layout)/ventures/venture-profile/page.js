@@ -8,10 +8,11 @@ import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
-import AddRole from "@/components/ventures/single-venture/add-role";
+import Roles from "@/components/ventures/single-venture/roles";
 import AssignAdmin from "@/components/ventures/single-venture/assign-admin";
 import BrandingCard from "@/components/ventures/single-venture/brand-card/branding-card";
 import FAQs from "@/components/ventures/single-venture/faq-card/faqs";
+import Flows from "@/components/ventures/single-venture/flows";
 import Knowledge from "@/components/ventures/single-venture/knowledge/knowledge";
 import SystemPromptCard from "@/components/ventures/single-venture/system-prompt-card";
 import ToneCard from "@/components/ventures/single-venture/tone-card";
@@ -24,18 +25,18 @@ import { FiExternalLink } from "react-icons/fi";
 export default function VentureDetailPage() {
   const [initialLoad, setInitialLoad] = useState(true);
   const [venture, setVenture] = useState({});
-  const { id } = useParams();
   const axios = useAuthAxios();
 
+  const fetchVenture = async () => {
+    const res = await axios.get(`/admin/venture-profile`);
+    const venture = res?.data?.venture;
+    venture.branding = JSON.parse(venture.branding_json);
+    delete venture.branding_json;
+    setVenture(venture);
+    setInitialLoad(false);
+  };
+
   useEffect(() => {
-    const fetchVenture = async () => {
-      const res = await axios.get(`/super/single-venture/${id}`);
-      const venture = res?.data?.venture;
-      venture.branding = JSON.parse(venture.branding_json);
-      delete venture.branding_json;
-      setVenture(venture);
-      setInitialLoad(false);
-    };
     fetchVenture();
   }, []);
   return (
@@ -100,7 +101,9 @@ export default function VentureDetailPage() {
           <div className="grid grid-cols-1 2xl:grid-cols-[60%_40%] gap-6">
             {/* Left Column (Branding & Tone) */}
             <BrandingCard />
-            <FAQs />
+            <Roles data={venture} fetchVenture={fetchVenture} />
+            <Flows data={venture} fetchVenture={fetchVenture} />
+            <FAQs data={venture} fetchVenture={fetchVenture} />
             {/* Right Column (FAQs, System Prompt, Knowledge) */}
             <ToneCard />
             <div className="flex flex-col gap-6">
@@ -110,7 +113,7 @@ export default function VentureDetailPage() {
           </div>
 
           {/* Floating Action Bar */}
-          <div className="flex flex-col gap-5 xl:gap-8 2xl:flex-row justify-between items-center mt-8">
+          {/* <div className="flex flex-col gap-5 xl:gap-8 2xl:flex-row justify-between items-center mt-8">
             <p className="text-gray-500 max-w-3xl font-medium flex flex-col md:flex-row md:items-center gap-2">
               <Badge className="text-[13px] py-1 w-fit mx-auto md:mx-0">
                 Config on venture
@@ -129,7 +132,7 @@ export default function VentureDetailPage() {
                 Save & open interview preview
               </Button>
             </div>
-          </div>
+          </div> */}
         </>
       )}
     </SecondaryWrapper>

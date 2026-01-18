@@ -67,7 +67,7 @@ export default function SelectBox({
           )}
           {...props}
         >
-          <option value="" disabled className="">
+          <option value="" selected disabled className="">
             {placeholder}
           </option>
           {options?.map((option) => (
