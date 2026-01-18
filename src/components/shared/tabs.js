@@ -15,7 +15,6 @@ export default function Tabs({ tabs, activeTab, setActiveTab }) {
             )}
             onClick={() => setActiveTab(tab.value)}
           >
-            {console.log(activeTab === tab.value)}
             {tab.label}
           </button>
         ))}

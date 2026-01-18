@@ -52,7 +52,6 @@ export default function VentureDetailPage() {
 
       const res = await axios.post("/super/ventures", formData);
 
-      console.log(res.data);
       toast.success("Venture created successfully!");
       router.push("/ventures");
     } catch (error) {

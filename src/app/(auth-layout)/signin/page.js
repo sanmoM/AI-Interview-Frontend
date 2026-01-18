@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
 export default function page() {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -20,14 +21,20 @@ export default function page() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post("/auth/login", {
-      email,
-      password,
-    });
-    dispatch(login(res?.data));
-    document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
-    toast.success("You have successfully signed up!");
-    router.push("/ventures");
+    setLoading(true);
+    try {
+      const res = await axios.post("/auth/login", {
+        email,
+        password,
+      });
+      dispatch(login(res?.data));
+      document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
+      toast.success("You have successfully signed up!");
+      router.push("/ventures");
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
+    setLoading(false);
   };
 
   const handleGoogleSignIn = () => {
