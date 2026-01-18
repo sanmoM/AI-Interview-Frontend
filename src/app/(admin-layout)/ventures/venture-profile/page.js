@@ -38,7 +38,6 @@ export default function VentureDetailPage() {
     };
     fetchVenture();
   }, []);
-  console.log(venture);
   return (
     <SecondaryWrapper loading={initialLoad}>
       {initialLoad ? (
@@ -101,9 +100,7 @@ export default function VentureDetailPage() {
           <div className="grid grid-cols-1 2xl:grid-cols-[60%_40%] gap-6">
             {/* Left Column (Branding & Tone) */}
             <BrandingCard />
-            <AssignAdmin data={venture.venture_admin} />
             <FAQs />
-
             {/* Right Column (FAQs, System Prompt, Knowledge) */}
             <ToneCard />
             <div className="flex flex-col gap-6">

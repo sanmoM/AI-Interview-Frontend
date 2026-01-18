@@ -1,8 +1,10 @@
 "use client";
 
 import Avatar from "@/components/ui/avatar";
+import LogoutButton from "@/components/ui/buttons/logout-button";
 import Link from "next/link";
 import { useState } from "react";
+import { FiLogOut } from "react-icons/fi";
 import { PiCaretUpDown } from "react-icons/pi";
 
 export default function AdminSidebar({ navItems }) {
@@ -38,10 +40,11 @@ export default function AdminSidebar({ navItems }) {
                 href={item.href}
                 key={item.id}
                 onClick={() => setActiveNav(item.id)}
-                className={`w-full flex cursor-pointer items-center gap-3 px-4 py-2.5 rounded-full  transition-all 2xl:text-lg ${isActive
+                className={`w-full flex cursor-pointer items-center gap-3 px-4 py-2.5 rounded-full  transition-all 2xl:text-lg ${
+                  isActive
                     ? "bg-primary text-white font-medium"
                     : "text-text-gray"
-                  }`}
+                }`}
               >
                 {Icon}
                 {item.name}
@@ -65,6 +68,7 @@ export default function AdminSidebar({ navItems }) {
         </div>
         <PiCaretUpDown className="w-4 h-4 text-text-primary shrink-0 transition-opacity" />
       </button>
+      <LogoutButton />
     </aside>
   );
 }

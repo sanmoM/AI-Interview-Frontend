@@ -6,6 +6,7 @@ import Button from "@/components/ui/buttons/button";
 import TextAreaInput from "@/components/ui/inputs/text-area-input";
 import TextInput from "@/components/ui/inputs/text-input";
 import useAuthAxios from "@/hooks/useAuthAxios";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { BsPersonWorkspace } from "react-icons/bs";
@@ -15,6 +16,7 @@ export default function AddRole() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const axios = useAuthAxios();
+  const id = useParams().id;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,9 +24,8 @@ export default function AddRole() {
     try {
       const res = await axios.post("/admin/roles", {
         name,
-        email: description,
-        password,
-        type,
+        description,
+        venture_id: id,
       });
       toast.success("Admin assigned successfully!");
     } catch (error) {

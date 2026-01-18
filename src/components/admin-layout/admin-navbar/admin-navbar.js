@@ -9,8 +9,9 @@ import { MdGridView } from "react-icons/md";
 import { PiGearFineLight } from "react-icons/pi";
 import { TfiHelpAlt } from "react-icons/tfi";
 import AdminSidebar from "./components/admin-sidebar";
+import { useSelector } from "react-redux";
 
-const navItems = [
+const adminNavItems = [
   {
     id: "ventures",
     name: "Ventures",
@@ -53,20 +54,37 @@ const navItems = [
   },
 ];
 
+const ventureNavItems = [
+  {
+    id: "ventures",
+    name: "Ventures Profile",
+    href: "/venture-profile",
+    Icon: (
+      <MdGridView className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
+    ),
+  },
+];
+
 export default function AdminNavbar() {
   const [open, setOpen] = useState(false);
+  const user = useSelector((state) => state.auth.user);
+  console.log();
   return (
     <div className="lg:h-full sticky top-0 z-[9999] lg:py-6 w-full lg:w-fit">
       <Header open={open} setOpen={setOpen}>
         <ul className="space-y-1  text-gray-500">
-          {navItems.map((link) => (
+          {adminNavItems.map((link) => (
             <li key={link.id}>
               <NavLink link={link} setOpen={setOpen} />
             </li>
           ))}
         </ul>
       </Header>
-      <AdminSidebar navItems={navItems} />
+      <AdminSidebar
+        navItems={
+          user?.type === "venture_admin" ? ventureNavItems : adminNavItems
+        }
+      />
     </div>
   );
 }

@@ -21,7 +21,7 @@ export default function UserSidebar({ navItems }) {
               href={item.href}
               className={cn(
                 "flex flex-col gap-1 aspect-square justify-center  items-center lg:p-1.5 xl:p-2.5 2xl:p-3 lg:rounded-xl xl:rounded-[35%]",
-                pathname === item.href && "bg-secondary text-primary"
+                pathname === item.href && "bg-secondary text-primary",
               )}
             >
               {item.Icon}
@@ -42,6 +42,9 @@ export default function UserSidebar({ navItems }) {
           className="w-12 h-12 rounded-full overflow-hidden"
         />
       </div>
+      <button className="text-red-600 text-sm font-medium transition-colors">
+        Logout
+      </button>
     </div>
   );
 }

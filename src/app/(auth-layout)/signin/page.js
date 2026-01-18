@@ -29,8 +29,8 @@ export default function page() {
       });
       dispatch(login(res?.data));
       document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
-      toast.success("You have successfully signed up!");
-      router.push("/ventures");
+      toast.success("You have successfully signed in!");
+      router.push("/ventures/venture-profile");
     } catch (error) {
       toast.error("Something went wrong!");
     }
@@ -119,7 +119,9 @@ export default function page() {
               required
             />
           </div>
-          <Button>Continue</Button>
+          <Button loading={loading} disabled={loading}>
+            Continue
+          </Button>
           <Link href="/signup" className="block">
             <BorderButton>Create Account</BorderButton>
           </Link>
