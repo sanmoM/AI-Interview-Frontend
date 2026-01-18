@@ -2,8 +2,11 @@
 
 import ExploreFilter from "@/components/explore/explore-filter";
 import Jobs from "@/components/explore/jobs";
+import Loader from "@/components/shared/loader";
 import Pagination from "@/components/shared/pagination";
 import Wrapper from "@/components/shared/wrapper/wrapper";
+import useAuthAxios from "@/hooks/useAuthAxios";
+import { useEffect, useState } from "react";
 
 const opportunities = [
   {
@@ -81,11 +84,31 @@ const opportunities = [
 ];
 
 export default function Page() {
+  const [ventures, setVentures] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const axios = useAuthAxios();
+
+  useEffect(() => {
+    const fetchVentures = async () => {
+      setLoading(true);
+      const res = await axios.get("/all-venture");
+      setVentures(res?.data?.allVentures);
+      setLoading(false);
+    };
+    fetchVentures();
+  }, []);
+
   return (
     <Wrapper className="flex flex-col">
-      <ExploreFilter />
-      <Jobs />
-      <Pagination />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <ExploreFilter />
+          <Jobs ventures={ventures} />
+          <Pagination />
+        </>
+      )}
     </Wrapper>
   );
 }

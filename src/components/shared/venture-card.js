@@ -17,11 +17,12 @@ export default function VentureCard({ item, className }) {
     }
   };
   const brandingData = JSON.parse(item?.branding_json);
+  console.log(item);
   return (
     <div
       className={cn(
         " rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6",
-        className
+        className,
       )}
     >
       <div className="mb-2 xl:mb-4 flex items-start justify-between">
@@ -30,7 +31,7 @@ export default function VentureCard({ item, className }) {
         </h3>
         <span
           className={`ml-2 text-[10px] md:text-sm lg:text-xs xl:text-base whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
-            item?.status
+            item?.status,
           )}`}
         >
           {item?.status}
@@ -41,10 +42,12 @@ export default function VentureCard({ item, className }) {
         {brandingData?.description}
       </p>
       <div className="flex justify-between mt-3">
-        <p className="text-sm text-primary"><span className="font-bold">Phone:</span> {brandingData?.phone}</p>
+        <p className="text-sm text-primary">
+          <span className="font-bold">Phone:</span> {brandingData?.phone}
+        </p>
         <Link
           className="text-sm text-primary font-bold"
-          href={brandingData?.websiteLink}
+          href={brandingData?.websiteLink || "#"}
         >
           View website
         </Link>

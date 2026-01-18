@@ -1,0 +1,15 @@
+.content-container {
+    columns: 2;
+    column-gap: 24px;
+}
+
+.content-container>div {
+    break-inside: avoid;
+    margin-top: 24px;
+}
+
+@media only screen and (max-width: 768px) {
+    .content-container {
+        columns: 1;
+    }
+}

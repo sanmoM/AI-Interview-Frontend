@@ -55,16 +55,6 @@ export default function FAQs({ data, fetchVenture }) {
 
       {mode === "show" ? (
         <div className="space-y-4 my-6">
-          {/* <FAQCard
-            title="How is my trip data stored and used?"
-            description="We log routes and charging events in an aggregated way. Personal identifiers are separated from raw telemetry..."
-            category="Data & privacy"
-          />
-          <FAQCard
-            title="How is my trip data stored and used?"
-            description="We log routes and charging events in an aggregated way. Personal identifiers are separated from raw telemetry..."
-            category="Data & privacy"
-          /> */}
           {data?.flows?.map((flow, index) =>
             flow.faqs?.map((faq, index) => (
               <FAQCard

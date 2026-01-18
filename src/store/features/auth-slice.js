@@ -16,6 +16,7 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.user = {};
       state.token = "";
+      document.cookie = `token=; path=/; max-age=86400; SameSite=Lax`;
     },
   },
 });

@@ -18,7 +18,7 @@ export default function VentureDetailPage() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("active");
   const [name, setName] = useState("");
-  const [slug, setSlug] = useState("");
+  // const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");
   const [phone, setPhone] = useState("");
   const [websiteLink, setWebsiteLink] = useState("");
@@ -34,7 +34,7 @@ export default function VentureDetailPage() {
       const formData = new FormData();
       formData.append("name", name);
       formData.append("status", status);
-      formData.append("slug", slug);
+      // formData.append("slug", slug);
 
       // ✅ only append logo if it exists
       if (logo) {
@@ -47,7 +47,7 @@ export default function VentureDetailPage() {
           description,
           phone,
           websiteLink,
-        })
+        }),
       );
 
       const res = await axios.post("/super/ventures", formData);
@@ -86,15 +86,13 @@ export default function VentureDetailPage() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <TextInput
+            {/* <TextInput
               placeholder="Venue slug"
               label="Venue slug"
               required
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
-            />
-          </div>
-          <div className="grid lg:grid-cols-2 gap-4">
+            /> */}
             <TextInput
               placeholder="Phone number"
               label="Phone number"
@@ -102,6 +100,8 @@ export default function VentureDetailPage() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
+          </div>
+          <div className="grid lg:grid-cols-2 gap-4">
             <TextInput
               placeholder="Website link"
               label="Website link"
@@ -109,23 +109,23 @@ export default function VentureDetailPage() {
               value={websiteLink}
               onChange={(e) => setWebsiteLink(e.target.value)}
             />
+            <SelectBox
+              options={[
+                {
+                  value: "active",
+                  label: "Active",
+                },
+                { value: "demo", label: "Demo" },
+                { value: "client", label: "Client" },
+                { value: "template", label: "Template" },
+              ]}
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              placeholder="Select tone preset"
+              label={"Status"}
+              required
+            />
           </div>
-          <SelectBox
-            options={[
-              {
-                value: "active",
-                label: "Active",
-              },
-              { value: "demo", label: "Demo" },
-              { value: "client", label: "Client" },
-              { value: "template", label: "Template" },
-            ]}
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            placeholder="Select tone preset"
-            label={"Status"}
-            required
-          />
           <TextAreaInput
             placeholder="Venue description"
             label="Venue description"

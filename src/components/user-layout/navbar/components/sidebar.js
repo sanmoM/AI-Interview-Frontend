@@ -42,9 +42,6 @@ export default function UserSidebar({ navItems }) {
           className="w-12 h-12 rounded-full overflow-hidden"
         />
       </div>
-      <button className="text-red-600 text-sm font-medium transition-colors">
-        Logout
-      </button>
     </div>
   );
 }

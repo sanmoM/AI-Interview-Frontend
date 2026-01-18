@@ -4,23 +4,20 @@ import Loader from "@/components/shared/loader";
 import SecondaryWrapper from "@/components/shared/wrapper/secondary-wrapper";
 import Badge from "@/components/ui/badge";
 import BorderButton from "@/components/ui/buttons/border-button";
-import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
-import Roles from "@/components/ventures/single-venture/roles";
-import AssignAdmin from "@/components/ventures/single-venture/assign-admin";
 import BrandingCard from "@/components/ventures/single-venture/brand-card/branding-card";
 import FAQs from "@/components/ventures/single-venture/faq-card/faqs";
 import Flows from "@/components/ventures/single-venture/flows";
 import Knowledge from "@/components/ventures/single-venture/knowledge/knowledge";
+import Roles from "@/components/ventures/single-venture/roles";
 import SystemPromptCard from "@/components/ventures/single-venture/system-prompt-card";
 import ToneCard from "@/components/ventures/single-venture/tone-card";
 import useAuthAxios from "@/hooks/useAuthAxios";
-import Link from "next/link";
-import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
+import "./venture-profile.css";
 
 export default function VentureDetailPage() {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -98,7 +95,7 @@ export default function VentureDetailPage() {
           </div>
 
           {/* Content Grid */}
-          <div className="grid grid-cols-1 2xl:grid-cols-[60%_40%] gap-6">
+          <div className="content-container">
             {/* Left Column (Branding & Tone) */}
             <BrandingCard />
             <Roles data={venture} fetchVenture={fetchVenture} />
