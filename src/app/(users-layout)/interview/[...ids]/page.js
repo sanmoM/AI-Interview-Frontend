@@ -21,7 +21,7 @@ export default function page() {
 
   const fetchQuestions = async () => {
     // const res = await axios.get(`/questions/${flowId}`);
-    const res = await axios.post(`/interview/start/`, {
+    const res = await axios.post(`/interview/start`, {
       venture_slug: "venture-one",
       venture_id: ventureId,
       flow_id: flowId,
