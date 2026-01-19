@@ -17,7 +17,7 @@ export default function useAuthAxios() {
           Authorization: `Bearer ${token || ""}`,
           ...config.headers, // merge headers safely
         },
-        withCredentials: true,
+        // withCredentials: true,
       };
     },
     function (error) {
