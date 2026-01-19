@@ -213,7 +213,7 @@ export default function QuestionAnswer({
         </div>
 
         {/* Progress Section */}
-        <div className="bg-primary/80 border-b rounded-b-xl border-slate-700/50 px-6 lg:px-8 py-6">
+        <div className="bg-primary/70 border-b rounded-b-xl border-slate-700/50 px-6 lg:px-8 py-6">
           <div className="max-w-4xl">
             <div className="flex items-center gap-4">
               <div className="flex-1">
@@ -227,7 +227,7 @@ export default function QuestionAnswer({
                 </div>
                 <div className="w-full bg-gray-300 rounded-full h-2 overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-300 ease-out"
+                    className="h-full bg-primary transition-all duration-300 ease-out"
                     style={{
                       width: `${totalCount === 0 ? 0 : (answeredCount / totalCount) * 100}%`,
                     }}
