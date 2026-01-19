@@ -17,12 +17,13 @@ export default function useAuthAxios() {
           Authorization: `Bearer ${token || ""}`,
           ...config.headers, // merge headers safely
         },
+        withCredentials: true,
       };
     },
     function (error) {
       return Promise.reject(error);
     },
-    { synchronous: true }
+    { synchronous: true },
   );
 
   // Response interceptor
@@ -42,7 +43,7 @@ export default function useAuthAxios() {
         router.push("/signin");
       }
       return Promise.reject(error);
-    }
+    },
   );
 
   return axios;
