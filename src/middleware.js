@@ -8,7 +8,8 @@ export function middleware(request) {
   if (
     pathname === "/" ||
     pathname === "/explore" ||
-    /^\/explore\/[^/]+$/.test(pathname)
+    /^\/explore\/[^/]+$/.test(pathname) ||
+    /^\/interview\/.+$/.test(pathname)
   )
     return NextResponse.next();
   //   console.log(pathname);

@@ -1,8 +1,6 @@
 import { cn } from "@/utils/cn";
-import Link from "next/link";
-import React from "react";
 
-export default function VentureCard({ item, className }) {
+export default function RoleCard({ item, className }) {
   const getStatusStyles = (status) => {
     switch (status) {
       case "active":
@@ -16,11 +14,10 @@ export default function VentureCard({ item, className }) {
         return "text-text-gray";
     }
   };
-  const brandingData = JSON.parse(item?.branding_json);
   return (
     <div
       className={cn(
-        " rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6",
+        " rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6 h-full",
         className,
       )}
     >
@@ -38,9 +35,9 @@ export default function VentureCard({ item, className }) {
       </div>
 
       <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg">
-        {brandingData?.description}
+        {item?.description}
       </p>
-      <div className="flex justify-between mt-3">
+      {/* <div className="flex justify-between mt-3">
         <p className="text-sm text-primary">
           <span className="font-bold">Phone:</span> {brandingData?.phone}
         </p>
@@ -50,7 +47,7 @@ export default function VentureCard({ item, className }) {
         >
           View website
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
