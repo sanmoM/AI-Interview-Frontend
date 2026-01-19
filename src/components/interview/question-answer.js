@@ -313,7 +313,7 @@ export default function QuestionAnswer({
               </div>
               <div className="bg-primary rounded-lg p-4 border border-slate-700/50">
                 <p className="text-xs text-white mb-1">Remaining</p>
-                <p className="text-3xl font-bold text-orange-500">
+                <p className="text-3xl font-bold text-red-500">
                   {totalCount - answeredCount}
                 </p>
               </div>
