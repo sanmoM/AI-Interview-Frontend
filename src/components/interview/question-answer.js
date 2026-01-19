@@ -197,7 +197,7 @@ export default function QuestionAnswer({
 
   // Question List View
   return (
-    <div className="flex flex-col lg:flex-row h-full gap-4">
+    <div className="flex flex-col lg:flex-row h-full gap-8">
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
