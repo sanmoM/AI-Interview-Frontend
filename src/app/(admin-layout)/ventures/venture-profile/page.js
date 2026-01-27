@@ -17,7 +17,6 @@ import ToneCard from "@/components/ventures/single-venture/tone-card";
 import useAuthAxios from "@/hooks/useAuthAxios";
 import { useEffect, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
-import "./venture-profile.css";
 
 export default function VentureDetailPage() {
   const [initialLoad, setInitialLoad] = useState(true);
@@ -95,7 +94,7 @@ export default function VentureDetailPage() {
           </div>
 
           {/* Content Grid */}
-          <div className="content-container">
+          <div className="column-no-break-container">
             {/* Left Column (Branding & Tone) */}
             <BrandingCard />
             <Roles data={venture} fetchVenture={fetchVenture} />

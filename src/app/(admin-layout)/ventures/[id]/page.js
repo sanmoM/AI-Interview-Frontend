@@ -98,7 +98,7 @@ export default function VentureDetailPage() {
           </div>
 
           {/* Content Grid */}
-          <div className="grid grid-cols-1 2xl:grid-cols-[60%_40%] gap-6">
+          <div className="column-no-break-container gap-6">
             {/* Left Column (Branding & Tone) */}
             <BrandingCard />
             <AssignAdmin data={venture.venture_admin} />

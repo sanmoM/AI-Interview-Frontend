@@ -67,7 +67,7 @@ export default function FAQs({ data, fetchVenture }) {
           )}
         </div>
       ) : (
-        <form
+        <div
           className="space-y-4 h-full flex flex-col mt-6"
           onSubmit={handleSubmit}
         >
@@ -115,19 +115,10 @@ export default function FAQs({ data, fetchVenture }) {
             inputClassName={"h-32 resize-none"}
             type="number"
           />
-          <Button
-            className={
-              "w-fit ml-auto px-6 mt-auto text-xs md:text-sm 2xl:text-base"
-            }
-            loading={loading}
-            disabled={loading}
-          >
-            Add FAQ
-          </Button>
-        </form>
+        </div>
       )}
 
-      <div className="flex justify-between md:gap-4 items-center">
+      <div className="flex justify-between md:gap-4 items-center mt-6">
         <BorderButton
           onClick={() => (mode === "show" ? setMode("add") : setMode("show"))}
           className="flex w-fit items-center gap-2 text-text-gray font-medium px-4 py-2 rounded-full hover:bg-gray-50 transition-colors !text-[13px]"
@@ -144,9 +135,25 @@ export default function FAQs({ data, fetchVenture }) {
             </>
           )}
         </BorderButton>
-        <button className="text-primary text-xs md:text-sm font-semibold hover:underline cursor-pointer">
-          Manage categories
-        </button>
+
+        <div className="">
+          {mode === "add" ? (
+            <Button
+              onClick={handleSubmit}
+              className={
+                "w-fit ml-auto px-6 mt-auto text-xs md:text-sm 2xl:text-base"
+              }
+              loading={loading}
+              disabled={loading}
+            >
+              Add FAQ
+            </Button>
+          ) : (
+            <button className="text-primary text-xs md:text-sm font-semibold hover:underline cursor-pointer">
+              Manage categories
+            </button>
+          )}
+        </div>
       </div>
     </InnerWrapper>
   );

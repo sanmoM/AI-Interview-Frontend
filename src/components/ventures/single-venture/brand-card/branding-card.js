@@ -12,7 +12,7 @@ export default function BrandingCard() {
     const [selectedColor, setSelectedColor] = useState("primary");
 
     return (
-        <InnerWrapper className={""}>
+        <InnerWrapper className={"!mt-0"}>
             <InnerDivHeader
                 Icon={IoColorPaletteOutline}
                 title="Branding"

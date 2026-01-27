@@ -65,3 +65,19 @@
 button {
   cursor: pointer;
 }
+
+.column-no-break-container {
+    columns: 2;
+    column-gap: 24px;
+}
+
+.column-no-break-container>div {
+    break-inside: avoid;
+    margin-top: 24px;
+}
+
+@media only screen and (max-width: 768px) {
+    .column-no-break-container {
+        columns: 1;
+    }
+}

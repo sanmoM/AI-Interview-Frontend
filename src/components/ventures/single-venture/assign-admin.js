@@ -46,7 +46,7 @@ export default function AssignAdmin({ data }) {
         description="Venture Admins can manage the venture, interview questions, and interviewers."
         containerClassName={"mb-6 md:mb-0"}
       />
-      <form
+      <div
         className="space-y-4 h-full flex flex-col mt-6"
         onSubmit={handleSubmit}
       >
@@ -90,6 +90,7 @@ export default function AssignAdmin({ data }) {
           size="sm"
         />
         <Button
+          onClick={handleSubmit}
           className={
             "w-fit ml-auto px-6 mt-auto text-xs md:text-sm 2xl:text-base"
           }
@@ -98,7 +99,7 @@ export default function AssignAdmin({ data }) {
         >
           Assign Admin
         </Button>
-      </form>
+      </div>
     </InnerWrapper>
   );
 }

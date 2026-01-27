@@ -40,9 +40,9 @@ export default function VentureCard({ item, className }) {
       <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg">
         {brandingData?.description}
       </p>
-      <div className="flex justify-between mt-3">
+      <div className="flex justify-center mt-3">
         <p className="text-sm text-primary">
-          <span className="font-bold">Phone:</span> {brandingData?.phone}
+          {/* <span className="font-bold">Phone:</span> {item?.phone_number} */}
         </p>
         <Link
           className="text-sm text-primary font-bold"

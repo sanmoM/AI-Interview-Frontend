@@ -18,6 +18,8 @@ export default function VentureDetailPage() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("active");
   const [name, setName] = useState("");
+  // const [firstMessage, setFirstMessage] = useState("");
+  // const [systemPrompt, setSystemPrompt] = useState("");
   // const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");
   const [phone, setPhone] = useState("");
@@ -78,21 +80,21 @@ export default function VentureDetailPage() {
             setImage={setLogo}
             containerClassName={" w-40 h-40 ml-0 mt-6"}
           />
-          <div className="grid lg:grid-cols-2 gap-4">
+          <TextInput
+            placeholder="Venue name"
+            label="Venue name"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          {/* <div className="grid lg:grid-cols-2 gap-4">
             <TextInput
-              placeholder="Venue name"
-              label="Venue name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            {/* <TextInput
               placeholder="Venue slug"
               label="Venue slug"
               required
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
-            /> */}
+            />
             <TextInput
               placeholder="Phone number"
               label="Phone number"
@@ -100,7 +102,23 @@ export default function VentureDetailPage() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
-          </div>
+          </div> */}
+          {/* <TextAreaInput
+            placeholder="First message"
+            label="First message"
+            required
+            value={firstMessage}
+            onChange={(e) => setFirstMessage(e.target.value)}
+            inputClassName={"h-40 resize-none"}
+          />
+          <TextAreaInput
+            placeholder="System prompt"
+            label="System prompt"
+            required
+            value={systemPrompt}
+            onChange={(e) => setSystemPrompt(e.target.value)}
+            inputClassName={"h-40 resize-none"}
+          /> */}
           <div className="grid lg:grid-cols-2 gap-4">
             <TextInput
               placeholder="Website link"

@@ -37,17 +37,17 @@ export default function RoleCard({ item, className }) {
       <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg">
         {item?.description}
       </p>
-      {/* <div className="flex justify-between mt-3">
+      <div className="flex justify-between mt-3">
         <p className="text-sm text-primary">
-          <span className="font-bold">Phone:</span> {brandingData?.phone}
+          <span className="font-bold">Phone:</span> {item?.phone_number}
         </p>
-        <Link
+        {/* <Link
           className="text-sm text-primary font-bold"
           href={brandingData?.websiteLink || "#"}
         >
           View website
-        </Link>
-      </div> */}
+        </Link> */}
+      </div>
     </div>
   );
 }
