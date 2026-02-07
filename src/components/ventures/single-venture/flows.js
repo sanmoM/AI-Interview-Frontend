@@ -19,6 +19,7 @@ export default function Flows({ data, fetchVenture }) {
   const [mode, setMode] = useState("show");
   const [loading, setLoading] = useState(false);
   const [editId, setEditId] = useState(null);
+  // const [updateLoading, setUpdateLoading] = useState(false);
 
   const [createData, setCreateData] = useState({
     name: "",
@@ -82,6 +83,11 @@ export default function Flows({ data, fetchVenture }) {
       toast.success("Flow updated successfully!");
       fetchVenture();
       setEditId(null);
+      setEditData({
+        name: "",
+        role_id: "",
+        status: "active",
+      });
       setMode("show");
     } catch (err) {
       console.error(err);
@@ -90,6 +96,7 @@ export default function Flows({ data, fetchVenture }) {
 
     setLoading(false);
   };
+
 
   /* ---------------- DELETE ---------------- */
 

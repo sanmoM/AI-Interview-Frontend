@@ -83,6 +83,12 @@ export default function Roles({ data, fetchVenture }) {
       toast.success("Role updated successfully!");
       fetchVenture();
       setMode("show");
+      setEditData({
+        name: "",
+        description: "",
+        system_prompt: "",
+      });
+      setEditId(null);
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong!");
@@ -138,6 +144,7 @@ export default function Roles({ data, fetchVenture }) {
                     Cancel
                   </BorderButton>
                   <Button
+                    loading={loading}
                     className={
                       "w-fit px-5 lg:py-1.5 text-xs lg:text-xs xl:text-sm 2xl:text-base mt-2"
                     }
