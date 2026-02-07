@@ -3,12 +3,16 @@ import { useRouter } from "next/navigation";
 import { FiLogOut } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 
-export default function LogoutButton() {
+export default function LogoutButton({ userType }) {
   const dispatch = useDispatch();
   const router = useRouter();
   const handleLogout = () => {
     dispatch(logout());
-    router.push("/signin");
+    if (userType === "super_admin") {
+      router.push("/admin-signin");
+    } else {
+      router.push("/signin");
+    }
   };
   return (
     <button

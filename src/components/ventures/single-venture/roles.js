@@ -1,5 +1,6 @@
 "use client";
 
+import RoleForm from "@/components/roles/role-form";
 import InnerDivHeader from "@/components/shared/inner-div-header";
 import ItemCard from "@/components/shared/item-card";
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
@@ -8,7 +9,7 @@ import Button from "@/components/ui/buttons/button";
 import TextAreaInput from "@/components/ui/inputs/text-area-input";
 import TextInput from "@/components/ui/inputs/text-input";
 import useAuthAxios from "@/hooks/useAuthAxios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { BsPersonWorkspace, BsPlusLg } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
@@ -16,27 +17,53 @@ import { FiEdit, FiPlus } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 
 export default function Roles({ data, fetchVenture }) {
+  const [editId, setEditId] = useState(null);
   const [mode, setMode] = useState("show");
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [systemPrompt, setSystemPrompt] = useState("");
+
+  const [createData, setCreateData] = useState({
+    name: "",
+    description: "",
+    system_prompt: "",
+  });
+
+  const [editData, setEditData] = useState({
+    name: "",
+    description: "",
+    system_prompt: "",
+  });
+
+  const handleCreateData = (name, value) => {
+    setCreateData({
+      ...createData,
+      [name]: value,
+    });
+  };
+
+  const handleEditData = (name, value) => {
+    setEditData({
+      ...editData,
+      [name]: value,
+    });
+  };
+
   const axios = useAuthAxios();
 
-  const handleSubmit = async (e) => {
+  const handleCreate = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       await axios.post("/admin/roles", {
-        name,
-        description,
-        system_prompt: systemPrompt,
+        ...createData,
         venture_id: data?.id,
       });
       toast.success("Assistant created successfully!");
       fetchVenture();
-      setName("");
-      setSystemPrompt("");
+      setCreateData({
+        name: "",
+        description: "",
+        system_prompt: "",
+      });
       setMode("show");
     } catch (error) {
       console.log(error);
@@ -44,6 +71,48 @@ export default function Roles({ data, fetchVenture }) {
     }
     setLoading(false);
   };
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await axios.put(`/admin/roles/${editId}`, {
+        ...editData,
+        id: editId,
+      });
+      toast.success("Role updated successfully!");
+      fetchVenture();
+      setMode("show");
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
+    }
+    setLoading(false);
+  };
+
+  const handleDelete = async (id) => {
+    setLoading(true);
+    try {
+      await axios.delete(`/admin/roles/${id}`);
+      toast.success("Role deleted successfully!");
+      fetchVenture();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (editId) {
+      const role = data?.roles.find((role) => role.id === editId);
+      setEditData({
+        name: role.name,
+        description: role.description,
+        system_prompt: role.system_prompt,
+      });
+    }
+  }, [editId]);
 
   return (
     <InnerWrapper>
@@ -55,56 +124,45 @@ export default function Roles({ data, fetchVenture }) {
       />
       {mode === "show" ? (
         <div className="flex flex-col mt-6">
-          {data?.roles.map((role, index) => (
-            // <div
-            //   key={index}
-            //   className="flex flex-col relative gap-1 mt-4 border border-primary py-2 px-4 rounded-lg"
-            // >
-            //   <p className="text-black text-base md:text-lg font-medium">
-            //     {role.name}
-            //   </p>
-            //   <p className="text-text-gray text-xs md:text-sm font-medium">
-            //     {role.description}
-            //   </p>
-            //   <button className="absolute text-green-400 top-2 right-2">
-            //     <FiEdit size={24} />
-            //   </button>
-            // </div>
-            <ItemCard 
-              title={role.name}
-              description={role.description}
-            />
-          ))}
+          {data?.roles.map((role, index) =>
+            editId === role.id ? (
+              <div>
+                <RoleForm data={editData} setData={handleEditData} />
+                <div className="flex justify-end gap-4">
+                  <BorderButton
+                    className={
+                      "w-fit ml-auto px-5 lg:py-1.5 text-xs lg:text-xs xl:text-sm 2xl:text-base mt-2"
+                    }
+                    onClick={() => setEditId(null)}
+                  >
+                    Cancel
+                  </BorderButton>
+                  <Button
+                    className={
+                      "w-fit px-5 lg:py-1.5 text-xs lg:text-xs xl:text-sm 2xl:text-base mt-2"
+                    }
+                    onClick={handleEdit}
+                  >
+                    Update
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <ItemCard
+                data={{
+                  title: role.name,
+                  description: role.description,
+                  category: role.category,
+                  ...role,
+                }}
+                handleDelete={() => handleDelete(role.id)}
+                handleEdit={() => setEditId(role.id)}
+              />
+            ),
+          )}
         </div>
       ) : (
-        <div className="space-y-4 h-full flex flex-col mt-6">
-          <TextInput
-            placeholder="Name"
-            label="Name"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            size="sm"
-          />
-          <TextAreaInput
-            placeholder="Description"
-            label="Description"
-            required
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            size="sm"
-            inputClassName={"h-32 resize-none"}
-          />
-          <TextAreaInput
-            placeholder="System prompt"
-            label="System prompt"
-            required
-            value={systemPrompt}
-            onChange={(e) => setSystemPrompt(e.target.value)}
-            size="sm"
-            inputClassName={"h-32 resize-none"}
-          />
-        </div>
+        <RoleForm data={createData} setData={handleCreateData} />
       )}
 
       <div className="flex justify-between md:gap-4 items-center mt-6">
@@ -128,7 +186,7 @@ export default function Roles({ data, fetchVenture }) {
         <div className="">
           {mode === "add" ? (
             <Button
-              onClick={handleSubmit}
+              onClick={handleCreate}
               className={
                 "w-fit ml-auto px-6 mt-auto text-xs md:text-sm 2xl:text-base"
               }

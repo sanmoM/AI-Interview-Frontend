@@ -22,7 +22,7 @@ export default function page() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await axios.post("/auth/admin-login", {
         email,
         password,
       });

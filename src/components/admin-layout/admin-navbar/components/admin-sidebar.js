@@ -7,7 +7,7 @@ import { useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import { PiCaretUpDown } from "react-icons/pi";
 
-export default function AdminSidebar({ navItems }) {
+export default function AdminSidebar({ navItems, userType }) {
   const [activeNav, setActiveNav] = useState("ventures");
 
   return (
@@ -68,7 +68,7 @@ export default function AdminSidebar({ navItems }) {
         </div>
         <PiCaretUpDown className="w-4 h-4 text-text-primary shrink-0 transition-opacity" />
       </button>
-      <LogoutButton />
+      <LogoutButton userType={userType} />
     </aside>
   );
 }

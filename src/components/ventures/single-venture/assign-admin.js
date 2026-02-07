@@ -38,6 +38,23 @@ export default function AssignAdmin({ data }) {
     setLoading(false);
   };
 
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await axios.put(`/super/venture-admins/${id}`, {
+        name,
+        email,
+        password,
+        type,
+      });
+      toast.success("Admin updated successfully!");
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
+    setLoading(false);
+  };
+
   return (
     <InnerWrapper>
       <InnerDivHeader
@@ -65,6 +82,7 @@ export default function AssignAdmin({ data }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           size="sm"
+          readOnly={data?.email ? true : false}
         />
         <TextInput
           placeholder="Password"
@@ -90,14 +108,14 @@ export default function AssignAdmin({ data }) {
           size="sm"
         />
         <Button
-          onClick={handleSubmit}
+          onClick={data?.email ? handleUpdate : handleSubmit}
           className={
             "w-fit ml-auto px-6 mt-auto text-xs md:text-sm 2xl:text-base"
           }
           loading={loading}
           disabled={loading}
         >
-          Assign Admin
+          {!data?.email ? "Add" : "Update"}
         </Button>
       </div>
     </InnerWrapper>
