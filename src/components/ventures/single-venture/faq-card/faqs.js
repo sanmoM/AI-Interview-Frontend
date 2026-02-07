@@ -292,12 +292,8 @@ export default function FAQs({ data, fetchVenture }) {
   }, [editId, data?.flows]);
 
   /* ---------------- UI ---------------- */
-  console.log(
-    data?.flows?.map((flow) => ({
-      label: flow.name,
-      value: flow.id,
-    })),
-  );
+  // console.log(data?.flows?.find((flow) => flow.id === faq.flow_id)?.name);
+
   return (
     <InnerWrapper>
       <InnerDivHeader
@@ -342,17 +338,19 @@ export default function FAQs({ data, fetchVenture }) {
                   </div>
                 </div>
               ) : (
-                <ItemCard
-                  key={faq.id}
-                  data={{
-                    title: faq.question_text,
-                    description: `Flow: ${data?.flows?.find((flow) => flow.id === faq.flow_id)?.name}`,
-                    category: faq.question_type,
-                    ...faq,
-                  }}
-                  handleEdit={() => setEditId(faq.id)}
-                  handleDelete={() => handleDelete(faq.id)}
-                />
+                <>
+                  <ItemCard
+                    key={faq.id}
+                    data={{
+                      title: faq.question_text,
+                      description: `Flow: ${data?.flows?.find((flow) => parseInt(flow.id) === parseInt(faq.flow_id))?.name}`,
+                      category: faq.question_type,
+                      ...faq,
+                    }}
+                    handleEdit={() => setEditId(faq.id)}
+                    handleDelete={() => handleDelete(faq.id)}
+                  />
+                </>
               ),
             ),
           )}
