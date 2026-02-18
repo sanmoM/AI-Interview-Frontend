@@ -9,6 +9,7 @@ import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
+import SelectBox from "@/components/ui/inputs/select-box";
 import useAuthAxios from "@/hooks/useAuthAxios";
 import { getDuration } from "@/utils/call";
 import { cn } from "@/utils/cn";
@@ -92,7 +93,10 @@ const CALLS_DATA = [
 
 export default function CallsPage() {
   const [calls, setCalls] = useState([]);
-  const [activeFilter, setActiveFilter] = useState("All calls");
+  //   const [activeFilter, setActiveFilter] = useState("All calls");
+  const [days, setDays] = useState("all");
+  const [status, setStatus] = useState("all");
+  const [assignee, setAssignee] = useState("all");
   const axios = useAuthAxios();
 
   useEffect(() => {
@@ -251,15 +255,50 @@ export default function CallsPage() {
         {/* Filters Row */}
         <div className="flex flex-col 2xl:flex-row justify-between items-center gap-4 mb-6 lg:mb-6">
           <div className="flex flex-wrap gap-2.5 w-full md:w-auto">
-            <button className="flex items-center gap-2 rounded-full px-4 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-bg-gray hover:bg-gray-50 transition-colors w-full md:w-auto justify-center">
+            {/* <button className="flex items-center gap-2 rounded-full px-4 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-bg-gray hover:bg-gray-50 transition-colors w-full md:w-auto justify-center">
               Date <span className="">Last 7 days ▼</span>
-            </button>
-            <button className="flex items-center gap-2 rounded-full px-4 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-bg-gray hover:bg-gray-50 transition-colors w-full md:w-auto justify-center">
+            </button> */}
+            <SelectBox
+              options={[
+                { label: "All", value: -1 },
+                { label: "Last 7 days", value: 7 },
+                { label: "Last 30 days", value: 30 },
+                { label: "Last 90 days", value: 90 },
+              ]}
+              value={days}
+              onChange={(e) => setDays(e.target.value)}
+              size="sm"
+              containerClassName={"w-[170px]"}
+            />
+            {/* <button className="flex items-center gap-2 rounded-full px-4 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-bg-gray hover:bg-gray-50 transition-colors w-full md:w-auto justify-center">
               Status <span className="">Completed & missed ▼</span>
-            </button>
-            <button className="flex items-center gap-2 rounded-full px-4 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-bg-gray hover:bg-gray-50 transition-colors w-full md:w-auto justify-center">
+            </button> */}
+            <SelectBox
+              options={[
+                { label: "All", value: "all" },
+                { label: "Completed", value: "completed" },
+                { label: "Missed", value: "missed" },
+                { label: "In progress", value: "in_progress" },
+              ]}
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              size="sm"
+              containerClassName={"w-[170px]"}
+            />
+            {/* <button className="flex items-center gap-2 rounded-full px-4 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-bg-gray hover:bg-gray-50 transition-colors w-full md:w-auto justify-center">
               Owner <span className="">Any assignee ▼</span>
-            </button>
+            </button> */}
+            <SelectBox
+              options={[
+                { label: "All", value: "all" },
+                { label: "Unassigned", value: "unassigned" },
+                { label: "Assigned", value: "assigned" },
+              ]}
+              value={assignee}
+              onChange={(e) => setAssignee(e.target.value)}
+              size="sm"
+              containerClassName={"w-[170px]"}
+            />
           </div>
           <div className="flex gap-2.5 w-full 2xl:w-auto">
             <div className="relative w-full 2xl:w-auto">

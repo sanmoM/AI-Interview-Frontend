@@ -44,7 +44,7 @@ export default function SelectBox({
   return (
     <div className={cn("flex flex-col gap-1", containerClassName)}>
       {label && (
-        <Label className={sizeClasses[size]?.labelClass}>
+        <Label className={cn(sizeClasses[size]?.labelClass)}>
           <span>{label}</span>
           {props.required && <span className="text-red-600">*</span>}
         </Label>
@@ -67,11 +67,11 @@ export default function SelectBox({
           )}
           {...props}
         >
-          <option value="" selected disabled className="">
+          <option value="" selected disabled className="text-left">
             {placeholder}
           </option>
           {options?.map((option) => (
-            <option key={option.value} value={option.value}>
+            <option key={option.value} value={option.value} className="text-left">
               {option.label}
             </option>
           ))}
