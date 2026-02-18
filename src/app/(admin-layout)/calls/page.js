@@ -176,10 +176,7 @@ export default function CallsPage() {
               Voice bot live
             </span>
             <span className="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-              36 calls today
-            </span>
-            <span className="bg-bg-gray text-text-gray text-xs font-bold px-3 py-1 rounded-full">
-              Owner: D. Chen
+              {calls.length} calls
             </span>
           </div>
         </div>
@@ -205,7 +202,7 @@ export default function CallsPage() {
             </div>
             <div className="mt-1">
               <h2 className="text-lg font-medium text-text-primary leading-tight">
-                Today&apos;s activity
+                activity
               </h2>
               <p className="text-text-gray text-sm font-medium">
                 Live view of calls across bots and agents.
