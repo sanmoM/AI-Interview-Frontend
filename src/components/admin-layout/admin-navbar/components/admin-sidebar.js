@@ -3,12 +3,11 @@
 import Avatar from "@/components/ui/avatar";
 import LogoutButton from "@/components/ui/buttons/logout-button";
 import Link from "next/link";
-import { useState } from "react";
-import { FiLogOut } from "react-icons/fi";
+import { usePathname } from "next/navigation";
 import { PiCaretUpDown } from "react-icons/pi";
 
 export default function AdminSidebar({ navItems, userType }) {
-  const [activeNav, setActiveNav] = useState("ventures");
+  const pathname = usePathname();
 
   return (
     <aside className="hidden lg:flex w-64 2xl:w-72 bg-white border-r border-gray-200 flex-col h-full sticky top-0 px-6 py-6 2xl:py-8 rounded-4xl shadow-[0_4px_25px_0_rgba(23,26,31,0.25)]">
@@ -33,13 +32,13 @@ export default function AdminSidebar({ navItems, userType }) {
         <div className="space-y-2">
           {navItems.map((item) => {
             const Icon = item.Icon;
-            const isActive = activeNav === item.id;
+            const isActive = pathname === item.href;
 
             return (
               <Link
                 href={item.href}
                 key={item.id}
-                onClick={() => setActiveNav(item.id)}
+                // onClick={() => setActiveNav(item.id)}
                 className={`w-full flex cursor-pointer items-center gap-3 px-4 py-2.5 rounded-full  transition-all 2xl:text-lg ${
                   isActive
                     ? "bg-primary text-white font-medium"
