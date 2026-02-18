@@ -63,6 +63,14 @@ const ventureNavItems = [
       <MdGridView className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
   },
+  {
+    id: "calls",
+    name: "Calls",
+    href: "/calls",
+    Icon: (
+      <LuPhoneCall className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
+    ),
+  },
 ];
 
 export default function AdminNavbar() {
