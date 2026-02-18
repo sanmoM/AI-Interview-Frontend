@@ -18,85 +18,17 @@ import { useEffect, useState } from "react";
 import { BsTelephone } from "react-icons/bs";
 import { FiFilter } from "react-icons/fi";
 
-const CALLS_DATA = [
-  {
-    id: 1,
-    initials: "AM",
-    bgColor: "bg-[#87CEEB]/20",
-    textColor: "text-[#304E77]",
-    time: "Today · 14:12",
-    phone: "+49 173 555 2019",
-    location: "Berlin, DE",
-    duration: "12:43",
-    status: "Completed",
-    assigned: "D. Chen",
-    tags: ["Test drive", "High intent"],
-    notes: "Wants pricing deck emailed.",
-  },
-  {
-    id: 2,
-    initials: "UN",
-    bgColor: "bg-gray-100",
-    textColor: "text-gray-600",
-    time: "Today · 13:08",
-    phone: "Unknown number",
-    location: "São Paulo, BR",
-    duration: "03:21",
-    status: "Missed",
-    assigned: "Unassigned",
-    tags: ["After-hours"],
-    notes: "Voicemail transcription pending.",
-  },
-  {
-    id: 3,
-    initials: "MS",
-    bgColor: "bg-[#87CEEB]/20",
-    textColor: "text-[#304E77]",
-    time: "Today · 11:52",
-    phone: "+34 612 889 441",
-    location: "Madrid, ES",
-    duration: "08:05",
-    status: "Completed",
-    assigned: "M. Silva",
-    tags: ["Follow-up", "OEM partner"],
-    notes: "Shared pilot performance summary.",
-  },
-  {
-    id: 4,
-    initials: "RB",
-    bgColor: "bg-[#87CEEB]/20",
-    textColor: "text-[#304E77]",
-    time: "Yesterday · 18:14",
-    phone: "Routing bot",
-    location: "queue handoff",
-    duration: "05:17",
-    status: "In progress",
-    assigned: "Routing bot",
-    tags: ["Queue"],
-    notes: "Waiting for agent pickup.",
-  },
-  {
-    id: 5,
-    initials: "DC",
-    bgColor: "bg-[#87CEEB]/20",
-    textColor: "text-[#304E77]",
-    time: "Yesterday · 09:46",
-    phone: "+1 (415) 555-0108",
-    location: "San Francisco, US",
-    duration: "16:49",
-    status: "Completed",
-    assigned: "D. Chen",
-    tags: ["Renewal", "Strategic"],
-    notes: "Agreed on Q4 expansion trial.",
-  },
-];
-
 export default function CallsPage() {
   const [calls, setCalls] = useState([]);
-  //   const [activeFilter, setActiveFilter] = useState("All calls");
-  const [days, setDays] = useState("all");
-  const [status, setStatus] = useState("all");
-  const [assignee, setAssignee] = useState("all");
+  const [filter, setFilter] = useState({
+    days: -1,
+    status: "all",
+    assignee: "all",
+    search: "",
+  });
+  const changeFilter = (key, value) => {
+    setFilter((prev) => ({ ...prev, [key]: value }));
+  };
   const axios = useAuthAxios();
 
   useEffect(() => {
@@ -255,9 +187,6 @@ export default function CallsPage() {
         {/* Filters Row */}
         <div className="flex flex-col 2xl:flex-row justify-between items-center gap-4 mb-6 lg:mb-6">
           <div className="flex flex-wrap gap-2.5 w-full md:w-auto">
-            {/* <button className="flex items-center gap-2 rounded-full px-4 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-bg-gray hover:bg-gray-50 transition-colors w-full md:w-auto justify-center">
-              Date <span className="">Last 7 days ▼</span>
-            </button> */}
             <SelectBox
               options={[
                 { label: "All", value: -1 },
@@ -265,14 +194,11 @@ export default function CallsPage() {
                 { label: "Last 30 days", value: 30 },
                 { label: "Last 90 days", value: 90 },
               ]}
-              value={days}
-              onChange={(e) => setDays(e.target.value)}
+              value={filter.days}
+              onChange={(e) => changeFilter("days", e.target.value)}
               size="sm"
               containerClassName={"w-[170px]"}
             />
-            {/* <button className="flex items-center gap-2 rounded-full px-4 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-bg-gray hover:bg-gray-50 transition-colors w-full md:w-auto justify-center">
-              Status <span className="">Completed & missed ▼</span>
-            </button> */}
             <SelectBox
               options={[
                 { label: "All", value: "all" },
@@ -280,22 +206,19 @@ export default function CallsPage() {
                 { label: "Missed", value: "missed" },
                 { label: "In progress", value: "in_progress" },
               ]}
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              value={filter.status}
+              onChange={(e) => changeFilter("status", e.target.value)}
               size="sm"
               containerClassName={"w-[170px]"}
             />
-            {/* <button className="flex items-center gap-2 rounded-full px-4 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-bg-gray hover:bg-gray-50 transition-colors w-full md:w-auto justify-center">
-              Owner <span className="">Any assignee ▼</span>
-            </button> */}
             <SelectBox
               options={[
                 { label: "All", value: "all" },
                 { label: "Unassigned", value: "unassigned" },
                 { label: "Assigned", value: "assigned" },
               ]}
-              value={assignee}
-              onChange={(e) => setAssignee(e.target.value)}
+              value={filter.assignee}
+              onChange={(e) => changeFilter("assignee", e.target.value)}
               size="sm"
               containerClassName={"w-[170px]"}
             />
@@ -306,6 +229,8 @@ export default function CallsPage() {
                 placeholder="Search within results"
                 containerClassName={"w-full lg:min-w-[240px]"}
                 size="md"
+                value={filter.search}
+                onChange={(e) => changeFilter("search", e.target.value)}
               />
             </div>
             <button className="flex items-center gap-2 rounded-full px-5 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-white transition-colors whitespace-nowrap">
