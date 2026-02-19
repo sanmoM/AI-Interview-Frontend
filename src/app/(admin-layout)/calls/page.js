@@ -197,7 +197,7 @@ export default function CallsPage() {
               value={filter.days}
               onChange={(e) => changeFilter("days", e.target.value)}
               size="sm"
-              containerClassName={"w-[170px]"}
+              containerClassName={"w-[160px]"}
             />
             <SelectBox
               options={[
@@ -209,7 +209,7 @@ export default function CallsPage() {
               value={filter.status}
               onChange={(e) => changeFilter("status", e.target.value)}
               size="sm"
-              containerClassName={"w-[170px]"}
+              containerClassName={"w-[160px]"}
             />
             <SelectBox
               options={[
@@ -220,7 +220,7 @@ export default function CallsPage() {
               value={filter.assignee}
               onChange={(e) => changeFilter("assignee", e.target.value)}
               size="sm"
-              containerClassName={"w-[170px]"}
+              containerClassName={"w-[160px]"}
             />
           </div>
           <div className="flex gap-2.5 w-full 2xl:w-auto">

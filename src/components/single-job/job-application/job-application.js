@@ -59,7 +59,7 @@ export default function JobApplication() {
             {/* Job title and badges */}
             <div className="mb-6">
               <SectionHeading className={"mb-3"}>{venture.name}</SectionHeading>
-              <SubHeading className="max-w-2xl text-text-gray font-normal leading-relaxed">
+              <SubHeading className="text-text-gray font-normal leading-relaxed">
                 {venture?.branding?.description}
               </SubHeading>
             </div>

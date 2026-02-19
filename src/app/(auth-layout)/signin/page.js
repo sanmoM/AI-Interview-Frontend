@@ -122,13 +122,13 @@ export default function page() {
           <Button loading={loading} disabled={loading}>
             Continue
           </Button>
-          <Link href="/signup" className="block">
+          {/* <Link href="/signup" className="block">
             <BorderButton>Create Account</BorderButton>
-          </Link>
+          </Link> */}
         </form>
 
         {/* Divider */}
-        <div className="relative my-4 lg:my-6">
+        {/* <div className="relative my-4 lg:my-6">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-spacing-1.5 border-t border-text-gray"></div>
           </div>
@@ -137,10 +137,10 @@ export default function page() {
               Or continue with
             </span>
           </div>
-        </div>
+        </div> */}
 
         {/* Google Sign In */}
-        <button
+        {/* <button
           type="button"
           onClick={handleGoogleSignIn}
           variant="outline"
@@ -165,10 +165,10 @@ export default function page() {
             />
           </svg>
           <span className="text-gray-700 font-medium">Google</span>
-        </button>
+        </button> */}
 
         {/* Footer */}
-        <p className="text-center text-[10px] md:text-xs 2xl:text-sm font-medium text-text-gray mt-4 md:mt-6 lg:mt-8 2xl:mt-10 leading-relaxed">
+        {/* <p className="text-center text-[10px] md:text-xs 2xl:text-sm font-medium text-text-gray mt-4 md:mt-6 lg:mt-8 2xl:mt-10 leading-relaxed">
           By continuing, you agree to our{" "}
           <a href="#" className="text-primary hover:underline">
             Terms
@@ -178,7 +178,7 @@ export default function page() {
             Privacy Policy
           </a>
           .
-        </p>
+        </p> */}
       </div>
     </div>
   );

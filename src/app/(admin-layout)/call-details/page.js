@@ -11,7 +11,7 @@ export default function CallDetailPage() {
             <CallDetailHeader />
             <CallInfoCard />
 
-            <div className="grid grid-cols-1 2xl:grid-cols-[60%_40%] gap-6 mt-6">
+            <div className="column-no-break-container">
                 <TranscriptColumn />
                 <SummaryColumn />
             </div>
