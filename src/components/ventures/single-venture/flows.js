@@ -97,7 +97,6 @@ export default function Flows({ data, fetchVenture }) {
     setLoading(false);
   };
 
-
   /* ---------------- DELETE ---------------- */
 
   const handleDelete = async (id) => {
@@ -142,7 +141,7 @@ export default function Flows({ data, fetchVenture }) {
       />
 
       {mode === "show" ? (
-        <div className="flex flex-col mt-6">
+        <div className="flex flex-col mt-6 space-y-3">
           {data?.flows?.map((flow) =>
             editId === flow.id ? (
               <div key={flow.id}>

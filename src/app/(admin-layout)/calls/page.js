@@ -48,7 +48,7 @@ const getFilteredCalls = (calls, filter) => {
 export default function CallsPage() {
   const [calls, setCalls] = useState([]);
   const [filter, setFilter] = useState({
-    days: -1,
+    days: 15,
     status: "all",
     assignee: "all",
     search: "",
@@ -109,7 +109,7 @@ export default function CallsPage() {
 
   useEffect(() => {
     setFilterData(getFilteredCalls(calls, filter));
-  }, [filter]);
+  }, [filter, calls]);
 
   // console.log(calls);
   return (

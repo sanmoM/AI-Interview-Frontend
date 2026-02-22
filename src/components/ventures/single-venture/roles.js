@@ -6,15 +6,12 @@ import ItemCard from "@/components/shared/item-card";
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
 import BorderButton from "@/components/ui/buttons/border-button";
 import Button from "@/components/ui/buttons/button";
-import TextAreaInput from "@/components/ui/inputs/text-area-input";
-import TextInput from "@/components/ui/inputs/text-input";
 import useAuthAxios from "@/hooks/useAuthAxios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { BsPersonWorkspace, BsPlusLg } from "react-icons/bs";
+import { BsPersonWorkspace } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
-import { FiEdit, FiPlus } from "react-icons/fi";
-import { IoMdClose } from "react-icons/io";
+import { FiPlus } from "react-icons/fi";
 
 export default function Roles({ data, fetchVenture }) {
   const [editId, setEditId] = useState(null);
@@ -129,7 +126,7 @@ export default function Roles({ data, fetchVenture }) {
         containerClassName={"mb-6 md:mb-0"}
       />
       {mode === "show" ? (
-        <div className="flex flex-col mt-6">
+        <div className="flex flex-col mt-6 space-y-3">
           {data?.roles.map((role, index) =>
             editId === role.id ? (
               <div>

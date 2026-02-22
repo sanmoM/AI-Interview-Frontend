@@ -17,7 +17,7 @@ export default function RoleCard({ item, className }) {
   return (
     <div
       className={cn(
-        " rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6 h-full",
+        " rounded-xl md:rounded-3xl border border-secondary bg-white p-4 xl:p-6 h-full flex flex-col",
         className,
       )}
     >
@@ -34,7 +34,7 @@ export default function RoleCard({ item, className }) {
         </span>
       </div>
 
-      <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg">
+      <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg flex-1">
         {item?.description}
       </p>
       <div className="flex justify-between mt-3">
