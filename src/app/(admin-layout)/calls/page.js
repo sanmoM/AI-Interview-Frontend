@@ -17,6 +17,33 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BsTelephone } from "react-icons/bs";
 import { FiFilter } from "react-icons/fi";
+import { IoSearchOutline } from "react-icons/io5";
+
+const getFilteredCalls = (calls, filter) => {
+  return calls
+    .filter((call) => {
+      const createdDate = new Date(call.createdAt).toISOString().split("T")[0]; // YYYY-MM-DD
+
+      const today = new Date();
+      const todayStr = today.toISOString().split("T")[0];
+      console.log(createdDate, todayStr);
+      // Today only
+      if (filter.days === -1) {
+        return createdDate === todayStr;
+      }
+
+      // Start date string
+      const start = new Date();
+      start.setDate(today.getDate() - filter.days);
+      const startStr = start.toISOString().split("T")[0];
+
+      return createdDate >= startStr && createdDate <= todayStr;
+    })
+    .filter((call) => {
+      const regex = new RegExp(filter.search, "i");
+      return regex.test(call.customer.number);
+    });
+};
 
 export default function CallsPage() {
   const [calls, setCalls] = useState([]);
@@ -26,6 +53,8 @@ export default function CallsPage() {
     assignee: "all",
     search: "",
   });
+
+  const [filterData, setFilterData] = useState([]);
   const changeFilter = (key, value) => {
     setFilter((prev) => ({ ...prev, [key]: value }));
   };
@@ -34,19 +63,19 @@ export default function CallsPage() {
   useEffect(() => {
     axios.get("/vapi/calls").then((res) => {
       setCalls(res.data);
-      console.log(res.data);
     });
   }, []);
 
   //   success rate logic
-  const successCallCount = calls.reduce((acc, call) => {
-    if (call?.analysis?.successEvaluation === "true") {
-      return acc + 1;
-    }
-    return acc;
-  }, 0);
+  // const successCallCount = calls.reduce((acc, call) => {
+  //   if (call?.analysis?.successEvaluation === "true") {
+  //     return acc + 1;
+  //   }
+  //   return acc;
+  // }, 0);
 
-  const successRate = Math.round((successCallCount / calls.length) * 100);
+  // const successRate = Math.round((successCallCount / calls.length) * 100);
+  const successRate = 100;
 
   //   duration logic
   const totalDuration =
@@ -77,6 +106,12 @@ export default function CallsPage() {
       isNeutral: true,
     },
   ];
+
+  useEffect(() => {
+    setFilterData(getFilteredCalls(calls, filter));
+  }, [filter]);
+
+  // console.log(calls);
   return (
     <SecondaryWrapper>
       <p className="text-text-gray text-xs md:text-sm font-medium mb-4">
@@ -144,12 +179,12 @@ export default function CallsPage() {
                 Live view of calls across bots and agents.
               </p>
               <span className="block md:hidden w-fit bg-secondary text-primary text-[11px] font-bold px-3 py-1 rounded-full shadow-sm h-fit mt-2">
-                Showing 1–25 of 132
+                Showing 1–{filterData?.length} of {calls.length} calls
               </span>
             </div>
           </div>
           <span className="hidden md:block bg-secondary text-primary text-[11px] font-bold px-3 py-1 rounded-full shadow-sm h-fit mt-2">
-            Showing 1–25 of 132
+            Showing 1–{filterData?.length} of {calls.length} calls
           </span>
         </div>
 
@@ -189,17 +224,16 @@ export default function CallsPage() {
           <div className="flex flex-wrap gap-2.5 w-full md:w-auto">
             <SelectBox
               options={[
-                { label: "All", value: -1 },
+                { label: "Today", value: -1 },
                 { label: "Last 7 days", value: 7 },
-                { label: "Last 30 days", value: 30 },
-                { label: "Last 90 days", value: 90 },
+                { label: "Last 15 days", value: 15 },
               ]}
               value={filter.days}
               onChange={(e) => changeFilter("days", e.target.value)}
               size="sm"
               containerClassName={"w-[160px]"}
             />
-            <SelectBox
+            {/* <SelectBox
               options={[
                 { label: "All", value: "all" },
                 { label: "Completed", value: "completed" },
@@ -221,16 +255,16 @@ export default function CallsPage() {
               onChange={(e) => changeFilter("assignee", e.target.value)}
               size="sm"
               containerClassName={"w-[160px]"}
-            />
+            /> */}
           </div>
           <div className="flex gap-2.5 w-full 2xl:w-auto">
             <div className="relative w-full 2xl:w-auto">
               <Searchbox
-                placeholder="Search within results"
-                containerClassName={"w-full lg:min-w-[240px]"}
+                placeholder="Search by phone number"
+                containerClassName={"w-full lg:min-w-[285px]"}
                 size="md"
                 value={filter.search}
-                onChange={(e) => changeFilter("search", e.target.value)}
+                setSearchQuery={(val) => changeFilter("search", val)}
               />
             </div>
             <button className="flex items-center gap-2 rounded-full px-5 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-white transition-colors whitespace-nowrap">
@@ -241,17 +275,24 @@ export default function CallsPage() {
 
         {/* Timeline List */}
         <div className="space-y-3 w-full overflow-x-auto grid grid-cols-1">
-          {calls.map((call) => (
-            <Link href={`/call-details/${call.id}`} key={call.id}>
-              <CallCard call={call} />
-            </Link>
-          ))}
+          {filterData?.length > 0 ? (
+            filterData.map((call) => (
+              <Link href={`/call-details/${call.id}`} key={call.id}>
+                <CallCard call={call} />
+              </Link>
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center gap-4 text-gray-400 text-sm font-medium min-h-[300px]">
+              <IoSearchOutline className="w-7 h-7" />
+              <p>No results found</p>
+            </div>
+          )}
         </div>
 
         {/* Pagination */}
         <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mt-4 md:mt-6 px-2">
           <p className="text-gray-400 text-xs md:text-sm font-medium">
-            Showing 1–25 of 132 calls
+            Showing 1–{filterData?.length} of {calls.length} calls
           </p>
           <Pagination
             size="xs"

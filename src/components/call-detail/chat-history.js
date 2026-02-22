@@ -49,7 +49,7 @@ function Chatbox({ messages }) {
                 <div
                   className={`px-3 py-2 rounded-2xl max-w-[75%] text-sm shadow ${
                     msg.role === "user"
-                      ? "bg-blue-600 text-white"
+                      ? "bg-secondary text-primary"
                       : "bg-white text-gray-800"
                   }`}
                 >
