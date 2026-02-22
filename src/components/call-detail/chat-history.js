@@ -5,6 +5,17 @@ import InnerDivHeader from "../shared/inner-div-header";
 import InnerWrapper from "../shared/wrapper/inner-wrapper";
 
 export default function CallHistory() {
+  const [messages, setMessages] = useState([]);
+  const axios = useAuthAxios();
+  const id = useParams().id;
+
+  useEffect(() => {
+    axios.get(`/vapi/messages/${id}`).then((res) => {
+      setMessages(res.data?.messages);
+    });
+  }, []);
+
+  console.log(messages);
   return (
     <InnerWrapper className={"mt-4 lg:mt-6"}>
       <InnerDivHeader
@@ -13,77 +24,44 @@ export default function CallHistory() {
         description="All conversations with this call."
         // badgeLabel="Search & export"
       />
-      <Chatbox />
+      <Chatbox messages={messages} />
     </InnerWrapper>
   );
 }
 
-import { useEffect, useRef, useState } from "react";
+import useAuthAxios from "@/hooks/useAuthAxios";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-function Chatbox() {
-  const [messages, setMessages] = useState([
-    { id: 1, text: "Hello! How can I help you?", sender: "bot" },
-  ]);
-  const [input, setInput] = useState("");
-  const scrollRef = useRef(null);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages]);
-
-  const sendMessage = () => {
-    if (!input.trim()) return;
-
-    const newMessage = {
-      id: Date.now(),
-      text: input,
-      sender: "user",
-    };
-
-    setMessages((prev) => [...prev, newMessage]);
-    setInput("");
-
-    // Mock reply
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { id: Date.now() + 1, text: "Got it 👍", sender: "bot" },
-      ]);
-    }, 600);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") sendMessage();
-  };
-
+function Chatbox({ messages }) {
   return (
-    <div className="w-full rounded-2xl flex flex-col h-[500px] bg-bg-gray py-2">
-      {/* <div className="px-4 py-3 border-b font-semibold text-lg">Chat</div> */}
+    <div className="w-full rounded-2xl flex flex-col max-h-[500px] bg-bg-gray py-2">
+      <div className="flex-1 px-4 py-3 overflow-y-auto space-y-3">
+        {messages.map(
+          (msg) =>
+            msg?.role !== "system" && (
+              <div
+                key={msg.id}
+                className={`flex ${
+                  msg.role === "user" ? "justify-end" : "justify-start"
+                }`}
+              >
+                <div
+                  className={`px-3 py-2 rounded-2xl max-w-[75%] text-sm shadow ${
+                    msg.role === "user"
+                      ? "bg-blue-600 text-white"
+                      : "bg-white text-gray-800"
+                  }`}
+                >
+                  {msg.message}
+                </div>
+              </div>
+            ),
+        )}
 
-      <div
-        ref={scrollRef}
-        className="flex-1 px-4 py-3 overflow-y-auto space-y-3"
-      >
-        {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={`flex ${
-              msg.sender === "user" ? "justify-end" : "justify-start"
-            }`}
-          >
-            <div
-              className={`px-3 py-2 rounded-2xl max-w-[75%] text-sm shadow ${
-                msg.sender === "user"
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-800"
-              }`}
-            >
-              {msg.text}
-            </div>
-          </div>
-        ))}
+        <p className="text-primary text-center mt-4 text-sm">
+          No more messages
+        </p>
       </div>
     </div>
   );
