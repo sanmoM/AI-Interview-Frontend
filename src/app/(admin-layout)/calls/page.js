@@ -242,7 +242,7 @@ export default function CallsPage() {
         {/* Timeline List */}
         <div className="space-y-3 w-full overflow-x-auto grid grid-cols-1">
           {calls.map((call) => (
-            <Link href={`/call-details`} key={call.id}>
+            <Link href={`/call-details/${call.id}`} key={call.id}>
               <CallCard call={call} />
             </Link>
           ))}
