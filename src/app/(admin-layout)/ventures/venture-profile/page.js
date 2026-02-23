@@ -98,8 +98,8 @@ export default function VentureDetailPage() {
             {/* Left Column (Branding & Tone) */}
             <BrandingCard />
             <Roles data={venture} fetchVenture={fetchVenture} />
-            <Flows data={venture} fetchVenture={fetchVenture} />
-            <FAQs data={venture} fetchVenture={fetchVenture} />
+            {/* <Flows data={venture} fetchVenture={fetchVenture} /> */}
+            {/* <FAQs data={venture} fetchVenture={fetchVenture} /> */}
             {/* Right Column (FAQs, System Prompt, Knowledge) */}
             <ToneCard />
             <div className="flex flex-col gap-6">

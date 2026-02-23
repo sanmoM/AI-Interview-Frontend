@@ -20,6 +20,8 @@ export default function AssignAdmin({ data }) {
   const axios = useAuthAxios();
   const id = useParams().id;
 
+  const [isAddMode, setIsAddMode] = useState(!data?.email);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -31,6 +33,7 @@ export default function AssignAdmin({ data }) {
         type,
         venture_id: id,
       });
+      setIsAddMode(false);
       toast.success("Admin assigned successfully!");
     } catch (error) {
       toast.error("Something went wrong!");
@@ -48,6 +51,7 @@ export default function AssignAdmin({ data }) {
         password,
         type,
       });
+      console.log(res.data);
       toast.success("Admin updated successfully!");
     } catch (error) {
       toast.error("Something went wrong!");
@@ -108,14 +112,14 @@ export default function AssignAdmin({ data }) {
           size="sm"
         />
         <Button
-          onClick={data?.email ? handleUpdate : handleSubmit}
+          onClick={isAddMode ? handleSubmit : handleUpdate}
           className={
             "w-fit ml-auto px-6 mt-auto text-xs md:text-sm 2xl:text-base"
           }
           loading={loading}
           disabled={loading}
         >
-          {!data?.email ? "Add" : "Update"}
+          {isAddMode ? "Add" : "Update"}
         </Button>
       </div>
     </InnerWrapper>

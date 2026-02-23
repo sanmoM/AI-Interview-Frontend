@@ -38,7 +38,6 @@ export default function VentureDetailPage() {
     };
     fetchVenture();
   }, []);
-  console.log(venture);
   return (
     <SecondaryWrapper loading={initialLoad}>
       {initialLoad ? (
