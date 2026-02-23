@@ -1,15 +1,12 @@
 "use client";
 
 import useAxios from "@/hooks/useAxios";
-import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Loader from "../../shared/loader";
 import Wrapper from "../../shared/wrapper/wrapper";
-import Button from "../../ui/buttons/button";
 import SectionHeading from "../../ui/headings/section-heading";
 import SubHeading from "../../ui/headings/sub-heading";
-import RadioInput from "../../ui/inputs/radio-input";
 import RoleCard from "./components/role-card";
 
 export default function JobApplication() {
@@ -70,16 +67,16 @@ export default function JobApplication() {
                   (flow) => parseInt(flow.role_id) === parseInt(role.id),
                 )?.id;
                 return (
-                  <Link
-                    href={
-                      flowId
-                        ? `/interview/${venture?.id}/${flowId}/${role?.id}`
-                        : "#"
-                    }
-                    className="block h-full"
-                  >
-                    <RoleCard item={role} />
-                  </Link>
+                  <RoleCard item={role} />
+                  // <Link
+                  //   href={
+                  //     flowId
+                  //       ? `/interview/${venture?.id}/${flowId}/${role?.id}`
+                  //       : "#"
+                  //   }
+                  //   className="block h-full"
+                  // >
+                  // </Link>
                 );
               })}
             </div>

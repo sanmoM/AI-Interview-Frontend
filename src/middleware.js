@@ -6,6 +6,7 @@ export function middleware(request) {
   const token = request.cookies.get("token")?.value;
   const { pathname } = request.nextUrl;
   if (
+    pathname === "/home" ||
     pathname === "/" ||
     pathname === "/explore" ||
     /^\/explore\/[^/]+$/.test(pathname) ||
