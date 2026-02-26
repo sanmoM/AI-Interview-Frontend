@@ -20,14 +20,14 @@ const adminNavItems = [
       <MdGridView className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
   },
-  {
-    id: "engine",
-    name: "Engine",
-    href: "/engine",
-    Icon: (
-      <PiGearFineLight className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
-    ),
-  },
+  // {
+  //   id: "engine",
+  //   name: "Engine",
+  //   href: "/engine",
+  //   Icon: (
+  //     <PiGearFineLight className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
+  //   ),
+  // },
   {
     id: "faqs",
     name: "FAQs",
@@ -36,14 +36,14 @@ const adminNavItems = [
       <TfiHelpAlt className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
   },
-  {
-    id: "jobs",
-    name: "Jobs",
-    href: "/jobs",
-    Icon: (
-      <GoBriefcase className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
-    ),
-  },
+  // {
+  //   id: "jobs",
+  //   name: "Jobs",
+  //   href: "/jobs",
+  //   Icon: (
+  //     <GoBriefcase className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
+  //   ),
+  // },
   {
     id: "calls",
     name: "Calls",

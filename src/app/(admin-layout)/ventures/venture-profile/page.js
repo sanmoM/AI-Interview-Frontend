@@ -94,18 +94,18 @@ export default function VentureDetailPage() {
           </div>
 
           {/* Content Grid */}
-          <div className="column-no-break-container">
+          <div className=" space-y-6">
             {/* Left Column (Branding & Tone) */}
             <BrandingCard />
             <Roles data={venture} fetchVenture={fetchVenture} />
             {/* <Flows data={venture} fetchVenture={fetchVenture} /> */}
             {/* <FAQs data={venture} fetchVenture={fetchVenture} /> */}
             {/* Right Column (FAQs, System Prompt, Knowledge) */}
-            <ToneCard />
-            <div className="flex flex-col gap-6">
+            {/* <ToneCard /> */}
+            {/* <div className="flex flex-col gap-6">
               <SystemPromptCard />
               <Knowledge />
-            </div>
+            </div> */}
           </div>
 
           {/* Floating Action Bar */}
