@@ -28,30 +28,22 @@ const adminNavItems = [
   //     <PiGearFineLight className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
   //   ),
   // },
-  {
-    id: "faqs",
-    name: "FAQs",
-    href: "/faqs",
-    Icon: (
-      <TfiHelpAlt className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
-    ),
-  },
   // {
-  //   id: "jobs",
-  //   name: "Jobs",
-  //   href: "/jobs",
+  //   id: "faqs",
+  //   name: "FAQs",
+  //   href: "/faqs",
   //   Icon: (
-  //     <GoBriefcase className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
+  //     <TfiHelpAlt className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
   //   ),
   // },
-  {
-    id: "calls",
-    name: "Calls",
-    href: "/calls",
-    Icon: (
-      <LuPhoneCall className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
-    ),
-  },
+  // {
+  //   id: "calls",
+  //   name: "Calls",
+  //   href: "/calls",
+  //   Icon: (
+  //     <LuPhoneCall className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
+  //   ),
+  // },
 ];
 
 const ventureNavItems = [
@@ -76,7 +68,6 @@ const ventureNavItems = [
 export default function AdminNavbar() {
   const [open, setOpen] = useState(false);
   const user = useSelector((state) => state.auth.user);
-  console.log();
   return (
     <div className="lg:h-full sticky top-0 z-[9999] lg:py-6 w-full lg:w-fit">
       <Header open={open} setOpen={setOpen}>
@@ -92,7 +83,8 @@ export default function AdminNavbar() {
         navItems={
           user?.type === "venture_admin" ? ventureNavItems : adminNavItems
         }
-        userType={user?.type}
+        // userType={user?.type}
+        user={user}
       />
     </div>
   );

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PiCaretUpDown } from "react-icons/pi";
 
-export default function AdminSidebar({ navItems, userType }) {
+export default function AdminSidebar({ navItems, user }) {
   const pathname = usePathname();
 
   return (
@@ -25,9 +25,6 @@ export default function AdminSidebar({ navItems, userType }) {
 
       {/* Navigation */}
       <nav className="flex-1">
-        <p className="text-xs 2xl:text-sm font-semibold text-gray-500 uppercase tracking-wide px-2 mb-8">
-          Workspace
-        </p>
 
         <div className="space-y-2">
           {navItems.map((item) => {
@@ -55,19 +52,16 @@ export default function AdminSidebar({ navItems, userType }) {
 
       {/* User section */}
       <button className="w-full flex items-center gap-3 rounded-lg transition-colors group">
-        <Avatar size="lg" className={"w-[25%] aspect-square h-auto"} />
+        <Avatar text={user?.type === "venture_admin" ? "VA" : "A"} />
         <div className="flex-1 text-left min-w-0">
           <p className="text-base 2xl:text-lg text-text-primary font-medium truncate">
-            Alex Rivera
+            {user?.name}
           </p>
-          <p className="text-xs 2xl:text-sm text-gray-500 truncate">
-            Partner • Global
-          </p>
-          <p className="text-xs 2xl:text-sm text-gray-400">Ventures</p>
+          <p className="text-xs 2xl:text-sm text-gray-400">{user?.type}</p>
         </div>
-        <PiCaretUpDown className="w-4 h-4 text-text-primary shrink-0 transition-opacity" />
+        {/* <PiCaretUpDown className="w-4 h-4 text-text-primary shrink-0 transition-opacity" /> */}
       </button>
-      <LogoutButton userType={userType} />
+      <LogoutButton userType={user?.type} />
     </aside>
   );
 }

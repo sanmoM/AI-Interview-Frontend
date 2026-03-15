@@ -74,7 +74,7 @@ export default function Searchbox({
         className={cn(
           "absolute top-1/2 -translate-y-1/2 text-gray-400",
           currentSize.icon,
-          iconClassName
+          iconClassName,
         )}
       />
 
@@ -86,7 +86,7 @@ export default function Searchbox({
         className={cn(
           "w-full rounded-full border border-secondary placeholder:font-medium placeholder:text-text-gray focus:outline-none",
           currentSize.input,
-          inputClassName
+          inputClassName,
         )}
       />
     </div>

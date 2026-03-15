@@ -32,16 +32,6 @@ export default function UserSidebar({ navItems }) {
           ))}
         </div>
       </div>
-      {/* <div className="flex flex-col items-center lg:gap-10 2xl:gap-12 mb-4">
-        <IoMdNotificationsOutline size={30} />
-        <Image
-          src={"/images/user-avatar.png"}
-          height={100}
-          width={100}
-          alt="user avatar"
-          className="w-12 h-12 rounded-full overflow-hidden"
-        />
-      </div> */}
     </div>
   );
 }
