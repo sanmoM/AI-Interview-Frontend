@@ -201,7 +201,7 @@ export default function CallsPage() {
                   {stat.value}
                 </span>
               </div>
-              <span
+              {/* <span
                 className={cn(
                   "text-sm font-medium whitespace-nowrap",
                   stat.isPositive
@@ -212,7 +212,7 @@ export default function CallsPage() {
                 )}
               >
                 {stat.change}
-              </span>
+              </span> */}
             </div>
           ))}
         </div>
@@ -288,7 +288,7 @@ export default function CallsPage() {
         </div>
 
         {/* Pagination */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mt-4 md:mt-6 px-2">
+        {/* <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mt-4 md:mt-6 px-2">
           <p className="text-gray-400 text-xs md:text-sm font-medium">
             Showing 1–{filterData?.length} of {calls.length} calls
           </p>
@@ -306,7 +306,7 @@ export default function CallsPage() {
             }
             containerClassName={"flex-0"}
           />
-        </div>
+        </div> */}
       </InnerWrapper>
 
       {/* Bottom Floating Bar */}
