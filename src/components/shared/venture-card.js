@@ -1,6 +1,8 @@
 import { cn } from "@/utils/cn";
 import Link from "next/link";
 import React from "react";
+import Button from "../ui/buttons/button";
+import { IoIosArrowForward } from "react-icons/io";
 
 export default function VentureCard({
   item,
@@ -53,13 +55,21 @@ export default function VentureCard({
             className="text-sm text-primary font-bold"
             href={brandingData?.websiteLink || "#"}
           >
-            View website
+            <Button className={"py-2! px-6 text-sm! gap-1"}>
+              <span>View website</span>
+              <IoIosArrowForward />
+            </Button>
           </Link>
           <Link
             className="text-sm text-primary font-bold"
             href={detailsLink || "#"}
           >
-            View Details
+            <Button
+              className={"py-2! bg-secondary text-primary px-6 text-sm! gap-1"}
+            >
+              <span>Visit Venture</span>
+              <IoIosArrowForward />
+            </Button>
           </Link>
         </div>
       )}
