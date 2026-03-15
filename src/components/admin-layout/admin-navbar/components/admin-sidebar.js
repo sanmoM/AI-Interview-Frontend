@@ -15,7 +15,7 @@ export default function AdminSidebar({ navItems, user }) {
         <div className="w-12 h-12 bg-primary rounded-full flex-shrink-0" />
         <div>
           <h2 className="text-lg 2xl:text-xl font-bold text-text-primary">
-            Admin Studio
+            {user?.type === "venture_admin" ? "Venture Studio" : "Admin Studio"}
           </h2>
           <p className="text-sm 2xl:text-[15px] font-medium text-gray-500">
             Profiles engine
