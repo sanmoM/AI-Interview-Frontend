@@ -56,7 +56,7 @@ export default function VentureCard({
             href={brandingData?.websiteLink || "#"}
           >
             <Button className={"py-2! px-6 text-sm! gap-1"}>
-              <span>View website</span>
+              <span>Visit website</span>
               <IoIosArrowForward />
             </Button>
           </Link>
