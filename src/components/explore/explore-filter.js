@@ -3,19 +3,18 @@ import { IoSearchOutline } from "react-icons/io5";
 import Searchbox from "../ui/inputs/searchbox";
 import SectionHeading from "../ui/headings/section-heading";
 
-export default function ExploreFilter() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeFilter, setActiveFilter] = useState("all-roles");
+export default function ExploreFilter({ searchQuery, setSearchQuery }) {
   return (
-    <div className="h-fit">
-      <SectionHeading className={"mb-4 md:mb-6 lg:mb-8"}>
-        Explore opportunities
-      </SectionHeading>
+    <div className="h-fit flex justify-between items-center mb-6 lg:mb-10">
+      <SectionHeading className={""}>Explore opportunities</SectionHeading>
 
+      <Searchbox
+        containerClassName={"flex-1 w-full md:max-w-xs"}
+        searchQuery={searchQuery}
+        setSearchQuery={(val) => setSearchQuery(val)}
+      />
       {/* Search Bar and Filters */}
-      <div className="mb-6 md:mb-8 flex flex-col md:flex-row items-center gap-4">
-        <Searchbox containerClassName={"flex-1 w-full md:w-auto"} />
-
+      {/* <div className="mb-6 md:mb-8 flex flex-col md:flex-row justify-end items-center gap-4">
         <div className="flex items-center w-full md:w-auto gap-4 px-2 lg:px-0 text-sm md:text-base xl:text-lg">
           <span className="text-text-gray font-medium">Show</span>
 
@@ -43,7 +42,7 @@ export default function ExploreFilter() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

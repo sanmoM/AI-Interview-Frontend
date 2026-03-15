@@ -115,7 +115,7 @@ export default function VenturesPage() {
                 key={venture.id}
                 item={venture}
                 className={"h-full"}
-                hasViewWebsiteBtn={false}
+                hasButton={false}
               />
             </Link>
           ))}

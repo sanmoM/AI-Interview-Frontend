@@ -84,8 +84,10 @@ const opportunities = [
 ];
 
 export default function Page() {
+  const [searchQuery, setSearchQuery] = useState("");
   const [ventures, setVentures] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [filteredVentures, setFilteredVentures] = useState([]);
   const axios = useAxios();
 
   useEffect(() => {
@@ -93,10 +95,21 @@ export default function Page() {
       setLoading(true);
       const res = await axios.get("/all-venture");
       setVentures(res?.data?.allVentures);
+      setFilteredVentures(res?.data?.allVentures);
       setLoading(false);
     };
     fetchVentures();
   }, []);
+
+  useEffect(() => {
+    if (!searchQuery) {
+      return setFilteredVentures(ventures);
+    }
+    const filteredVentures = ventures.filter((venture) => {
+      return venture.name.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+    setFilteredVentures(filteredVentures);
+  }, [searchQuery]);
 
   return (
     <Wrapper className="flex flex-col">
@@ -104,8 +117,11 @@ export default function Page() {
         <Loader />
       ) : (
         <>
-          <ExploreFilter />
-          <Jobs ventures={ventures} />
+          <ExploreFilter
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
+          <Jobs ventures={filteredVentures} />
           <Pagination />
         </>
       )}

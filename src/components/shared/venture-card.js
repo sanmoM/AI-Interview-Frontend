@@ -2,11 +2,7 @@ import { cn } from "@/utils/cn";
 import Link from "next/link";
 import React from "react";
 
-export default function VentureCard({
-  item,
-  className,
-  hasViewWebsiteBtn = true,
-}) {
+export default function VentureCard({ item, className, hasButton = true }) {
   const getStatusStyles = (status) => {
     switch (status) {
       case "active":
@@ -46,7 +42,7 @@ export default function VentureCard({
           {brandingData?.description}
         </p>
       </div>
-      {hasViewWebsiteBtn && (
+      {hasButton && (
         <div className="flex justify-center mt-3">
           <Link
             className="text-sm text-primary font-bold"
