@@ -65,7 +65,9 @@ export default function VentureCard({
             href={detailsLink || "#"}
           >
             <Button
-              className={"py-2! bg-secondary text-primary px-6 text-sm! gap-1"}
+              className={
+                "py-2! bg-secondary hover:bg-secondary hover:opacity-90 text-primary px-6 text-sm! gap-1"
+              }
             >
               <span>Visit Venture</span>
               <IoIosArrowForward />
