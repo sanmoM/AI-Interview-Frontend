@@ -2,7 +2,11 @@ import { cn } from "@/utils/cn";
 import Link from "next/link";
 import React from "react";
 
-export default function VentureCard({ item, className }) {
+export default function VentureCard({
+  item,
+  className,
+  hasViewWebsiteBtn = true,
+}) {
   const getStatusStyles = (status) => {
     switch (status) {
       case "active":
@@ -42,17 +46,16 @@ export default function VentureCard({ item, className }) {
           {brandingData?.description}
         </p>
       </div>
-      <div className="flex justify-center mt-3">
-        <p className="text-sm text-primary">
-          {/* <span className="font-bold">Phone:</span> {item?.phone_number} */}
-        </p>
-        <Link
-          className="text-sm text-primary font-bold"
-          href={brandingData?.websiteLink || "#"}
-        >
-          View website
-        </Link>
-      </div>
+      {hasViewWebsiteBtn && (
+        <div className="flex justify-center mt-3">
+          <Link
+            className="text-sm text-primary font-bold"
+            href={brandingData?.websiteLink || "#"}
+          >
+            View website
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

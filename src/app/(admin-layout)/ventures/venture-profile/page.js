@@ -43,25 +43,25 @@ export default function VentureDetailPage() {
         <>
           <div className="flex flex-1 flex-col 2xl:flex-row justify-between gap-6 mb-8">
             <div className="">
-              <p className="text-text-gray text-xs md:text-sm font-medium mb-3 flex items-center gap-1.5">
+              {/* <p className="text-text-gray text-xs md:text-sm font-medium mb-3 flex items-center gap-1.5">
                 <span className="text-text-gray">Venture profiles b7</span>
                 <span className="text-text-primary font-semibold">
                   {venture.name}
                 </span>
-              </p>
+              </p> */}
               <div className="flex flex-col md:flex-row items-start gap-5">
                 <div className="w-14 h-14 rounded-3xl bg-secondary flex items-center justify-center shrink-0 text-xl text-primary">
-                  AM
+                  {venture.name[0]}
                 </div>
                 <div>
                   <SectionHeading className="!mb-1 text-text-primary tracking-tight">
                     {venture.name}
                   </SectionHeading>
-                  <SubHeading className="max-w-2xl text-text-gray font-normal leading-relaxed">
+                  <SubHeading className="text-text-gray font-normal leading-relaxed">
                     {venture.branding.description}
                   </SubHeading>
 
-                  <div className="flex flex-wrap gap-2.5 mt-4">
+                  {/* <div className="flex flex-wrap gap-2.5 mt-4">
                     <Badge status="green" className={"text-[13px] px-3 py-0.5"}>
                       {venture.status}
                     </Badge>
@@ -74,12 +74,12 @@ export default function VentureDetailPage() {
                     <Badge status="gray" className={"text-[13px] px-3 py-0.5"}>
                       12 interviews
                     </Badge>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col justify-between items-end">
+            {/* <div className="flex flex-col justify-between items-end">
               <div className="flex flex-col md:flex-row gap-3 mt-2 self-start xl:self-start items-center w-full 2xl:w-auto">
                 <Searchbox
                   placeholder="Search within venture"
@@ -90,13 +90,13 @@ export default function VentureDetailPage() {
                   Live candidate link
                 </BorderButton>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Content Grid */}
           <div className=" space-y-6">
             {/* Left Column (Branding & Tone) */}
-            <BrandingCard />
+            {/* <BrandingCard /> */}
             <Roles data={venture} fetchVenture={fetchVenture} />
             {/* <Flows data={venture} fetchVenture={fetchVenture} /> */}
             {/* <FAQs data={venture} fetchVenture={fetchVenture} /> */}

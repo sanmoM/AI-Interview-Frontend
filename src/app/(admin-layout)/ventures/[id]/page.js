@@ -46,25 +46,25 @@ export default function VentureDetailPage() {
         <>
           <div className="flex flex-1 flex-col 2xl:flex-row justify-between gap-6 mb-8">
             <div className="">
-              <p className="text-text-gray text-xs md:text-sm font-medium mb-3 flex items-center gap-1.5">
+              {/* <p className="text-text-gray text-xs md:text-sm font-medium mb-3 flex items-center gap-1.5">
                 <span className="text-text-gray">Venture profiles b7</span>
                 <span className="text-text-primary font-semibold">
                   {venture.name}
                 </span>
-              </p>
+              </p> */}
               <div className="flex flex-col md:flex-row items-start gap-5">
                 <div className="w-14 h-14 rounded-3xl bg-secondary flex items-center justify-center shrink-0 text-xl text-primary">
-                  AM
+                  {venture.name[0]}
                 </div>
-                <div>
+                <div className="flex-1">
                   <SectionHeading className="!mb-1 text-text-primary tracking-tight">
                     {venture.name}
                   </SectionHeading>
-                  <SubHeading className="max-w-2xl text-text-gray font-normal leading-relaxed">
+                  <SubHeading className=" text-text-gray font-normal leading-relaxed">
                     {venture.branding.description}
                   </SubHeading>
 
-                  <div className="flex flex-wrap gap-2.5 mt-4">
+                  {/* <div className="flex flex-wrap gap-2.5 mt-4">
                     <Badge status="green" className={"text-[13px] px-3 py-0.5"}>
                       {venture.status}
                     </Badge>
@@ -77,12 +77,12 @@ export default function VentureDetailPage() {
                     <Badge status="gray" className={"text-[13px] px-3 py-0.5"}>
                       12 interviews
                     </Badge>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col justify-between items-end">
+            {/* <div className="flex flex-col justify-between items-end">
               <div className="flex flex-col md:flex-row gap-3 mt-2 self-start xl:self-start items-center w-full 2xl:w-auto">
                 <Searchbox
                   placeholder="Search within venture"
@@ -93,13 +93,13 @@ export default function VentureDetailPage() {
                   Live candidate link
                 </BorderButton>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Content Grid */}
           <div className=" gap-6 space-y-6">
             {/* Left Column (Branding & Tone) */}
-            <BrandingCard />
+            {/* <BrandingCard /> */}
             <AssignAdmin data={venture.venture_admin} />
             {/* <FAQs /> */}
 
@@ -112,7 +112,7 @@ export default function VentureDetailPage() {
           </div>
 
           {/* Floating Action Bar */}
-          <div className="flex flex-col gap-5 xl:gap-8 2xl:flex-row justify-between items-center mt-8">
+          {/* <div className="flex flex-col gap-5 xl:gap-8 2xl:flex-row justify-between items-center mt-8">
             <p className="text-gray-500 max-w-3xl font-medium flex flex-col md:flex-row md:items-center gap-2">
               <Badge className="text-[13px] py-1 w-fit mx-auto md:mx-0">
                 Config on venture
@@ -131,7 +131,7 @@ export default function VentureDetailPage() {
                 Save & open interview preview
               </Button>
             </div>
-          </div>
+          </div> */}
         </>
       )}
     </SecondaryWrapper>

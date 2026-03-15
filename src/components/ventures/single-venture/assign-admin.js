@@ -89,15 +89,15 @@ export default function AssignAdmin({ data }) {
           readOnly={data?.email ? true : false}
         />
         <TextInput
-          placeholder="Password"
-          label="Password"
+          placeholder={isAddMode ? "Password" : "New Password"}
+          label={isAddMode ? "Password" : "New Password"}
           required
           value={password}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
           size="sm"
         />
-        <SelectBox
+        {/* <SelectBox
           options={[
             {
               value: "venture_admin",
@@ -110,7 +110,7 @@ export default function AssignAdmin({ data }) {
           label={"Status"}
           required
           size="sm"
-        />
+        /> */}
         <Button
           onClick={isAddMode ? handleSubmit : handleUpdate}
           className={

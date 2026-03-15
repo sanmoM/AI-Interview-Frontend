@@ -22,8 +22,8 @@ export default function Avatar({ text = "A" }) {
     //     className
     //   )}
     // />
-    <div className="bg-secondary text-primary rounded-full shrink-0 aspect-square w-12 flex justify-center items-center text-2xl">
-      A
+    <div className="bg-secondary text-primary rounded-full shrink-0 aspect-square w-12 flex justify-center items-center">
+      {text}
     </div>
   );
 }
