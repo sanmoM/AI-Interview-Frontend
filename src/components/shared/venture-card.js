@@ -51,20 +51,24 @@ export default function VentureCard({
       </div>
       {hasButton && (
         <div className="flex justify-between items-center mt-3">
-          <Link
+          <a
             className="text-sm text-primary font-bold"
             href={brandingData?.websiteLink || "#"}
           >
-            <Button className={"py-2! px-6 text-sm! gap-1"}>
+            <Button
+              onClick={(e) => e.stopPropagation()}
+              className={"py-2! px-6 text-sm! gap-1"}
+            >
               <span>Visit website</span>
               <IoIosArrowForward />
             </Button>
-          </Link>
+          </a>
           <Link
             className="text-sm text-primary font-bold"
             href={detailsLink || "#"}
           >
             <Button
+              onClick={(e) => e.stopPropagation()}
               className={
                 "py-2! bg-secondary hover:bg-secondary hover:opacity-90 text-primary px-6 text-sm! gap-1"
               }

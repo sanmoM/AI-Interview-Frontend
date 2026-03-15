@@ -14,6 +14,15 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaStore } from "react-icons/fa";
 
+export function isValidUrl(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export default function VentureDetailPage() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("active");
@@ -30,6 +39,10 @@ export default function VentureDetailPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isValidUrl(websiteLink)) {
+      toast.error("Please enter a valid website link!");
+      return;
+    }
     setLoading(true);
 
     try {
