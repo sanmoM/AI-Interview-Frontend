@@ -114,9 +114,9 @@ export default function CallsPage() {
   // console.log(calls);
   return (
     <SecondaryWrapper>
-      <p className="text-text-gray text-xs md:text-sm font-medium mb-4">
+      {/* <p className="text-text-gray text-xs md:text-sm font-medium mb-4">
         Aurora Mobility Labs · <span className="text-text-primary">Calls</span>
-      </p>
+      </p> */}
       {/* Header */}
       <div className="flex flex-col 2xl:flex-row justify-between md:items-start mb-6 gap-4">
         <div>
@@ -127,9 +127,7 @@ export default function CallsPage() {
             <div>
               <SectionHeading className="!mb-0">Call timeline</SectionHeading>
               <SubHeading
-                className={
-                  "max-w-4xl text-gray-500 font-normal hidden lg:block"
-                }
+                className={"text-gray-500 font-normal hidden lg:block"}
               >
                 A focused, visual stream of every call for this venture. Scan
                 patterns at a glance and open individual records in one click.
@@ -142,16 +140,16 @@ export default function CallsPage() {
             A focused, visual stream of every call for this venture. Scan
             patterns at a glance and open individual records in one click.
           </SubHeading>
-          <div className="flex flex-wrap gap-2 mt-3">
+          {/* <div className="flex flex-wrap gap-2 mt-3">
             <span className="bg-[#D1FADF] text-[#027A48] text-xs font-bold px-3 py-1 rounded-full">
               Voice bot live
             </span>
             <span className="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded-full shadow-sm">
               {calls.length} calls
             </span>
-          </div>
+          </div> */}
         </div>
-        <div className="flex gap-2 items-center w-full 2xl:w-auto mt-2">
+        {/* <div className="flex gap-2 items-center w-full 2xl:w-auto mt-2">
           <Searchbox
             placeholder="Search calls by phone, tag, or note"
             containerClassName={"w-full 2xl:w-[320px]"}
@@ -160,7 +158,7 @@ export default function CallsPage() {
           <Button size="md" className="px-6 w-fit text-nowrap shadow-md">
             Export logs
           </Button>
-        </div>
+        </div> */}
       </div>
 
       {/* Main Content Card */}
@@ -183,9 +181,9 @@ export default function CallsPage() {
               </span>
             </div>
           </div>
-          <span className="hidden md:block bg-secondary text-primary text-[11px] font-bold px-3 py-1 rounded-full shadow-sm h-fit mt-2">
+          {/* <span className="hidden md:block bg-secondary text-primary text-[11px] font-bold px-3 py-1 rounded-full shadow-sm h-fit mt-2">
             Showing 1–{filterData?.length} of {calls.length} calls
-          </span>
+          </span> */}
         </div>
 
         {/* Stats Row */}
@@ -267,9 +265,9 @@ export default function CallsPage() {
                 setSearchQuery={(val) => changeFilter("search", val)}
               />
             </div>
-            <button className="flex items-center gap-2 rounded-full px-5 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-white transition-colors whitespace-nowrap">
+            {/* <button className="flex items-center gap-2 rounded-full px-5 py-2 text-xs lg:text-sm font-semibold text-gray-500 border border-secondary bg-white transition-colors whitespace-nowrap">
               <FiFilter className="w-5 h-5" /> Filter
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -312,7 +310,7 @@ export default function CallsPage() {
       </InnerWrapper>
 
       {/* Bottom Floating Bar */}
-      <div className="flex flex-col lg:flex-row justify-between items-center mt-6 lg:mt-12 gap-6 px-1">
+      {/* <div className="flex flex-col lg:flex-row justify-between items-center mt-6 lg:mt-12 gap-6 px-1">
         <div className="flex flex-col md:flex-row items-center gap-3">
           <span className="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
             Calls workspace
@@ -334,7 +332,7 @@ export default function CallsPage() {
             Save filters as default
           </Button>
         </div>
-      </div>
+      </div> */}
     </SecondaryWrapper>
   );
 }
