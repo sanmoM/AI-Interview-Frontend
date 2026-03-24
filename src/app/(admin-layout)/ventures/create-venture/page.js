@@ -100,38 +100,6 @@ export default function VentureDetailPage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          {/* <div className="grid lg:grid-cols-2 gap-4">
-            <TextInput
-              placeholder="Venue slug"
-              label="Venue slug"
-              required
-              value={slug}
-              onChange={(e) => setSlug(e.target.value)}
-            />
-            <TextInput
-              placeholder="Phone number"
-              label="Phone number"
-              required
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-          </div> */}
-          {/* <TextAreaInput
-            placeholder="First message"
-            label="First message"
-            required
-            value={firstMessage}
-            onChange={(e) => setFirstMessage(e.target.value)}
-            inputClassName={"h-40 resize-none"}
-          />
-          <TextAreaInput
-            placeholder="System prompt"
-            label="System prompt"
-            required
-            value={systemPrompt}
-            onChange={(e) => setSystemPrompt(e.target.value)}
-            inputClassName={"h-40 resize-none"}
-          /> */}
           <div className="grid lg:grid-cols-2 gap-4">
             <TextInput
               placeholder="Website link"

@@ -1,6 +1,85 @@
-import { cn } from "@/utils/cn";
-import Label from "../label";
+// import { cn } from "@/utils/cn";
+// import Label from "../label";
 
+// const sizeClasses = {
+//   xs: {
+//     inputClass: "text-[10px] placeholder:text-[10px]",
+//     labelClass: "text-[10px]",
+//   },
+//   sm: {
+//     inputClass: "text-xs md:text-sm 2xl:text-base",
+//     labelClass: "text-xs md:text-sm 2xl:text-base",
+//     descriptionClass: "text-[10px] md:text-xs 2xl:text-sm",
+//   },
+//   md: {
+//     inputClass: "text-sm md:text-base 2xl:text-lg",
+//     labelClass: "text-sm md:text-base 2xl:text-lg",
+//     descriptionClass: "text-[10px] md:text-xs 2xl:text-sm",
+//   },
+//   lg: {
+//     inputClass: "text-base",
+//     labelClass: "text-base",
+//   },
+//   xl: {
+//     inputClass: "text-xl",
+//     labelClass: "text-xl",
+//   },
+//   "2xl": {
+//     inputClass: "text-2xl",
+//     labelClass: "text-2xl",
+//   },
+// };
+
+// export default function TextInput({
+//   placeholder,
+//   label,
+//   type = "text",
+//   size = "md",
+//   error,
+//   containerClassName,
+//   description,
+//   ...props
+// }) {
+//   return (
+//     <div className={cn("flex flex-col gap-1", containerClassName)}>
+//       {label && (
+//         <Label className={sizeClasses[size]?.labelClass}>
+//           <span>{label}</span>
+//           {props.required && <span className="text-red-600">*</span>}
+//         </Label>
+//       )}
+//       {description && (
+//         <p
+//           className={cn(
+//             "text-text-primary 2xl:text-xl font-medium flex gap-1",
+//             sizeClasses[size]?.descriptionClass
+//           )}
+//         >
+//           {description}
+//         </p>
+//       )}
+//       <input
+//         type={type}
+//         placeholder={placeholder}
+//         className={cn(
+//           "py-2.5 px-4 2xl:px-5 bg-bg-gray rounded-full font-normal border border-secondary text-sm lg:text-base 2xl:text-lg placeholder:text-text-gray focus:outline-none focus:ring-0",
+//           sizeClasses[size]?.inputClass
+//         )}
+//         {...props}
+//       />
+//       {error && (
+//         <span className={cn("text-red-600", sizeClasses[size]?.inputClass)}>
+//           {error}
+//         </span>
+//       )}
+//     </div>
+//   );
+// }
+
+import { cn } from "@/utils/cn";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Label from "../label";
 const sizeClasses = {
   xs: {
     inputClass: "text-[10px] placeholder:text-[10px]",
@@ -16,20 +95,10 @@ const sizeClasses = {
     labelClass: "text-sm md:text-base 2xl:text-lg",
     descriptionClass: "text-[10px] md:text-xs 2xl:text-sm",
   },
-  lg: {
-    inputClass: "text-base",
-    labelClass: "text-base",
-  },
-  xl: {
-    inputClass: "text-xl",
-    labelClass: "text-xl",
-  },
-  "2xl": {
-    inputClass: "text-2xl",
-    labelClass: "text-2xl",
-  },
+  lg: { inputClass: "text-base", labelClass: "text-base" },
+  xl: { inputClass: "text-xl", labelClass: "text-xl" },
+  "2xl": { inputClass: "text-2xl", labelClass: "text-2xl" },
 };
-
 export default function TextInput({
   placeholder,
   label,
@@ -40,38 +109,61 @@ export default function TextInput({
   description,
   ...props
 }) {
+  const [showPassword, setShowPassword] = useState(false);
+  const isPassword = type === "password";
   return (
     <div className={cn("flex flex-col gap-1", containerClassName)}>
+      {" "}
       {label && (
         <Label className={sizeClasses[size]?.labelClass}>
-          <span>{label}</span>
-          {props.required && <span className="text-red-600">*</span>}
+          {" "}
+          <span>{label}</span>{" "}
+          {props.required && <span className="text-red-600">*</span>}{" "}
         </Label>
-      )}
+      )}{" "}
       {description && (
         <p
           className={cn(
-            "text-text-primary 2xl:text-xl font-medium flex gap-1",
-            sizeClasses[size]?.descriptionClass
+            "text-text-primary font-medium flex gap-1",
+            sizeClasses[size]?.descriptionClass,
           )}
         >
-          {description}
+          {" "}
+          {description}{" "}
         </p>
-      )}
-      <input
-        type={type}
-        placeholder={placeholder}
-        className={cn(
-          "py-2.5 px-4 2xl:px-5 bg-bg-gray rounded-full font-normal border border-secondary text-sm lg:text-base 2xl:text-lg placeholder:text-text-gray focus:outline-none focus:ring-0",
-          sizeClasses[size]?.inputClass
-        )}
-        {...props}
-      />
+      )}{" "}
+      <div className="relative">
+        {" "}
+        <input
+          type={isPassword ? (showPassword ? "text" : "password") : type}
+          placeholder={placeholder}
+          className={cn(
+            "py-2.5 px-4 pr-12 2xl:px-5 bg-bg-gray rounded-full font-normal border border-secondary text-sm lg:text-base 2xl:text-lg placeholder:text-text-gray focus:outline-none focus:ring-0 w-full",
+            sizeClasses[size]?.inputClass,
+          )}
+          {...props}
+        />{" "}
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-6 top-1/2 -translate-y-1/2 text-sm text-gray-500"
+          >
+            {" "}
+            {showPassword ? (
+              <FaEyeSlash className="text-xl" />
+            ) : (
+              <FaEye className="text-xl" />
+            )}
+          </button>
+        )}{" "}
+      </div>{" "}
       {error && (
         <span className={cn("text-red-600", sizeClasses[size]?.inputClass)}>
-          {error}
+          {" "}
+          {error}{" "}
         </span>
-      )}
+      )}{" "}
     </div>
   );
 }

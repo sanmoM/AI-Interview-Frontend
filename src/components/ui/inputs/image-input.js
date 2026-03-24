@@ -33,7 +33,7 @@ export default function ImageInput({
       htmlFor={inputId} // ✅ use unique ID here
       className={cn(
         "flex flex-col items-center justify-center w-full h-64 border-primary border border-dashed rounded-lg cursor-pointer bg-tertiary overflow-hidden",
-        containerClassName
+        containerClassName,
       )}
     >
       <div className="flex flex-col items-center justify-center">
@@ -42,7 +42,7 @@ export default function ImageInput({
             <svg
               className={cn(
                 "w-[20%] aspect-square text-gray-500",
-                iconClassName
+                iconClassName,
               )}
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
@@ -76,9 +76,7 @@ export default function ImageInput({
       />
 
       {imgSrc && (
-        <Image
-          width={800}
-          height={400}
+        <img
           src={imgSrc}
           alt="Selected"
           className="w-full h-full object-cover"

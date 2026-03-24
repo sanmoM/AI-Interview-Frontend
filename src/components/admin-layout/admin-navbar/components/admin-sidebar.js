@@ -2,6 +2,7 @@
 
 import Avatar from "@/components/ui/avatar";
 import LogoutButton from "@/components/ui/buttons/logout-button";
+import { IMAGE_BASE_URL } from "@/config";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PiCaretUpDown } from "react-icons/pi";
@@ -50,8 +51,14 @@ export default function AdminSidebar({ navItems, user }) {
       </nav>
       {console.log(user?.type === "venture_admin")}
       {/* User section */}
-      <button className="w-full flex items-center gap-3 rounded-lg transition-colors group">
-        <Avatar text={user?.type === "venture_admin" ? "VA" : "A"} />
+      <Link
+        href={"/user-profile"}
+        className="w-full flex items-center gap-3 rounded-lg transition-colors group"
+      >
+        <Avatar
+          src={IMAGE_BASE_URL + user?.image}
+          text={user?.type === "venture_admin" ? "VA" : "A"}
+        />
         <div className="flex-1 text-left min-w-0">
           <p className="text-base 2xl:text-lg text-text-primary font-medium truncate">
             {user?.name}
@@ -59,7 +66,7 @@ export default function AdminSidebar({ navItems, user }) {
           <p className="text-xs 2xl:text-sm text-gray-400">{user?.type}</p>
         </div>
         {/* <PiCaretUpDown className="w-4 h-4 text-text-primary shrink-0 transition-opacity" /> */}
-      </button>
+      </Link>
       <LogoutButton userType={user?.type} />
     </aside>
   );

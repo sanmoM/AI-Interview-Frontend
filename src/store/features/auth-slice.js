@@ -18,8 +18,11 @@ export const authSlice = createSlice({
       state.token = "";
       document.cookie = `token=; path=/; max-age=86400; SameSite=Lax`;
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, setUser } = authSlice.actions;
 export default authSlice.reducer;
