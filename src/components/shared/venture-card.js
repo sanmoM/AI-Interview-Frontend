@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import Button from "../ui/buttons/button";
 import { IoIosArrowForward } from "react-icons/io";
+import Avatar from "../ui/avatar";
+import { IMAGE_BASE_URL } from "@/config";
 
 export default function VentureCard({
   item,
@@ -19,6 +21,7 @@ export default function VentureCard({
     }
   };
   const brandingData = JSON.parse(item?.branding_json);
+  console.log(brandingData);
   return (
     <div
       className={cn(
@@ -28,9 +31,15 @@ export default function VentureCard({
     >
       <div className="flex-1">
         <div className="mb-2 xl:mb-4 flex items-start justify-between">
-          <h3 className="text-base md:text-xl xl:text-[22px] font-bold text-gray-900">
-            {item?.name}
-          </h3>
+          <div className="flex items-center gap-3">
+            <Avatar
+              text={item?.name.slice(0, 2)}
+              src={IMAGE_BASE_URL + brandingData?.logo}
+            />
+            <h3 className="text-base md:text-xl xl:text-[22px] font-bold text-gray-900">
+              {item?.name}
+            </h3>
+          </div>
           <span
             className={`ml-2 text-[10px] md:text-sm lg:text-xs xl:text-base whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
               item?.status,

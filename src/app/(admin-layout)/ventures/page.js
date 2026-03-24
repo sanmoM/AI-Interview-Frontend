@@ -63,7 +63,7 @@ export default function VenturesPage() {
         <div className="flex flex-col xl:flex-row justify-between gap-4 xl:gap-10">
           <div className="mb-3 max-w-5xl">
             <SectionHeading className={"mb-2 lg:mb-4"}>
-              Venture Profiles
+              All Venture Profiles
             </SectionHeading>
             <SubHeading className="2xl:text-lg">
               Curate, compare, and operationalize live venture pipelines in one
