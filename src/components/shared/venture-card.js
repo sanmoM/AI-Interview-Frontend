@@ -12,15 +12,10 @@ export default function VentureCard({
 }) {
   const getStatusStyles = (status) => {
     switch (status) {
-      case "active":
-        return "text-green-400";
-      case "client":
-      case "demo":
-        return "bg-secondary text-primary";
-      case "template":
-        return "text-text-gray";
-      default:
-        return "text-text-gray";
+      case 1:
+        return "text-green-700 bg-green-200";
+      case 0:
+        return "text-red-700 bg-red-200";
     }
   };
   const brandingData = JSON.parse(item?.branding_json);
@@ -41,7 +36,7 @@ export default function VentureCard({
               item?.status,
             )}`}
           >
-            {item?.status}
+            {item?.status === 1 ? "Active" : "Inactive"}
           </span>
         </div>
 

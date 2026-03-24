@@ -9,7 +9,7 @@ import { PiCaretUpDown } from "react-icons/pi";
 
 export default function AdminSidebar({ navItems, user }) {
   const pathname = usePathname();
-
+  console.log(user?.image);
   return (
     <aside className="hidden lg:flex w-64 2xl:w-72 bg-white border-r border-gray-200 flex-col h-full sticky top-0 px-6 py-6 2xl:py-8 rounded-4xl shadow-[0_4px_25px_0_rgba(23,26,31,0.25)]">
       <div className="flex items-center gap-3 mb-7">
@@ -56,7 +56,7 @@ export default function AdminSidebar({ navItems, user }) {
         className="w-full flex items-center gap-3 rounded-lg transition-colors group"
       >
         <Avatar
-          src={IMAGE_BASE_URL + user?.image}
+          src={user?.image ? IMAGE_BASE_URL + user?.image : null}
           text={user?.type === "venture_admin" ? "VA" : "A"}
         />
         <div className="flex-1 text-left min-w-0">

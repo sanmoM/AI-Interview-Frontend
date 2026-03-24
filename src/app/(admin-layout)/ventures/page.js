@@ -90,21 +90,10 @@ export default function VenturesPage() {
                 searchQuery={searchQuery}
                 setSearchQuery={(val) => setSearchQuery(val)}
               />
-              {/* <Avatar size="lg" className={""} /> */}
             </div>
           </div>
         </div>
       </StickyHeader>
-
-      {/* Filter tabs and sync info */}
-      {/* <div className=" bg-white mt-4 lg:mt-0 w-full overflow-hidden">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-4 w-full">
-          <FilterTabs filters={filters} />
-          <p className="text-sm md:text-[15px] text-text-gray self-end lg:self-auto text-nowrap">
-            Synced 12 min ago
-          </p>
-        </div>
-      </div> */}
 
       {/* Venture cards grid */}
       <div className="mt-4 md:mt-12">

@@ -9,23 +9,15 @@ import SelectBox from "@/components/ui/inputs/select-box";
 import TextAreaInput from "@/components/ui/inputs/text-area-input";
 import TextInput from "@/components/ui/inputs/text-input";
 import useAuthAxios from "@/hooks/useAuthAxios";
+import { isValidUrl } from "@/utils/url";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaStore } from "react-icons/fa";
 
-export function isValidUrl(url) {
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 export default function VentureDetailPage() {
   const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("active");
+  const [status, setStatus] = useState(1);
   const [name, setName] = useState("");
   // const [firstMessage, setFirstMessage] = useState("");
   // const [systemPrompt, setSystemPrompt] = useState("");
@@ -39,7 +31,7 @@ export default function VentureDetailPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isValidUrl(websiteLink)) {
+    if (!isValidUrl(websiteLink.trim())) {
       toast.error("Please enter a valid website link!");
       return;
     }
@@ -111,12 +103,13 @@ export default function VentureDetailPage() {
             <SelectBox
               options={[
                 {
-                  value: "active",
+                  value: 1,
                   label: "Active",
                 },
-                { value: "demo", label: "Demo" },
-                { value: "client", label: "Client" },
-                { value: "template", label: "Template" },
+                {
+                  value: 0,
+                  label: "Inactive",
+                },
               ]}
               value={status}
               onChange={(e) => setStatus(e.target.value)}
