@@ -30,7 +30,7 @@ export default function page() {
       dispatch(login(res?.data));
       document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
       toast.success("You have successfully signed in!");
-      router.push("/ventures/venture-profile");
+      router.replace("/ventures/venture-profile");
     } catch (error) {
       toast.error("Something went wrong!");
     }
@@ -44,34 +44,7 @@ export default function page() {
 
   return (
     <div className="rounded-2xl lg:rounded-3xl border border-secondary overflow-hidden max-w-[350px] md:max-w-[500px] lg:max-w-[600px] 2xl:max-w-[650px] w-full bg-white">
-      {/* Header */}
-      {/* <div className="text-center py-3 lg:py-4 bg-bg-gray">
-        <p className="text-text-gray text-[10px] md:text-xs lg:text-sm 2xl:text-base font-medium">
-          Sign up to continue to your interview workspace.
-        </p>
-      </div> */}
-
       <div className="py-3 lg:py-6 xl:py-7 px-4 md:px-6 lg:px-8 xl:px-10">
-        {/* Logo and Need Help */}
-        {/* <div className="flex items-center justify-between mb-5 lg:mb-8 2xl:mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 2xl:w-20 2xl:h-20 rounded-full bg-sky-200 flex items-center justify-center">
-              <span className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl text-white">
-                Ai
-              </span>
-            </div>
-            <div>
-              <h2 className="text-lg text-text-primary font-semibold">Ai</h2>
-              <p className="text-[10px] md:text-xs lg:text-sm text-text-gray font-medium">
-                AI-powered interviews
-              </p>
-            </div>
-          </div>
-          <button className="text-xs md:text-sm 2xl:text-base text-primary font-medium transition-colors">
-            Need help?
-          </button>
-        </div> */}
-
         {/* Welcome Section */}
         <div className="mb-5 lg:mb-8">
           <h1 className="text-xl lg:text-2xl 2xl:text-3xl text-text-primary font-medium mb-1 lg:mb-2">

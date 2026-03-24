@@ -21,7 +21,6 @@ export default function VentureCard({
     }
   };
   const brandingData = JSON.parse(item?.branding_json);
-  console.log(brandingData);
   return (
     <div
       className={cn(
@@ -41,11 +40,11 @@ export default function VentureCard({
             </h3>
           </div>
           <span
-            className={`ml-2 text-[10px] md:text-sm lg:text-xs xl:text-base whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
-              item?.status,
+            className={`ml-2 text-[10px] md:text-sm lg:text-xs whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
+              Number(item?.status),
             )}`}
           >
-            {item?.status === 1 ? "Active" : "Inactive"}
+            {Number(item?.status) === 1 ? "Active" : "Inactive"}
           </span>
         </div>
 

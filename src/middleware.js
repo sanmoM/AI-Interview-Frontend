@@ -7,6 +7,7 @@ export function middleware(request) {
   const { pathname } = request.nextUrl;
   if (
     pathname === "/home" ||
+    pathname === "/calls" ||
     pathname === "/" ||
     pathname === "/explore" ||
     /^\/explore\/[^/]+$/.test(pathname) ||

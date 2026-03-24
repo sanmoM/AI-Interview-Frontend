@@ -15,7 +15,7 @@ export default function page() {
     console.log("[v0] Email submitted:", email);
     document.cookie = "token=token; path=/; max-age=86400; SameSite=Lax";
     toast.success("You have successfully signed up!");
-    router.push("/explore");
+    router.replace("/explore");
     // Add your sign-up logic here
   };
 
