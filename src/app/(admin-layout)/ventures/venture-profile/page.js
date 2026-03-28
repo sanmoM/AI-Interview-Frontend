@@ -29,10 +29,10 @@ export default function VentureDetailPage() {
     delete venture.branding_json;
     setVenture(venture);
     setInitialLoad(false);
-    setName(venture.name);
-    setStatus(venture.status);
-    setDescription(venture.branding.description);
-    setWebsiteLink(venture.branding.websiteLink);
+    setName(venture?.name);
+    setStatus(venture?.status);
+    setDescription(venture?.branding?.description);
+    setWebsiteLink(venture?.branding?.websiteLink);
     if (venture?.branding?.logo) {
       setLogo(IMAGE_BASE_URL + venture?.branding?.logo);
     }
@@ -51,14 +51,14 @@ export default function VentureDetailPage() {
             <div className="">
               <div className="flex flex-col md:flex-row items-start gap-5">
                 <div className="w-14 h-14 rounded-3xl bg-secondary flex items-center justify-center shrink-0 text-xl text-primary">
-                  {venture.name[0]}
+                  {venture.name?.[0]}
                 </div>
                 <div>
                   <SectionHeading className="!mb-1 text-text-primary tracking-tight">
-                    {venture.name}
+                    {venture?.name}
                   </SectionHeading>
                   <SubHeading className="text-text-gray font-normal leading-relaxed">
-                    {venture.branding.description}
+                    {venture?.branding?.description}
                   </SubHeading>
                 </div>
               </div>

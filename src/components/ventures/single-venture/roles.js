@@ -126,45 +126,49 @@ export default function Roles({ data, fetchVenture }) {
         containerClassName={"mb-6 md:mb-0"}
       />
       {mode === "show" ? (
-        <div className="flex flex-col mt-6 space-y-3">
-          {data?.roles.map((role, index) =>
-            editId === role.id ? (
-              <div>
-                <RoleForm data={editData} setData={handleEditData} />
-                <div className="flex justify-end gap-4">
-                  <BorderButton
-                    className={
-                      "w-fit ml-auto px-5 lg:py-1.5 text-xs lg:text-xs xl:text-sm 2xl:text-base mt-2"
-                    }
-                    onClick={() => setEditId(null)}
-                  >
-                    Cancel
-                  </BorderButton>
-                  <Button
-                    loading={loading}
-                    className={
-                      "w-fit px-5 lg:py-1.5 text-xs lg:text-xs xl:text-sm 2xl:text-base mt-2"
-                    }
-                    onClick={handleEdit}
-                  >
-                    Update
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <ItemCard
-                data={{
-                  title: role.name,
-                  description: role.description,
-                  category: role.category,
-                  ...role,
-                }}
-                handleDelete={() => handleDelete(role.id)}
-                handleEdit={() => setEditId(role.id)}
-              />
-            ),
+        <>
+          {data?.roles.length > 0 && (
+            <div className="flex flex-col mt-6 space-y-3">
+              {data?.roles.map((role, index) =>
+                editId === role.id ? (
+                  <div>
+                    <RoleForm data={editData} setData={handleEditData} />
+                    <div className="flex justify-end gap-4">
+                      <BorderButton
+                        className={
+                          "w-fit ml-auto px-5 lg:py-1.5 text-xs lg:text-xs xl:text-sm 2xl:text-base mt-2"
+                        }
+                        onClick={() => setEditId(null)}
+                      >
+                        Cancel
+                      </BorderButton>
+                      <Button
+                        loading={loading}
+                        className={
+                          "w-fit px-5 lg:py-1.5 text-xs lg:text-xs xl:text-sm 2xl:text-base mt-2"
+                        }
+                        onClick={handleEdit}
+                      >
+                        Update
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <ItemCard
+                    data={{
+                      title: role.name,
+                      description: role.description,
+                      category: role.category,
+                      ...role,
+                    }}
+                    handleDelete={() => handleDelete(role.id)}
+                    handleEdit={() => setEditId(role.id)}
+                  />
+                ),
+              )}
+            </div>
           )}
-        </div>
+        </>
       ) : (
         <RoleForm data={createData} setData={handleCreateData} />
       )}

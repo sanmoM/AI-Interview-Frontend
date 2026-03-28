@@ -39,7 +39,7 @@ export default function VentureDetailPage() {
     const fetchVenture = async () => {
       const res = await axios.get(`/super/single-venture/${id}`);
       const venture = res?.data?.venture;
-      venture.branding = JSON.parse(venture.branding_json);
+      venture.branding = JSON.parse(venture?.branding_json);
       delete venture.branding_json;
       setVenture(venture);
       setName(venture?.name);
@@ -64,11 +64,11 @@ export default function VentureDetailPage() {
             <div className="">
               <div className="flex flex-col md:flex-row items-start gap-5">
                 <div className="w-14 h-14 rounded-3xl bg-secondary flex items-center justify-center shrink-0 text-xl text-primary">
-                  {venture.name[0]}
+                  {venture?.name?.[0]}
                 </div>
                 <div className="flex-1">
                   <SectionHeading className="!mb-1 text-text-primary tracking-tight">
-                    {venture.name}
+                    {venture?.name}
                   </SectionHeading>
                   <SubHeading className=" text-text-gray font-normal leading-relaxed">
                     {venture?.branding?.description}
