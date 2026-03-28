@@ -61,7 +61,11 @@ export default function AdminSidebar({ navItems, user }) {
         />
         <div className="flex-1 text-left min-w-0">
           <p className="text-base 2xl:text-lg text-text-primary font-medium truncate">
-            {user?.name}
+            {user?.name
+              ? user?.name
+              : user?.type === "venture_admin"
+                ? "Venture Admin"
+                : "Super Admin"}
           </p>
           <p className="text-xs 2xl:text-sm text-gray-400">{user?.type}</p>
         </div>

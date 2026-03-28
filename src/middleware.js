@@ -55,5 +55,7 @@ export function middleware(request) {
 // };
 
 export const config = {
-  matcher: ["/((?!signin|signup|admin-signin|_next|api|favicon.ico).*)"],
+  matcher: [
+    "/((?!signin|signup|admin-signin|_next|api|favicon.ico|images|.*\\.png$|.*\\.jpg$|.*\\.jpeg$|.*\\.svg$|.*\\.webp$).*)",
+  ],
 };

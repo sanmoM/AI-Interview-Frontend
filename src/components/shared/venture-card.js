@@ -33,7 +33,11 @@ export default function VentureCard({
           <div className="flex items-center gap-3">
             <Avatar
               text={item?.name.slice(0, 2)}
-              src={IMAGE_BASE_URL + brandingData?.logo}
+              src={
+                brandingData?.logo
+                  ? IMAGE_BASE_URL + brandingData?.logo
+                  : "/images/placeholder.jpg"
+              }
             />
             <h3 className="text-base md:text-xl xl:text-[22px] font-bold text-gray-900">
               {item?.name}

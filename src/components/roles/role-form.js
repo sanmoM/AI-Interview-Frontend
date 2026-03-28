@@ -4,7 +4,7 @@ import TextAreaInput from "../ui/inputs/text-area-input";
 
 export default function RoleForm({ data, setData }) {
   return (
-    <div className="space-y-4 h-full flex flex-col mt-6">
+    <div className="space-y-4 h-full flex flex-col">
       <TextInput
         placeholder="Name"
         label="Name"
