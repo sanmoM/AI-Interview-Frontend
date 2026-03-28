@@ -1,4 +1,7 @@
+import Button from "@/components/ui/buttons/button";
 import { cn } from "@/utils/cn";
+import Link from "next/link";
+import { IoIosArrowForward } from "react-icons/io";
 
 export default function RoleCard({ item, className }) {
   const getStatusStyles = (status) => {
@@ -37,16 +40,19 @@ export default function RoleCard({ item, className }) {
       <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg flex-1">
         {item?.description}
       </p>
-      <div className="flex justify-between mt-3">
+      <div className="flex justify-between items-center mt-3">
         <p className="text-sm text-primary">
           <span className="font-bold">Phone:</span> {item?.phone_number}
         </p>
-        {/* <Link
-          className="text-sm text-primary font-bold"
-          href={brandingData?.websiteLink || "#"}
-        >
-          View website
-        </Link> */}
+        <Link href={"/chat/" + item?.id}>
+          <Button
+            onClick={(e) => e.stopPropagation()}
+            className={"py-2! w-fit px-6 text-sm! gap-1"}
+          >
+            <span>Chat</span>
+            <IoIosArrowForward />
+          </Button>
+        </Link>
       </div>
     </div>
   );

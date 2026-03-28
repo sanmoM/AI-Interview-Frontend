@@ -12,6 +12,7 @@ export function middleware(request) {
     pathname === "/" ||
     pathname === "/explore" ||
     /^\/explore\/[^/]+$/.test(pathname) ||
+    /^\/chat\/[^/]+$/.test(pathname) ||
     /^\/interview\/.+$/.test(pathname) ||
     pathname === "/white-label-signup"
   )
