@@ -5,13 +5,15 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
   const token = request.cookies.get("token")?.value;
   const { pathname } = request.nextUrl;
+  console.log(pathname, "pathName");
   if (
     pathname === "/home" ||
     pathname === "/calls" ||
     pathname === "/" ||
     pathname === "/explore" ||
     /^\/explore\/[^/]+$/.test(pathname) ||
-    /^\/interview\/.+$/.test(pathname)
+    /^\/interview\/.+$/.test(pathname) ||
+    pathname === "/white-label-signup"
   )
     return NextResponse.next();
   //   console.log(pathname);

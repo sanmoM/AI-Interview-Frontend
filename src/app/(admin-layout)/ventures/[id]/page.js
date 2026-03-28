@@ -42,10 +42,10 @@ export default function VentureDetailPage() {
       venture.branding = JSON.parse(venture.branding_json);
       delete venture.branding_json;
       setVenture(venture);
-      setName(venture.name);
-      setStatus(venture.status);
-      setDescription(venture.branding.description);
-      setWebsiteLink(venture.branding.websiteLink);
+      setName(venture?.name);
+      setStatus(venture?.status);
+      setDescription(venture?.branding?.description);
+      setWebsiteLink(venture?.branding?.websiteLink);
       if (venture?.branding?.logo) {
         setLogo(IMAGE_BASE_URL + venture?.branding?.logo);
       }
@@ -71,7 +71,7 @@ export default function VentureDetailPage() {
                     {venture.name}
                   </SectionHeading>
                   <SubHeading className=" text-text-gray font-normal leading-relaxed">
-                    {venture.branding.description}
+                    {venture?.branding?.description}
                   </SubHeading>
                 </div>
               </div>
@@ -79,7 +79,7 @@ export default function VentureDetailPage() {
           </div>
 
           {/* Content Grid */}
-          <div className=" gap-6 grid lg:grid-cols-[60%_40%] items-start">
+          <div className="items-start">
             <UpdateVenture
               name={name}
               status={status}
@@ -95,8 +95,12 @@ export default function VentureDetailPage() {
               setLogo={setLogo}
               hasStatus={true}
               id={id}
+              nameReadOnly={true}
+              descriptionReadOnly={true}
+              websiteLinkReadOnly={true}
+              logoReadOnly={true}
             />
-            <AssignAdmin data={venture.venture_admin} />
+            {/* <AssignAdmin data={venture.venture_admin} /> */}
           </div>
         </>
       )}

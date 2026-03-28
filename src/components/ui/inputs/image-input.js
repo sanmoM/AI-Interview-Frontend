@@ -10,6 +10,7 @@ export default function ImageInput({
   containerClassName,
   placeholder = "Upload an image",
   iconClassName,
+  readOnly,
 }) {
   const inputId = useId(); // ✅ unique ID per component instance
 
@@ -28,6 +29,18 @@ export default function ImageInput({
 
   const imgSrc = getImageSrc();
 
+  if (readOnly) {
+    return (
+      <img
+        src={imgSrc || "/images/placeholder.jpg"}
+        alt="Selected"
+        className={cn(
+          " w-full h-64 border-primary border border-dashed rounded-lg",
+          containerClassName,
+        )}
+      />
+    );
+  }
   return (
     <label
       htmlFor={inputId} // ✅ use unique ID here

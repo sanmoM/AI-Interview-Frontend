@@ -27,6 +27,11 @@ export default function UpdateVenture({
   hasStatus,
   id,
   redirectUrl,
+  nameReadOnly,
+  statusReadOnly,
+  descriptionReadOnly,
+  websiteLinkReadOnly,
+  logoReadOnly,
 }) {
   const axios = useAuthAxios();
   const handleSubmit = async (e) => {
@@ -84,6 +89,7 @@ export default function UpdateVenture({
           image={logo}
           setImage={setLogo}
           containerClassName={" w-40 h-40 ml-0 mt-6"}
+          readOnly={logoReadOnly}
         />
         <TextInput
           placeholder="Venue name"
@@ -91,6 +97,7 @@ export default function UpdateVenture({
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
+          readOnly={nameReadOnly}
         />
         <div
           className={cn(
@@ -104,6 +111,7 @@ export default function UpdateVenture({
             required
             value={websiteLink}
             onChange={(e) => setWebsiteLink(e.target.value)}
+            readOnly={websiteLinkReadOnly}
           />
           {hasStatus && (
             <SelectBox
@@ -122,6 +130,7 @@ export default function UpdateVenture({
               placeholder="Select tone preset"
               label={"Status"}
               required
+              readOnly={statusReadOnly}
             />
           )}
         </div>
@@ -132,6 +141,7 @@ export default function UpdateVenture({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           inputClassName={"h-40 resize-none"}
+          readOnly={descriptionReadOnly}
         />
         <Button
           className={"w-fit ml-auto px-6"}
