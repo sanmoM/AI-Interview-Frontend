@@ -11,7 +11,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 
-export default function page() {
+export default function Page() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,18 +61,7 @@ export default function page() {
           className="space-y-3 lg:space-y-4 2xl:space-y-6"
         >
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <label
-                htmlFor="email"
-                className="text-sm md:text-base 2xl:text-lg text-text-primary font-medium flex gap-1"
-              >
-                <span>Email address</span>
-                <span className="text-red-600">*</span>
-              </label>
-              <span className="text-[10px] md:text-xs 2xl:text-sm font-medium text-text-gray">
-                Work email preferred
-              </span>
-            </div>
+
             <TextInput
               id="email"
               type="email"

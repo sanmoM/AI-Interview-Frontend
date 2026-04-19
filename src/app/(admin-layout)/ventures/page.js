@@ -4,12 +4,10 @@ import Pagination from "@/components/shared/pagination";
 import StickyHeader from "@/components/shared/sticky-header";
 import VentureCard from "@/components/shared/venture-card";
 import SecondaryWrapper from "@/components/shared/wrapper/secondary-wrapper";
-import Avatar from "@/components/ui/avatar";
 import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
-import FilterTabs from "@/components/ventures/single-venture/filter";
 import useAuthAxios from "@/hooks/useAuthAxios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -54,7 +52,7 @@ export default function VenturesPage() {
       return venture.name.toLowerCase().includes(searchQuery.toLowerCase());
     });
     setFilteredVentures(filteredVentures);
-  }, [searchQuery]);
+  }, [searchQuery, ventures]);
 
   return (
     <SecondaryWrapper className="grow min-w-0 !pt-0">

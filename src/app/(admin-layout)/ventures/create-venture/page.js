@@ -19,9 +19,6 @@ export default function VentureDetailPage() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(1);
   const [name, setName] = useState("");
-  // const [firstMessage, setFirstMessage] = useState("");
-  // const [systemPrompt, setSystemPrompt] = useState("");
-  // const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");
   const [phone, setPhone] = useState("");
   const [websiteLink, setWebsiteLink] = useState("");
