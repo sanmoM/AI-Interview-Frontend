@@ -39,7 +39,7 @@ export default function Page() {
       await axios.post("/auth/white-label-signup", formData);
 
       toast.success("Venture created successfully!");
-      router.push("/ventures");
+      router.push("/ventures/venture-profile");
     } catch (error) {
       toast.error("Something went wrong!");
     } finally {

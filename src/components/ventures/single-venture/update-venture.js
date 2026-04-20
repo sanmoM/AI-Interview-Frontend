@@ -8,6 +8,7 @@ import TextInput from "@/components/ui/inputs/text-input";
 import useAuthAxios from "@/hooks/useAuthAxios";
 import { cn } from "@/utils/cn";
 import { isValidUrl } from "@/utils/url";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaStore } from "react-icons/fa";
 
@@ -17,8 +18,6 @@ export default function UpdateVenture({
   description,
   websiteLink,
   logo,
-  loading,
-  setLoading,
   setName,
   setStatus,
   setDescription,
@@ -33,6 +32,7 @@ export default function UpdateVenture({
   websiteLinkReadOnly,
   logoReadOnly,
 }) {
+  const [loading, setLoading] = useState(false);
   const axios = useAuthAxios();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,7 +68,6 @@ export default function UpdateVenture({
         router.push(redirectUrl);
       }
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     }
     setLoading(false);

@@ -39,7 +39,6 @@ export default function page() {
       }
 
       const res = await axios.post("/profile", formData);
-      console.log(res);
       dispatch(setUser(res?.data?.user));
       toast.success("Venture created successfully!");
       // router.back();
@@ -54,7 +53,6 @@ export default function page() {
       setName(user.name);
       if (user.image) {
         setProfilePicture(IMAGE_BASE_URL + user.image);
-        console.log(IMAGE_BASE_URL + user.image);
       }
     }
   }, [user]);

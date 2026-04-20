@@ -12,7 +12,6 @@ const sizeClasses = {
 };
 
 export default function Avatar({ text = "A", src }) {
-  console.log(src);
   return (
     <>
       {src ? (

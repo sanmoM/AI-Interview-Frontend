@@ -3,7 +3,6 @@ import TextInput from "../ui/inputs/text-input";
 import SelectBox from "../ui/inputs/select-box";
 
 export default function FaqForm({ data, setData, flows }) {
-    console.log(flows, "flows")
   return (
     <div className="space-y-4 h-full flex flex-col mt-6">
       <TextInput

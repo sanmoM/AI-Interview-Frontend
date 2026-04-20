@@ -38,7 +38,6 @@ export default function Page() {
   };
 
   const handleGoogleSignIn = () => {
-    console.log("[v0] Google sign-in clicked");
     // Add your Google OAuth logic here
   };
 

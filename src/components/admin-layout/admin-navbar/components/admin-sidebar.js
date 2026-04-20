@@ -5,11 +5,9 @@ import LogoutButton from "@/components/ui/buttons/logout-button";
 import { IMAGE_BASE_URL } from "@/config";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PiCaretUpDown } from "react-icons/pi";
 
 export default function AdminSidebar({ navItems, user }) {
   const pathname = usePathname();
-  console.log(user?.image);
   return (
     <aside className="hidden lg:flex w-64 2xl:w-72 bg-white border-r border-gray-200 flex-col h-full sticky top-0 px-6 py-6 2xl:py-8 rounded-4xl shadow-[0_4px_25px_0_rgba(23,26,31,0.25)]">
       <div className="flex items-center gap-3 mb-7">
@@ -39,7 +37,7 @@ export default function AdminSidebar({ navItems, user }) {
                 className={`w-full flex cursor-pointer items-center gap-3 px-4 py-2.5 rounded-full  transition-all 2xl:text-lg ${
                   isActive
                     ? "bg-primary text-white font-medium"
-                    : "text-text-gray"
+                    : "text-text-gray hover:bg-primary/10"
                 }`}
               >
                 {Icon}
@@ -49,7 +47,6 @@ export default function AdminSidebar({ navItems, user }) {
           })}
         </div>
       </nav>
-      {console.log(user?.type === "venture_admin")}
       {/* User section */}
       <Link
         href={"/user-profile"}

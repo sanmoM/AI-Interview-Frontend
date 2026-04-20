@@ -3,13 +3,11 @@
 import NavLink from "@/components/shared/layout/header/components/nav-link";
 import Header from "@/components/shared/layout/header/header";
 import { useState } from "react";
-import { GoBriefcase } from "react-icons/go";
+import { AiOutlineGlobal } from "react-icons/ai";
 import { LuPhoneCall } from "react-icons/lu";
 import { MdGridView } from "react-icons/md";
-import { PiGearFineLight } from "react-icons/pi";
-import { TfiHelpAlt } from "react-icons/tfi";
-import AdminSidebar from "./components/admin-sidebar";
 import { useSelector } from "react-redux";
+import AdminSidebar from "./components/admin-sidebar";
 
 const adminNavItems = [
   {
@@ -63,6 +61,14 @@ const ventureNavItems = [
       <LuPhoneCall className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
   },
+  // {
+  //   id: "domain",
+  //   name: "Domain Settings",
+  //   href: "/domain-settings",
+  //   Icon: (
+  //     <AiOutlineGlobal className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
+  //   ),
+  // },
 ];
 
 export default function AdminNavbar() {

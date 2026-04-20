@@ -15,7 +15,6 @@ export default function CallHistory() {
     });
   }, []);
 
-  console.log(messages);
   return (
     <InnerWrapper className={"mt-4 lg:mt-6"}>
       <InnerDivHeader

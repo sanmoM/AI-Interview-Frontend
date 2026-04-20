@@ -40,7 +40,6 @@ export default function page() {
     });
 
     const chat = res?.data?.message;
-    console.log(chat.output[0].content);
 
     // Simulate a delayed bot response
     const botMessage = {

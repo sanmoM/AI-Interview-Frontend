@@ -1,22 +1,17 @@
 "use client";
 
 import CallCard from "@/components/call/call-card";
-import Pagination from "@/components/shared/pagination";
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
 import SecondaryWrapper from "@/components/shared/wrapper/secondary-wrapper";
-import BorderButton from "@/components/ui/buttons/border-button";
-import Button from "@/components/ui/buttons/button";
 import SectionHeading from "@/components/ui/headings/section-heading";
 import SubHeading from "@/components/ui/headings/sub-heading";
 import Searchbox from "@/components/ui/inputs/searchbox";
 import SelectBox from "@/components/ui/inputs/select-box";
 import useAuthAxios from "@/hooks/useAuthAxios";
 import { getDuration } from "@/utils/call";
-import { cn } from "@/utils/cn";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BsTelephone } from "react-icons/bs";
-import { FiFilter } from "react-icons/fi";
 import { IoSearchOutline } from "react-icons/io5";
 
 const getFilteredCalls = (calls, filter) => {

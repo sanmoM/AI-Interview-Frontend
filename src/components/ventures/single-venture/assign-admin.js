@@ -51,7 +51,6 @@ export default function AssignAdmin({ data }) {
         password,
         type,
       });
-      console.log(res.data);
       toast.success("Admin updated successfully!");
     } catch (error) {
       toast.error("Something went wrong!");

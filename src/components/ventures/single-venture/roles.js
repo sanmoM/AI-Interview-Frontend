@@ -63,7 +63,6 @@ export default function Roles({ data, fetchVenture }) {
       });
       setMode("show");
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     }
     setLoading(false);
@@ -87,7 +86,6 @@ export default function Roles({ data, fetchVenture }) {
       });
       setEditId(null);
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     }
     setLoading(false);
@@ -100,7 +98,6 @@ export default function Roles({ data, fetchVenture }) {
       toast.success("Role deleted successfully!");
       fetchVenture();
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     }
     setLoading(false);

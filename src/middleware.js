@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
   const token = request.cookies.get("token")?.value;
   const { pathname } = request.nextUrl;
-  console.log(pathname, "pathName");
   if (
     pathname === "/home" ||
     pathname === "/calls" ||
@@ -36,19 +35,15 @@ export function middleware(request) {
     "/ventures",
   ];
 
+  const adminRegex = new RegExp(`^(${adminProtectedRoutes.join("|")})$`);
+
   if (!token) {
-    if (adminProtectedRoutes.some((route) => pathname.startsWith(route))) {
+    if (adminRegex.test(pathname)) {
       return NextResponse.redirect(new URL("/admin-signin", request.url));
     } else {
       return NextResponse.redirect(new URL("/signin", request.url));
     }
   }
-
-  // if (pathname.startsWith("/login") && token) {
-  //   return NextResponse.redirect(new URL("/dashboard", request.url));
-  // }
-
-  return NextResponse.next();
 }
 
 // export const config = {
