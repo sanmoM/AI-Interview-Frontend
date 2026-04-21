@@ -1,7 +1,9 @@
 import Button from "@/components/ui/buttons/button";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { IoIosArrowForward } from "react-icons/io";
+import { MdOutlinePhone } from "react-icons/md";
 
 export default function RoleCard({ item, className }) {
   const getStatusStyles = (status) => {
@@ -17,6 +19,19 @@ export default function RoleCard({ item, className }) {
         return "text-text-gray";
     }
   };
+
+  function handleCall() {
+    console.log("first");
+    const number = "+8801234567890";
+
+    const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+    console.log(isMobile, "isMobile");
+    if (isMobile) {
+      window.location.href = "tel:" + number;
+    } else {
+      toast.success("Number copied to clipboard");
+    }
+  }
   return (
     <div
       className={cn(
@@ -24,26 +39,36 @@ export default function RoleCard({ item, className }) {
         className,
       )}
     >
-      <div className="mb-2 xl:mb-4 flex items-start justify-between">
-        <h3 className="text-base md:text-xl xl:text-[22px] font-bold text-gray-900">
-          {item?.name}
-        </h3>
-        <span
-          className={`ml-2 text-[10px] md:text-sm lg:text-xs xl:text-base whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
-            item?.status,
-          )}`}
-        >
-          {item?.status}
-        </span>
+      <div className="flex justify-between">
+        <div className="mb-2 xl:mb-4 flex items-start justify-between">
+          <h3 className="text-base md:text-xl xl:text-[22px] font-bold text-gray-900">
+            {item?.name}
+          </h3>
+          <span
+            className={`ml-2 text-[10px] md:text-sm lg:text-xs xl:text-base whitespace-nowrap rounded-full px-3 py-1 font-medium ${getStatusStyles(
+              item?.status,
+            )}`}
+          >
+            {item?.status}
+          </span>
+        </div>
+        <p className="text-sm text-primary">
+          {/* <span className="font-bold">Phone:</span>  */}
+          {item?.phone_number}
+        </p>
       </div>
 
       <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg flex-1">
         {item?.description}
       </p>
       <div className="flex justify-between items-center mt-3">
-        <p className="text-sm text-primary">
-          <span className="font-bold">Phone:</span> {item?.phone_number}
-        </p>
+        <Button
+          onClick={handleCall}
+          className={"py-2! w-fit px-6 text-sm! gap-1"}
+        >
+          <MdOutlinePhone />
+          <span>Call</span>
+        </Button>
         <Link href={"/chat/" + item?.id}>
           <Button
             onClick={(e) => e.stopPropagation()}

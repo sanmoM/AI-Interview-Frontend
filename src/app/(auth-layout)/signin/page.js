@@ -60,7 +60,6 @@ export default function Page() {
           className="space-y-3 lg:space-y-4 2xl:space-y-6"
         >
           <div>
-
             <TextInput
               id="email"
               type="email"
@@ -69,6 +68,7 @@ export default function Page() {
               onChange={(e) => setEmail(e.target.value)}
               required
               containerClassName="mb-4"
+              label={"Email"}
             />
             <TextInput
               id="password"

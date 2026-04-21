@@ -1,7 +1,6 @@
 "use client";
 
 import useAxios from "@/hooks/useAxios";
-import { useParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import Loader from "../../shared/loader";
 import Wrapper from "../../shared/wrapper/wrapper";
@@ -14,15 +13,7 @@ export default function JobApplication() {
   const [venture, setVenture] = useState({});
   const [flows, setFlows] = useState([]);
   const [roles, setRoles] = useState([]);
-  const [activeFilter, setActiveFilter] = useState("Best match");
-  const [selected, setSelected] = useState("resume");
-  const [expandedFaq, setExpandedFaq] = useState(null);
-  const { id } = useParams();
   const axios = useAxios();
-
-  const toggleFaq = (index) => {
-    setExpandedFaq(expandedFaq === index ? null : index);
-  };
 
   const fetchSingleVenture = useMemo(() => {
     return async () => {
@@ -58,21 +49,7 @@ export default function JobApplication() {
 
             <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2 2xl:grid-cols-3">
               {roles?.map((role) => {
-                const flowId = flows?.find(
-                  (flow) => parseInt(flow.role_id) === parseInt(role.id),
-                )?.id;
-                return (
-                  <RoleCard item={role} />
-                  // <Link
-                  //   href={
-                  //     flowId
-                  //       ? `/interview/${venture?.id}/${flowId}/${role?.id}`
-                  //       : "#"
-                  //   }
-                  //   className="block h-full"
-                  // >
-                  // </Link>
-                );
+                return <RoleCard item={role} key={role.id} />;
               })}
             </div>
           </div>
