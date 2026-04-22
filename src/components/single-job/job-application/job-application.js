@@ -36,7 +36,7 @@ export default function JobApplication() {
   }, [fetchSingleVenture]);
   console.log(venture);
   return (
-    <div className={"lg:flex-1 flex flex-col gap-4"}>
+    <div className={"lg:flex-1 flex flex-col gap-4 h-full"}>
       <Wrapper>
         {initialLoad ? (
           <Loader />
@@ -54,11 +54,19 @@ export default function JobApplication() {
                   </SubHeading>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2 2xl:grid-cols-3">
-                  {roles?.map((role) => {
-                    return <RoleCard item={role} key={role.id} />;
-                  })}
-                </div>
+                {roles?.length > 0 ? (
+                  <>
+                    <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2 2xl:grid-cols-3">
+                      {roles?.map((role) => {
+                        return <RoleCard item={role} key={role.id} />;
+                      })}
+                    </div>
+                  </>
+                ) : (
+                  <div className="h-full flex justify-center items-center lg:mt-36">
+                    <NoData />
+                  </div>
+                )}
               </div>
             ) : (
               <div className="h-full flex justify-center items-center">
