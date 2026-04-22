@@ -9,9 +9,10 @@ import toast from "react-hot-toast";
 import { AiOutlineGlobal } from "react-icons/ai";
 import { MdOutlineContentCopy } from "react-icons/md";
 
-export default function Domain({ ventureId, domain: domainFromProps, ip }) {
+export default function Domain({ ventureId, domain: domainFromProps }) {
   const [domain, setDomain] = useState(domainFromProps);
   const [loading, setLoading] = useState(false);
+  const ip = SERVER_IP || "";
 
   const axios = useAuthAxios();
 

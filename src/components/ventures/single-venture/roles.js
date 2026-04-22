@@ -124,11 +124,11 @@ export default function Roles({ data, fetchVenture }) {
       />
       {mode === "show" ? (
         <>
-          {data?.roles.length > 0 && (
+          {data?.roles?.length > 0 && (
             <div className="flex flex-col mt-6 space-y-3">
-              {data?.roles.map((role, index) =>
+              {data?.roles?.map((role, index) =>
                 editId === role.id ? (
-                  <div>
+                  <div key={index}>
                     <RoleForm data={editData} setData={handleEditData} />
                     <div className="flex justify-end gap-4">
                       <BorderButton
@@ -152,6 +152,7 @@ export default function Roles({ data, fetchVenture }) {
                   </div>
                 ) : (
                   <ItemCard
+                    key={index}
                     data={{
                       title: role.name,
                       description: role.description,

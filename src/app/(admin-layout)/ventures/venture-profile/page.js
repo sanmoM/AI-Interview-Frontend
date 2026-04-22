@@ -107,7 +107,6 @@ import { useEffect, useMemo, useState } from "react";
 export default function VentureDetailPage() {
   const [initialLoad, setInitialLoad] = useState(true);
   const [venture, setVenture] = useState({});
-  const [ip, setIp] = useState("");
 
   const axios = useAuthAxios();
 
@@ -122,7 +121,6 @@ export default function VentureDetailPage() {
         delete ventureData.branding_json;
 
         setVenture(ventureData);
-        setIp(ip);
       } catch (err) {
         console.error("Failed to fetch venture:", err);
       } finally {
@@ -134,8 +132,6 @@ export default function VentureDetailPage() {
   useEffect(() => {
     fetchVenture();
   }, [axios, fetchVenture]);
-
-  console.log(ip);
 
   // ✅ Derived values (no extra state)
   const name = venture?.name || "";
@@ -185,7 +181,7 @@ export default function VentureDetailPage() {
             <div className="hidden lg:block">
               <Roles data={venture} fetchVenture={fetchVenture} />
             </div>
-            <Domain ventureId={venture.id} domain={domain} ip={ip} />
+            <Domain ventureId={venture.id} domain={domain}/>
             <div className="lg:hidden">
               <Roles data={venture} fetchVenture={fetchVenture} />
             </div>
