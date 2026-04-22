@@ -140,7 +140,8 @@ export default function VentureDetailPage() {
   const logo = venture?.branding?.logo
     ? IMAGE_BASE_URL + venture.branding.logo
     : null;
-
+  const domain = venture?.domain || "";
+console.log(venture)
   return (
     <SecondaryWrapper loading={initialLoad}>
       {initialLoad ? (
@@ -179,7 +180,7 @@ export default function VentureDetailPage() {
             <div className="hidden lg:block">
               <Roles data={venture} fetchVenture={fetchVenture} />
             </div>
-            <Domain ventureId={venture.id} />
+            <Domain ventureId={venture.id} domain={domain} />
             <div className="lg:hidden">
               <Roles data={venture} fetchVenture={fetchVenture} />
             </div>

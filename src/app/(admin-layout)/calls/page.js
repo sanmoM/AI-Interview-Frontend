@@ -1,6 +1,7 @@
 "use client";
 
 import CallCard from "@/components/call/call-card";
+import NoData from "@/components/shared/no-data";
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
 import SecondaryWrapper from "@/components/shared/wrapper/secondary-wrapper";
 import SectionHeading from "@/components/ui/headings/section-heading";
@@ -275,10 +276,11 @@ export default function CallsPage() {
               </Link>
             ))
           ) : (
-            <div className="flex flex-col items-center justify-center gap-4 text-gray-400 text-sm font-medium min-h-[300px]">
-              <IoSearchOutline className="w-7 h-7" />
-              <p>No results found</p>
-            </div>
+            // <div className="flex flex-col items-center justify-center gap-4 text-gray-400 text-sm font-medium min-h-[300px]">
+            //   <IoSearchOutline className="w-7 h-7" />
+            //   <p>No results found</p>
+            // </div>
+            <NoData />
           )}
         </div>
 

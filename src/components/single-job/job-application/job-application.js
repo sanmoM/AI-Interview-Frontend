@@ -7,10 +7,11 @@ import Wrapper from "../../shared/wrapper/wrapper";
 import SectionHeading from "../../ui/headings/section-heading";
 import SubHeading from "../../ui/headings/sub-heading";
 import RoleCard from "./components/role-card";
+import NoData from "@/components/shared/no-data";
 
 export default function JobApplication() {
   const [initialLoad, setInitialLoad] = useState(true);
-  const [venture, setVenture] = useState({});
+  const [venture, setVenture] = useState(null);
   const [flows, setFlows] = useState([]);
   const [roles, setRoles] = useState([]);
   const axios = useAxios();
@@ -19,11 +20,13 @@ export default function JobApplication() {
     return async () => {
       const res = await axios.get(`/single-venture`);
       const venture = res?.data?.venture;
-      venture.branding = JSON.parse(venture.branding_json);
-      delete venture.branding_json;
-      setVenture(venture);
-      setFlows(res.data?.flows);
-      setRoles(res.data?.roles);
+      if (venture) {
+        venture.branding = JSON?.parse(venture?.branding_json || "{}");
+        delete venture?.branding_json;
+        setVenture(venture);
+        setFlows(res?.data?.flows);
+        setRoles(res?.data?.roles);
+      }
       setInitialLoad(false);
     };
   }, [axios]);
@@ -31,28 +34,38 @@ export default function JobApplication() {
   useEffect(() => {
     fetchSingleVenture();
   }, [fetchSingleVenture]);
-
+  console.log(venture);
   return (
     <div className={"lg:flex-1 flex flex-col gap-4"}>
       <Wrapper>
         {initialLoad ? (
           <Loader />
         ) : (
-          <div className="mx-auto">
-            {/* Job title and badges */}
-            <div className="mb-6">
-              <SectionHeading className={"mb-3"}>{venture.name}</SectionHeading>
-              <SubHeading className="text-text-gray font-normal leading-relaxed">
-                {venture?.branding?.description}
-              </SubHeading>
-            </div>
+          <>
+            {venture ? (
+              <div className="mx-auto">
+                {/* Job title and badges */}
+                <div className="mb-6">
+                  <SectionHeading className={"mb-3"}>
+                    {venture.name}
+                  </SectionHeading>
+                  <SubHeading className="text-text-gray font-normal leading-relaxed">
+                    {venture?.branding?.description}
+                  </SubHeading>
+                </div>
 
-            <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2 2xl:grid-cols-3">
-              {roles?.map((role) => {
-                return <RoleCard item={role} key={role.id} />;
-              })}
-            </div>
-          </div>
+                <div className="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-2 2xl:grid-cols-3">
+                  {roles?.map((role) => {
+                    return <RoleCard item={role} key={role.id} />;
+                  })}
+                </div>
+              </div>
+            ) : (
+              <div className="h-full flex justify-center items-center">
+                <NoData />
+              </div>
+            )}
+          </>
         )}
       </Wrapper>
     </div>

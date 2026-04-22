@@ -8,8 +8,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineGlobal } from "react-icons/ai";
 
-export default function Domain({ ventureId }) {
-  const [domain, setDomain] = useState("");
+export default function Domain({ ventureId, domain: domainFromProps }) {
+  const [domain, setDomain] = useState(domainFromProps);
   const [loading, setLoading] = useState(false);
   const ip = SERVER_IP;
 
@@ -18,6 +18,7 @@ export default function Domain({ ventureId }) {
   const handleSave = async (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log(domain);
     try {
       await axios.post("/admin/domain/" + ventureId, {
         domain,
@@ -29,6 +30,7 @@ export default function Domain({ ventureId }) {
       setLoading(false);
     }
   };
+  console.log(domain);
   return (
     <InnerWrapper className={"break-inside-avoid"}>
       <InnerDivHeader
