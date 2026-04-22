@@ -107,6 +107,7 @@ import { useEffect, useMemo, useState } from "react";
 export default function VentureDetailPage() {
   const [initialLoad, setInitialLoad] = useState(true);
   const [venture, setVenture] = useState({});
+  const [ip, setIp] = useState("");
 
   const axios = useAuthAxios();
 
@@ -115,11 +116,13 @@ export default function VentureDetailPage() {
       try {
         const res = await axios.get(`/admin/venture-profile`);
         const ventureData = res?.data?.venture;
+        const ip = res?.data?.ip;
 
         ventureData.branding = JSON.parse(ventureData.branding_json);
         delete ventureData.branding_json;
 
         setVenture(ventureData);
+        setIp(ip);
       } catch (err) {
         console.error("Failed to fetch venture:", err);
       } finally {
@@ -132,6 +135,8 @@ export default function VentureDetailPage() {
     fetchVenture();
   }, [axios, fetchVenture]);
 
+  console.log(ip);
+
   // ✅ Derived values (no extra state)
   const name = venture?.name || "";
   const status = venture?.status || 1;
@@ -141,7 +146,7 @@ export default function VentureDetailPage() {
     ? IMAGE_BASE_URL + venture.branding.logo
     : null;
   const domain = venture?.domain || "";
-console.log(venture)
+  console.log(venture);
   return (
     <SecondaryWrapper loading={initialLoad}>
       {initialLoad ? (
@@ -180,7 +185,7 @@ console.log(venture)
             <div className="hidden lg:block">
               <Roles data={venture} fetchVenture={fetchVenture} />
             </div>
-            <Domain ventureId={venture.id} domain={domain} />
+            <Domain ventureId={venture.id} domain={domain} ip={ip} />
             <div className="lg:hidden">
               <Roles data={venture} fetchVenture={fetchVenture} />
             </div>

@@ -1,20 +1,17 @@
 "use client";
 
+import NoData from "@/components/shared/no-data";
 import Wrapper from "@/components/shared/wrapper/wrapper";
 import useAuthAxios from "@/hooks/useAuthAxios";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaLocationArrow } from "react-icons/fa";
 
 export default function page() {
   const axios = useAuthAxios();
   const { id } = useParams();
   const [chatId, setChatId] = useState(null);
-  // State to hold the chat messages
-  const [messages, setMessages] = useState([
-    // { id: 1, text: "Hey! How can I help you today?", sender: "bot" },
-    // { id: 2, text: "Can you give me a React chat component?", sender: "user" },
-    // { id: 3, text: "Absolutely! Here you go.", sender: "bot" },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [role, setRole] = useState({});
 
   // State for the current input value
@@ -78,18 +75,24 @@ export default function page() {
 
         {/* Message Area */}
         <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-3 ">
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`max-w-[75%] px-6 py-2 rounded-2xl ${
-                msg.sender === "user"
-                  ? "bg-primary text-white self-end rounded-br-sm"
-                  : "bg-white border border-gray-200 text-gray-800 self-start rounded-bl-sm shadow-sm"
-              }`}
-            >
-              {msg.text}
+          {messages.length > 0 ? (
+            messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`max-w-[75%] px-6 py-2 rounded-2xl ${
+                  msg.sender === "user"
+                    ? "bg-primary text-white self-end rounded-br-sm"
+                    : "bg-white border border-gray-200 text-gray-800 self-start rounded-bl-sm shadow-sm"
+                }`}
+              >
+                {msg.text}
+              </div>
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center gap-4 text-gray-400 text-sm font-medium h-full">
+              <NoData />
             </div>
-          ))}
+          )}
         </div>
 
         {/* Input Area */}
@@ -107,9 +110,12 @@ export default function page() {
           <button
             type="submit"
             disabled={!inputValue.trim()}
-            className="bg-primary text-white px-5 py-2 rounded-full hover:primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="bg-primary text-white p-2.5 lg:px-5 lg:py-2 rounded-full hover:primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Send
+            <span className="hidden lg:block">Send</span>
+            <span className="lg:hidden">
+              <FaLocationArrow />
+            </span>
           </button>
         </form>
       </div>

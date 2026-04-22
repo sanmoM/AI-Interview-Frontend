@@ -2,16 +2,16 @@ import InnerDivHeader from "@/components/shared/inner-div-header";
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
 import Button from "@/components/ui/buttons/button";
 import TextInput from "@/components/ui/inputs/text-input";
-import { SERVER_IP } from "@/config";
+import { PROTOCOL, SERVER_IP } from "@/config";
 import useAuthAxios from "@/hooks/useAuthAxios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineGlobal } from "react-icons/ai";
+import { MdOutlineContentCopy } from "react-icons/md";
 
-export default function Domain({ ventureId, domain: domainFromProps }) {
+export default function Domain({ ventureId, domain: domainFromProps, ip }) {
   const [domain, setDomain] = useState(domainFromProps);
   const [loading, setLoading] = useState(false);
-  const ip = SERVER_IP;
 
   const axios = useAuthAxios();
 
@@ -30,7 +30,11 @@ export default function Domain({ ventureId, domain: domainFromProps }) {
       setLoading(false);
     }
   };
-  console.log(domain);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(ip);
+    toast.success("Copied to clipboard!");
+  };
   return (
     <InnerWrapper className={"break-inside-avoid"}>
       <InnerDivHeader
@@ -91,13 +95,21 @@ export default function Domain({ ventureId, domain: domainFromProps }) {
             <p>Add an A record pointing your domain to your server IP:</p>
 
             <div className="space-y-2">
-              <TextInput
-                placeholder="10.0.0.1"
-                label="IP"
-                value={ip}
-                readOnly={true}
-                required={false}
-              />
+              <div className="relative">
+                <TextInput
+                  placeholder="10.0.0.1"
+                  label="IP"
+                  value={ip}
+                  readOnly={true}
+                  required={false}
+                />
+                <button
+                  onClick={handleCopy}
+                  className="absolute right-4 top-11 bg-primary p-1.5 flex justify-center items-center  text-white rounded-full"
+                >
+                  <MdOutlineContentCopy />
+                </button>
+              </div>
 
               <div className="bg-gray-100 p-3 rounded-xl text-sm">
                 <p>
@@ -143,9 +155,16 @@ export default function Domain({ ventureId, domain: domainFromProps }) {
               Wait for DNS propagation (5–30 minutes). Then open your domain in
               browser.
             </p>
-            <Button className={"w-fit px-6 py-1.5! text-sm"}>
-              Check Domain
-            </Button>
+            <p className="text-primary">
+              <span className="font-bold">Note: </span>
+              if you didn't see the website after 5-30 minutes by clicking Check
+              Domain button, that means the the setup is not done properly.
+            </p>
+            <a href={`${PROTOCOL}://` + domain} target={"_blank"}>
+              <Button className={"w-fit px-6 py-1.5! text-sm"}>
+                Check Domain
+              </Button>
+            </a>
           </div>
         </div>
       </div>
