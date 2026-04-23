@@ -85,7 +85,7 @@ export default function VenturesPage() {
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-6 mb-4 md:mb-8 lg:mb-10">
           {filteredVentures.map((venture) => (
             <Link key={venture.id} href={`/ventures/${venture.id}`}>
-              <VentureCard item={venture} className={"h-full"} />
+              <VentureCard item={venture} className={"h-full"} hasButton={false}/>
             </Link>
           ))}
         </div>

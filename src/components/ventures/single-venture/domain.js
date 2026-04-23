@@ -158,7 +158,7 @@ export default function Domain({ ventureId, domain: domainFromProps }) {
             </p>
             <p className="text-primary">
               <span className="font-bold">Note: </span>
-              if you didn't see the website after 5-30 minutes by clicking Check
+              if you didn&apos;t see the website after 5-30 minutes by clicking Check
               Domain button, that means the the setup is not done properly.
             </p>
             <a href={`${PROTOCOL}://` + domain} target={"_blank"}>

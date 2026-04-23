@@ -23,14 +23,15 @@ export default function UpdateVenture({
   setDescription,
   setWebsiteLink,
   setLogo,
-  hasStatus,
   id,
   redirectUrl,
   nameReadOnly,
-  statusReadOnly,
   descriptionReadOnly,
   websiteLinkReadOnly,
   logoReadOnly,
+  fetchVenture,
+  domain,
+  admin,
 }) {
   const [loading, setLoading] = useState(false);
   const axios = useAuthAxios();
@@ -72,15 +73,47 @@ export default function UpdateVenture({
     }
     setLoading(false);
   };
+
+  const handleBan = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await axios.put("/ventures/" + id, {
+        status: status ? 0 : 1,
+      });
+      toast.success("Venture banned successfully!");
+      fetchVenture();
+    } catch (error) {
+      toast.error("Something went wrong!");
+    }
+    setLoading(false);
+  };
+
+  console.log(admin);
   return (
-    <InnerWrapper>
-      <InnerDivHeader
-        Icon={FaStore}
-        title="Update Venture"
-        description="Update your Venture details."
-        //   badgeLabel="Set on creation"
-        containerClassName={"mb-6 md:mb-0"}
-      />
+    <InnerWrapper className={"break-inside-avoid"}>
+      <div className="flex justify-between items-center">
+        <InnerDivHeader
+          Icon={FaStore}
+          title="Update Venture"
+          description="Update your Venture details."
+          //   badgeLabel="Set on creation"
+          containerClassName={"mb-6 md:mb-0"}
+        />
+        <Button
+          className={cn(
+            "w-fit px-6 py-1.5! text-sm!",
+            status
+              ? "bg-red-500 hover:bg-red-600"
+              : "bg-green-500 hover:bg-green-600",
+          )}
+          onClick={handleBan}
+          loading={loading}
+          disabled={loading}
+        >
+          {status ? "Banned" : "Unbanned"}
+        </Button>
+      </div>
 
       <form className="space-y-4" onSubmit={handleSubmit}>
         <ImageInput
@@ -90,65 +123,60 @@ export default function UpdateVenture({
           containerClassName={" w-40 h-40 ml-0 mt-6"}
           readOnly={logoReadOnly}
         />
-        <TextInput
-          placeholder="Venue name"
-          label="Venue name"
-          required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          readOnly={nameReadOnly}
-        />
-        <div
-          className={cn(
-            "grid lg:grid-cols-1 gap-4",
-            hasStatus && "lg:grid-cols-2",
-          )}
-        >
+        <div className="grid grid-cols-2 gap-4">
+          <TextInput
+            placeholder="Venue name"
+            label="Venue name"
+            required
+            value={name || "N/A"}
+            onChange={(e) => setName(e.target.value)}
+            readOnly={nameReadOnly}
+          />
           <TextInput
             placeholder="Website link"
             label="Website link"
             required
-            value={websiteLink}
+            value={websiteLink || "N/A"}
             onChange={(e) => setWebsiteLink(e.target.value)}
             readOnly={websiteLinkReadOnly}
           />
-          {hasStatus && (
-            <SelectBox
-              options={[
-                {
-                  value: 1,
-                  label: "Active",
-                },
-                {
-                  value: 0,
-                  label: "Inactive",
-                },
-              ]}
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              placeholder="Select tone preset"
-              label={"Status"}
-              required
-              readOnly={statusReadOnly}
-            />
-          )}
+        </div>
+        <div className="grid grid-cols-1 gap-4">
+          <TextInput
+            placeholder="Domain"
+            label="Domain"
+            required
+            value={domain || "N/A"}
+            // onChange={(e) => setDescription(e.target.value)}
+            inputClassName={"h-40 resize-none"}
+            readOnly={true}
+          />
         </div>
         <TextAreaInput
           placeholder="Venue description"
           label="Venue description"
           required
-          value={description}
+          value={description || "N/A"}
           onChange={(e) => setDescription(e.target.value)}
           inputClassName={"h-40 resize-none"}
           readOnly={descriptionReadOnly}
         />
-        <Button
-          className={"w-fit ml-auto px-6"}
-          loading={loading}
-          disabled={loading}
-        >
-          Update
-        </Button>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <TextInput
+            placeholder="Admin Name"
+            label="Admin Name"
+            required
+            value={admin?.name || "N/A"}
+            readOnly={true}
+          />
+          <TextInput
+            placeholder="Admin Email"
+            label="Admin Email"
+            required
+            value={admin?.email || "N/A"}
+            readOnly={true}
+          />
+        </div>
       </form>
     </InnerWrapper>
   );

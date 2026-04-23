@@ -34,23 +34,24 @@ export default function VentureDetailPage() {
   const [websiteLink, setWebsiteLink] = useState("");
   const [logo, setLogo] = useState(null);
   // const router = useRouter();
+  const fetchVenture = async () => {
+    const res = await axios.get(`/super/single-venture/${id}`);
+    const venture = res?.data?.venture;
+    venture.branding = JSON.parse(venture?.branding_json);
+    delete venture.branding_json;
+    setVenture(venture);
+    setName(venture?.name);
+    setStatus(venture?.status);
+    setDescription(venture?.branding?.description);
+    setWebsiteLink(venture?.branding?.websiteLink);
+    if (venture?.branding?.logo) {
+      setLogo(IMAGE_BASE_URL + venture?.branding?.logo);
+    }
+    setInitialLoad(false);
+    setStatus(venture?.status);
+  };
 
   useEffect(() => {
-    const fetchVenture = async () => {
-      const res = await axios.get(`/super/single-venture/${id}`);
-      const venture = res?.data?.venture;
-      venture.branding = JSON.parse(venture?.branding_json);
-      delete venture.branding_json;
-      setVenture(venture);
-      setName(venture?.name);
-      setStatus(venture?.status);
-      setDescription(venture?.branding?.description);
-      setWebsiteLink(venture?.branding?.websiteLink);
-      if (venture?.branding?.logo) {
-        setLogo(IMAGE_BASE_URL + venture?.branding?.logo);
-      }
-      setInitialLoad(false);
-    };
     fetchVenture();
   }, []);
 
@@ -99,6 +100,9 @@ export default function VentureDetailPage() {
               descriptionReadOnly={true}
               websiteLinkReadOnly={true}
               logoReadOnly={true}
+              fetchVenture={fetchVenture}
+              domain={venture?.domain}
+              admin={venture?.venture_admin}
             />
             {/* <AssignAdmin data={venture.venture_admin} /> */}
           </div>
