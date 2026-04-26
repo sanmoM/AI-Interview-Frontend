@@ -26,13 +26,6 @@ export default function VentureDetailPage() {
   const [venture, setVenture] = useState({});
   const { id } = useParams();
   const axios = useAuthAxios();
-
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState(1);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [websiteLink, setWebsiteLink] = useState("");
-  const [logo, setLogo] = useState(null);
   // const router = useRouter();
   const fetchVenture = async () => {
     const res = await axios.get(`/super/single-venture/${id}`);
@@ -40,15 +33,7 @@ export default function VentureDetailPage() {
     venture.branding = JSON.parse(venture?.branding_json);
     delete venture.branding_json;
     setVenture(venture);
-    setName(venture?.name);
-    setStatus(venture?.status);
-    setDescription(venture?.branding?.description);
-    setWebsiteLink(venture?.branding?.websiteLink);
-    if (venture?.branding?.logo) {
-      setLogo(IMAGE_BASE_URL + venture?.branding?.logo);
-    }
     setInitialLoad(false);
-    setStatus(venture?.status);
   };
 
   useEffect(() => {
@@ -82,27 +67,9 @@ export default function VentureDetailPage() {
           {/* Content Grid */}
           <div className="items-start">
             <UpdateVenture
-              name={name}
-              status={status}
-              description={description}
-              websiteLink={websiteLink}
-              logo={logo}
-              loading={loading}
-              setLoading={setLoading}
-              setName={setName}
-              setStatus={setStatus}
-              setDescription={setDescription}
-              setWebsiteLink={setWebsiteLink}
-              setLogo={setLogo}
-              hasStatus={true}
-              id={id}
-              nameReadOnly={true}
-              descriptionReadOnly={true}
-              websiteLinkReadOnly={true}
-              logoReadOnly={true}
+              venture={venture}
               fetchVenture={fetchVenture}
-              domain={venture?.domain}
-              admin={venture?.venture_admin}
+              setVenture={setVenture}
             />
             {/* <AssignAdmin data={venture.venture_admin} /> */}
           </div>

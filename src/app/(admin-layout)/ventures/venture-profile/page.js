@@ -133,15 +133,6 @@ export default function VentureDetailPage() {
     fetchVenture();
   }, [axios, fetchVenture]);
 
-  // ✅ Derived values (no extra state)
-  const name = venture?.name || "";
-  const status = venture?.status || 1;
-  const description = venture?.branding?.description || "";
-  const websiteLink = venture?.branding?.websiteLink || "";
-  const logo = venture?.branding?.logo
-    ? IMAGE_BASE_URL + venture.branding.logo
-    : null;
-  const domain = venture?.domain || "";
   console.log(venture);
   return (
     <SecondaryWrapper loading={initialLoad}>
@@ -153,14 +144,14 @@ export default function VentureDetailPage() {
             <div>
               <div className="flex flex-col md:flex-row items-start gap-5">
                 <div className="w-14 h-14 rounded-3xl bg-secondary flex items-center justify-center shrink-0 text-xl text-primary">
-                  {name?.[0]}
+                  {venture?.name?.[0]}
                 </div>
                 <div>
                   <SectionHeading className="!mb-1 text-text-primary tracking-tight">
-                    {name}
+                    {venture?.name}
                   </SectionHeading>
                   <SubHeading className="text-text-gray font-normal leading-relaxed">
-                    {description}
+                    {venture?.branding?.description}
                   </SubHeading>
                 </div>
               </div>
@@ -170,18 +161,16 @@ export default function VentureDetailPage() {
           {/* Content Grid */}
           <div className="lg:columns-2 gap-6 items-start space-y-6">
             <UpdateVenture
-              name={name}
-              status={status}
-              description={description}
-              websiteLink={websiteLink}
-              logo={logo}
-              id={venture.id}
-              refresh={fetchVenture}
+              venture={venture}
+              setVenture={setVenture}
+              hasBannedButton={false}
+              hasAdminDetails={false}
+              hasDomain={false}
             />
             <div className="hidden lg:block">
               <Roles data={venture} fetchVenture={fetchVenture} />
             </div>
-            <Domain ventureId={venture.id} domain={domain}/>
+            <Domain ventureId={venture.id} domain={venture.domain} />
             <div className="lg:hidden">
               <Roles data={venture} fetchVenture={fetchVenture} />
             </div>

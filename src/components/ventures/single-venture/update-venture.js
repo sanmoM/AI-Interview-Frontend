@@ -2,42 +2,34 @@ import InnerDivHeader from "@/components/shared/inner-div-header";
 import InnerWrapper from "@/components/shared/wrapper/inner-wrapper";
 import Button from "@/components/ui/buttons/button";
 import ImageInput from "@/components/ui/inputs/image-input";
-import SelectBox from "@/components/ui/inputs/select-box";
 import TextAreaInput from "@/components/ui/inputs/text-area-input";
 import TextInput from "@/components/ui/inputs/text-input";
+import { IMAGE_BASE_URL } from "@/config";
 import useAuthAxios from "@/hooks/useAuthAxios";
 import { cn } from "@/utils/cn";
 import { isValidUrl } from "@/utils/url";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaStore } from "react-icons/fa";
 
 export default function UpdateVenture({
-  name,
-  status,
-  description,
-  websiteLink,
-  logo,
-  setName,
-  setStatus,
-  setDescription,
-  setWebsiteLink,
-  setLogo,
-  id,
-  redirectUrl,
-  nameReadOnly,
-  descriptionReadOnly,
-  websiteLinkReadOnly,
-  logoReadOnly,
+  venture,
   fetchVenture,
-  domain,
-  admin,
+  setVenture,
+  hasBannedButton = true,
+  hasAdminDetails = true,
+  hasDomain = true,
 }) {
   const [loading, setLoading] = useState(false);
   const axios = useAuthAxios();
+  const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isValidUrl(websiteLink.trim())) {
+    if (
+      venture?.branding?.websiteLink &&
+      !isValidUrl(venture?.branding?.websiteLink.trim())
+    ) {
       toast.error("Please enter a valid website link!");
       return;
     }
@@ -45,41 +37,34 @@ export default function UpdateVenture({
 
     try {
       const formData = new FormData();
-      formData.append("name", name);
-      formData.append("status", status);
-      // formData.append("slug", slug);
+      formData.append("name", venture?.name);
+      formData.append("domain", venture?.domain);
 
-      // ✅ only append logo if it exists
-      if (logo) {
-        formData.append("logo", logo);
+      if (venture?.branding?.logo instanceof File) {
+        formData.append("logo", venture?.branding?.logo);
       }
 
-      formData.append(
-        "branding_json",
-        JSON.stringify({
-          description,
-          websiteLink,
-        }),
-      );
+      formData.append("branding_json", JSON.stringify(venture?.branding));
+      formData.append("venture_admin", JSON.stringify(venture?.venture_admin));
 
-      const res = await axios.put("/ventures/" + id, formData);
-
+      await axios.put("/ventures/" + venture?.id, formData);
       toast.success("Venture updated successfully!");
-      if (redirectUrl) {
-        router.push(redirectUrl);
-      }
+      router.back();
     } catch (error) {
+      console.log(error);
       toast.error("Something went wrong!");
     }
     setLoading(false);
   };
+
+  console.log(venture, "Venture");
 
   const handleBan = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       await axios.put("/ventures/" + id, {
-        status: status ? 0 : 1,
+        status: venture?.status ? 0 : 1,
       });
       toast.success("Venture banned successfully!");
       fetchVenture();
@@ -89,7 +74,6 @@ export default function UpdateVenture({
     setLoading(false);
   };
 
-  console.log(admin);
   return (
     <InnerWrapper className={"break-inside-avoid"}>
       <div className="flex justify-between items-center">
@@ -100,83 +84,152 @@ export default function UpdateVenture({
           //   badgeLabel="Set on creation"
           containerClassName={"mb-6 md:mb-0"}
         />
-        <Button
-          className={cn(
-            "w-fit px-6 py-1.5! text-sm!",
-            status
-              ? "bg-red-500 hover:bg-red-600"
-              : "bg-green-500 hover:bg-green-600",
-          )}
-          onClick={handleBan}
-          loading={loading}
-          disabled={loading}
-        >
-          {status ? "Banned" : "Unbanned"}
-        </Button>
+        {hasBannedButton && (
+          <Button
+            className={cn(
+              "w-fit px-6 py-1.5! text-sm!",
+              venture?.status
+                ? "bg-red-500 hover:bg-red-600"
+                : "bg-green-500 hover:bg-green-600",
+            )}
+            onClick={handleBan}
+            loading={loading}
+            disabled={loading}
+          >
+            {venture?.status ? "Banned" : "Unbanned"}
+          </Button>
+        )}
       </div>
 
       <form className="space-y-4" onSubmit={handleSubmit}>
         <ImageInput
           placeholder="Venue logo"
-          image={logo}
-          setImage={setLogo}
+          image={
+            typeof venture?.branding?.logo === "string"
+              ? IMAGE_BASE_URL + venture?.branding?.logo
+              : venture?.branding?.logo
+          }
+          setImage={(e) =>
+            setVenture((prev) => ({
+              ...prev,
+              branding: {
+                ...prev.branding,
+                logo: e,
+              },
+            }))
+          }
           containerClassName={" w-40 h-40 ml-0 mt-6"}
-          readOnly={logoReadOnly}
         />
         <div className="grid grid-cols-2 gap-4">
           <TextInput
             placeholder="Venue name"
             label="Venue name"
-            required
-            value={name || "N/A"}
-            onChange={(e) => setName(e.target.value)}
-            readOnly={nameReadOnly}
+            value={venture?.name}
+            onChange={(e) =>
+              setVenture((prev) => ({ ...prev, name: e.target.value }))
+            }
           />
           <TextInput
             placeholder="Website link"
             label="Website link"
-            required
-            value={websiteLink || "N/A"}
-            onChange={(e) => setWebsiteLink(e.target.value)}
-            readOnly={websiteLinkReadOnly}
+            value={venture?.branding?.websiteLink}
+            onChange={(e) =>
+              setVenture((prev) => ({
+                ...prev,
+                branding: {
+                  ...prev.branding,
+                  websiteLink: e.target.value,
+                },
+              }))
+            }
           />
         </div>
-        <div className="grid grid-cols-1 gap-4">
+        {hasDomain && (
           <TextInput
             placeholder="Domain"
             label="Domain"
-            required
-            value={domain || "N/A"}
-            // onChange={(e) => setDescription(e.target.value)}
+            value={venture?.domain}
+            onChange={(e) =>
+              setVenture((prev) => ({ ...prev, domain: e.target.value }))
+            }
             inputClassName={"h-40 resize-none"}
-            readOnly={true}
           />
-        </div>
+        )}
         <TextAreaInput
           placeholder="Venue description"
           label="Venue description"
-          required
-          value={description || "N/A"}
-          onChange={(e) => setDescription(e.target.value)}
+          value={venture?.branding?.description}
+          onChange={(e) =>
+            setVenture((prev) => ({
+              ...prev,
+              branding: {
+                ...prev.branding,
+                description: e.target.value,
+              },
+            }))
+          }
           inputClassName={"h-40 resize-none"}
-          readOnly={descriptionReadOnly}
         />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <TextInput
-            placeholder="Admin Name"
-            label="Admin Name"
-            required
-            value={admin?.name || "N/A"}
-            readOnly={true}
-          />
-          <TextInput
-            placeholder="Admin Email"
-            label="Admin Email"
-            required
-            value={admin?.email || "N/A"}
-            readOnly={true}
-          />
-        </div>
+        {hasAdminDetails && (
+          <>
+            <h1 className="text-2xl font-bold mt-10 text-text-primary">
+              Venture Admin
+            </h1>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <TextInput
+                placeholder="Admin Name"
+                label="Admin Name"
+                value={venture?.venture_admin?.name}
+                onChange={(e) =>
+                  setVenture((prev) => ({
+                    ...prev,
+                    venture_admin: {
+                      ...prev.venture_admin,
+                      name: e.target.value,
+                    },
+                  }))
+                }
+              />
+              <TextInput
+                placeholder="Admin Email"
+                label="Admin Email"
+                value={venture?.venture_admin?.email}
+                onChange={(e) =>
+                  setVenture((prev) => ({
+                    ...prev,
+                    venture_admin: {
+                      ...prev.venture_admin,
+                      email: e.target.value,
+                    },
+                  }))
+                }
+              />
+            </div>
+            <TextInput
+              placeholder={"New Password"}
+              label={"New Password"}
+              type={"password"}
+              value={venture?.venture_admin?.password || ""}
+              onChange={(e) =>
+                setVenture((prev) => ({
+                  ...prev,
+                  venture_admin: {
+                    ...prev.venture_admin,
+                    password: e.target.value,
+                  },
+                }))
+              }
+            />
+          </>
+        )}
+        <Button
+          type="submit"
+          className="px-6 py-2 mt-4 w-fit"
+          loading={loading}
+          disabled={loading}
+        >
+          Update Venture
+        </Button>
       </form>
     </InnerWrapper>
   );
