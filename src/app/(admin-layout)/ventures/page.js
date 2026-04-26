@@ -1,5 +1,6 @@
 "use client";
 
+import NoData from "@/components/shared/no-data";
 import Pagination from "@/components/shared/pagination";
 import StickyHeader from "@/components/shared/sticky-header";
 import VentureCard from "@/components/shared/venture-card";
@@ -45,7 +46,7 @@ export default function VenturesPage() {
   }, [searchQuery, ventures]);
 
   return (
-    <SecondaryWrapper className="grow min-w-0 !pt-0">
+    <SecondaryWrapper className="grow min-w-0 !pt-0 flex flex-col">
       <StickyHeader>
         <div className="flex flex-col xl:flex-row justify-between gap-4 xl:gap-10">
           <div className="mb-3 max-w-5xl">
@@ -81,14 +82,26 @@ export default function VenturesPage() {
         </div>
       </StickyHeader>
 
-      <div className="mt-4 md:mt-12">
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-6 mb-4 md:mb-8 lg:mb-10">
-          {filteredVentures.map((venture) => (
-            <Link key={venture.id} href={`/ventures/${venture.id}`}>
-              <VentureCard item={venture} className={"h-full"} hasButton={false}/>
-            </Link>
-          ))}
-        </div>
+      <div className="h-full">
+        {ventures.length > 0 ? (
+          <>
+            <div className="mt-4 md:mt-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-6 mb-4 md:mb-8 lg:mb-10">
+              {filteredVentures.map((venture) => (
+                <Link key={venture.id} href={`/ventures/${venture.id}`}>
+                  <VentureCard
+                    item={venture}
+                    className={"h-full"}
+                    hasButton={false}
+                  />
+                </Link>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="h-full flex justify-center items-center w-full lg:-mt-28">
+            <NoData />
+          </div>
+        )}
 
         <Pagination
           size="sm"
