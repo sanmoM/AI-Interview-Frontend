@@ -52,7 +52,7 @@ export default function VentureCard({
           </span>
         </div>
 
-        <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg">
+        <p className=" leading-relaxed text-text-gray text-sm md:text-base lg:text-lg line-clamp-3">
           {brandingData?.description}
         </p>
       </div>

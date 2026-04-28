@@ -63,12 +63,13 @@ export default function UpdateVenture({
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.put("/ventures/" + id, {
+      await axios.put("/ventures/" + venture?.id, {
         status: venture?.status ? 0 : 1,
       });
       toast.success("Venture banned successfully!");
       fetchVenture();
     } catch (error) {
+      console.log(error);
       toast.error("Something went wrong!");
     }
     setLoading(false);
@@ -96,7 +97,7 @@ export default function UpdateVenture({
             loading={loading}
             disabled={loading}
           >
-            {venture?.status ? "Banned" : "Unbanned"}
+            {venture?.status ? "Ban" : "Unban"}
           </Button>
         )}
       </div>

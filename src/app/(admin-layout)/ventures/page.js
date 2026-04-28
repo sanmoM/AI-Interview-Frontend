@@ -29,8 +29,8 @@ export default function VenturesPage() {
       });
 
       setVentures(res?.data?.data || []);
-      setLastPage(res?.data?.lastPage || 0);
-      setCurrentPage(res?.data?.currentPage || 1);
+      setLastPage(res?.data?.last_page || 0);
+      setCurrentPage(res?.data?.current_page || 1);
     }
 
     fetchVentures();
@@ -44,7 +44,7 @@ export default function VenturesPage() {
       venture.name.toLowerCase().includes(searchQuery.toLowerCase()),
     );
   }, [searchQuery, ventures]);
-
+  console.log(lastPage);
   return (
     <SecondaryWrapper className="grow min-w-0 !pt-0 flex flex-col">
       <StickyHeader>
@@ -82,12 +82,12 @@ export default function VenturesPage() {
         </div>
       </StickyHeader>
 
-      <div className="h-full">
+      <div className="h-full flex flex-col">
         {ventures.length > 0 ? (
-          <>
-            <div className="mt-4 md:mt-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-6 mb-4 md:mb-8 lg:mb-10">
+          <div className="flex-1">
+            <div className="mt-4 md:mt-12 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-6 mb-4 md:mb-8 lg:mb-10 items-stretch">
               {filteredVentures.map((venture) => (
-                <Link key={venture.id} href={`/ventures/${venture.id}`}>
+                <Link key={venture.id} href={`/ventures/${venture.id}`} className="block h-full">
                   <VentureCard
                     item={venture}
                     className={"h-full"}
@@ -96,7 +96,7 @@ export default function VenturesPage() {
                 </Link>
               ))}
             </div>
-          </>
+          </div>
         ) : (
           <div className="h-full flex justify-center items-center w-full lg:-mt-28">
             <NoData />

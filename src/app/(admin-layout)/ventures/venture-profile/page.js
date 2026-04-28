@@ -133,7 +133,7 @@ export default function VentureDetailPage() {
     fetchVenture();
   }, [axios, fetchVenture]);
 
-  console.log(venture);
+  console.log(venture, "venture");
   return (
     <SecondaryWrapper loading={initialLoad}>
       {initialLoad ? (

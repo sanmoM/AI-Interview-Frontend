@@ -2,24 +2,26 @@
 
 import Button from "@/components/ui/buttons/button";
 import ImageInput from "@/components/ui/inputs/image-input";
+import TextAreaInput from "@/components/ui/inputs/text-area-input";
 import TextInput from "@/components/ui/inputs/text-input";
 import useAuthAxios from "@/hooks/useAuthAxios";
+import { login } from "@/store/features/auth-slice";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 export default function Page() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(1);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [phone, setPhone] = useState("");
-  const [websiteLink, setWebsiteLink] = useState("");
   const [logo, setLogo] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const axios = useAuthAxios();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,12 +37,15 @@ export default function Page() {
       }
       formData.append("email", email);
       formData.append("password", password);
+      formData.append("description", description);
 
-      await axios.post("/auth/white-label-signup", formData);
-
+      const res = await axios.post("/auth/white-label-signup", formData);
+      dispatch(login(res?.data));
+      document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
       toast.success("Venture created successfully!");
       router.push("/ventures/venture-profile");
     } catch (error) {
+      console.log(error);
       toast.error("Something went wrong!");
     } finally {
       setLoading(false);
@@ -108,6 +113,13 @@ export default function Page() {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
+          />
+          <TextAreaInput
+            placeholder="Short description about your venue"
+            label="Description"
+            required
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
           <div className="flex items-center justify-between mb-2">
             <label
