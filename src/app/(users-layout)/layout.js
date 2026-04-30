@@ -1,5 +1,4 @@
 import UserNavbar from "@/components/user-layout/navbar/Usernavbar";
-import RestrictionGuard from "@/wrapper/restriction-guard";
 
 export default function layout({ children }) {
   return (

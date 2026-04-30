@@ -19,7 +19,6 @@ export default function Domain({ ventureId, domain: domainFromProps }) {
   const handleSave = async (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log(domain);
     try {
       await axios.post("/admin/domain/" + ventureId, {
         domain,

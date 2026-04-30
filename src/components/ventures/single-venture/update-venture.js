@@ -51,13 +51,11 @@ export default function UpdateVenture({
       toast.success("Venture updated successfully!");
       router.back();
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     }
     setLoading(false);
   };
 
-  console.log(venture, "Venture");
 
   const handleBan = async (e) => {
     e.preventDefault();
@@ -69,7 +67,6 @@ export default function UpdateVenture({
       toast.success("Venture banned successfully!");
       fetchVenture();
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     }
     setLoading(false);

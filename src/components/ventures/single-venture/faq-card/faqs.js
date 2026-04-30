@@ -227,7 +227,6 @@ export default function FAQs({ data, fetchVenture }) {
       });
       setMode("show");
     } catch (err) {
-      console.error(err);
       toast.error("Something went wrong!");
     }
 
@@ -248,7 +247,6 @@ export default function FAQs({ data, fetchVenture }) {
       setEditId(null);
       setMode("show");
     } catch (err) {
-      console.error(err);
       toast.error("Something went wrong!");
     }
 
@@ -265,7 +263,6 @@ export default function FAQs({ data, fetchVenture }) {
       toast.success("FAQ deleted successfully!");
       fetchVenture();
     } catch (err) {
-      console.error(err);
       toast.error("Something went wrong!");
     }
 

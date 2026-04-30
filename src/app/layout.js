@@ -30,12 +30,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased bg-bg-gray`}
       >
-        <StoreProvider>
-          <div className="h-screen lg:px-6">
-            <RestrictionGuard>{children}</RestrictionGuard>
-          </div>
-          <Toaster />
-        </StoreProvider>
+        <RestrictionGuard>
+          <StoreProvider>
+            <div className="h-screen lg:px-6">{children}</div>
+            <Toaster />
+          </StoreProvider>
+        </RestrictionGuard>
       </body>
     </html>
   );

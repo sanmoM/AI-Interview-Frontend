@@ -21,11 +21,9 @@ export default function RoleCard({ item, className }) {
   };
 
   function handleCall() {
-    console.log("first");
     const number = "+8801234567890";
 
     const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
-    console.log(isMobile, "isMobile");
     if (isMobile) {
       window.location.href = "tel:" + number;
     } else {

@@ -83,7 +83,6 @@ export default function VentureCreatePage() {
       toast.success("Venture created successfully!");
       router.push("/ventures");
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     }
 

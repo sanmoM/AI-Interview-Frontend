@@ -122,7 +122,6 @@ export default function VentureDetailPage() {
 
         setVenture(ventureData);
       } catch (err) {
-        console.error("Failed to fetch venture:", err);
       } finally {
         setInitialLoad(false);
       }
@@ -133,7 +132,6 @@ export default function VentureDetailPage() {
     fetchVenture();
   }, [axios, fetchVenture]);
 
-  console.log(venture, "venture");
   return (
     <SecondaryWrapper loading={initialLoad}>
       {initialLoad ? (

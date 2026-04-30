@@ -34,7 +34,6 @@ export default function JobApplication() {
   useEffect(() => {
     fetchSingleVenture();
   }, [fetchSingleVenture]);
-  console.log(venture);
   return (
     <div className={"lg:flex-1 flex flex-col gap-4 h-full"}>
       <Wrapper>

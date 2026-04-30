@@ -45,7 +45,6 @@ export default function Page() {
       toast.success("Venture created successfully!");
       router.push("/ventures/venture-profile");
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong!");
     } finally {
       setLoading(false);

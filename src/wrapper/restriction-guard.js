@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { BASE_URL } from "@/config";
 
 export default function RestrictionGuard({ children }) {
   const [loading, setLoading] = useState(true);
-  const [restricted, setRestricted] = useState(false);
   const router = useRouter();
+  const pathName = usePathname();
+  // console.log(pathName);
 
   useEffect(() => {
     const checkRestriction = async () => {
@@ -16,24 +17,23 @@ export default function RestrictionGuard({ children }) {
         const data = await res.json();
 
         if (data?.is_restricted) {
-          setRestricted(true);
           router.replace("/no-venture");
+        } else {
+          setLoading(false);
         }
       } catch (error) {
-        console.error("Error fetching restriction policy:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
     checkRestriction();
   }, [router]);
 
-  // if (loading) return null; // or a loader
+  useEffect(() => {
+    if (pathName === "/no-venture") {
+      setLoading(false);
+    }
+  }, [pathName]);
 
-  // if (restricted) return null;
-
-  console.log(loading)
 
   return <>{loading ? null : children}</>;
 }

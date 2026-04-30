@@ -44,7 +44,6 @@ export default function VenturesPage() {
       venture.name.toLowerCase().includes(searchQuery.toLowerCase()),
     );
   }, [searchQuery, ventures]);
-  console.log(lastPage);
   return (
     <SecondaryWrapper className="grow min-w-0 !pt-0 flex flex-col">
       <StickyHeader>
