@@ -17,7 +17,7 @@ export default function RestrictionGuard({ children }) {
 
         if (data?.is_restricted) {
           setRestricted(true);
-          router.replace("/404"); // or any custom route
+          router.replace("/no-venture");
         }
       } catch (error) {
         console.error("Error fetching restriction policy:", error);
@@ -29,9 +29,11 @@ export default function RestrictionGuard({ children }) {
     checkRestriction();
   }, [router]);
 
-  if (loading) return null; // or a loader
+  // if (loading) return null; // or a loader
 
-  if (restricted) return null;
+  // if (restricted) return null;
 
-  return <>{children}</>;
+  console.log(loading)
+
+  return <>{loading ? null : children}</>;
 }

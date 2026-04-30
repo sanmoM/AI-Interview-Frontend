@@ -10,6 +10,7 @@ export function middleware(request) {
     pathname === "/calls" ||
     pathname === "/" ||
     pathname === "/explore" ||
+    pathname === "/no-venture" ||
     /^\/explore\/[^/]+$/.test(pathname) ||
     /^\/chat\/[^/]+$/.test(pathname) ||
     /^\/interview\/.+$/.test(pathname) ||
