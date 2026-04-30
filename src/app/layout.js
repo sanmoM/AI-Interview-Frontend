@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import StoreProvider from "@/store/store-provider";
+import RestrictionGuard from "@/wrapper/restriction-guard";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased bg-bg-gray`}
       >
         <StoreProvider>
-          <div className="h-screen lg:px-6">{children}</div>
+          <div className="h-screen lg:px-6">
+            <RestrictionGuard>{children}</RestrictionGuard>
+          </div>
           <Toaster />
         </StoreProvider>
       </body>
