@@ -1,14 +1,37 @@
 "use client";
-import { BASE_URL } from "@/config";
-import { notFound } from "next/navigation";
-import React from "react";
 
-export default async function RestrictionGuard({ children }) {
-  const res = await fetch(BASE_URL + "/restriction-policy");
-  const data = await res.json();
-  console.log(data);
-  if (data?.is_restricted) {
-    return notFound();
-  }
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { BASE_URL } from "@/config";
+
+export default function RestrictionGuard({ children }) {
+  const [loading, setLoading] = useState(true);
+  const [restricted, setRestricted] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkRestriction = async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/restriction-policy`);
+        const data = await res.json();
+
+        if (data?.is_restricted) {
+          setRestricted(true);
+          router.replace("/404"); // or any custom route
+        }
+      } catch (error) {
+        console.error("Error fetching restriction policy:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkRestriction();
+  }, [router]);
+
+  if (loading) return null; // or a loader
+
+  if (restricted) return null;
+
   return <>{children}</>;
 }
