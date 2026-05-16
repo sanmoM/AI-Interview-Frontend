@@ -48,7 +48,7 @@ const ventureNavItems = [
   {
     id: "ventures",
     name: "Ventures Profile",
-    href: "/ventures/venture-profile",
+    href: "/venture-profile",
     Icon: (
       <MdGridView className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
@@ -60,15 +60,7 @@ const ventureNavItems = [
     Icon: (
       <LuPhoneCall className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
-  },
-  // {
-  //   id: "domain",
-  //   name: "Domain Settings",
-  //   href: "/domain-settings",
-  //   Icon: (
-  //     <AiOutlineGlobal className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
-  //   ),
-  // },
+  }
 ];
 
 export default function AdminNavbar() {

@@ -1,11 +1,8 @@
 "use client";
-
-import BorderButton from "@/components/ui/buttons/border-button";
 import Button from "@/components/ui/buttons/button";
 import TextInput from "@/components/ui/inputs/text-input";
 import useAxios from "@/hooks/useAxios";
 import { login } from "@/store/features/auth-slice";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -30,15 +27,11 @@ export default function Page() {
       dispatch(login(res?.data));
       document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
       toast.success("You have successfully signed in!");
-      router.replace("/ventures/venture-profile");
+      router.replace("/venture-profile");
     } catch (error) {
       toast.error("Something went wrong!");
     }
     setLoading(false);
-  };
-
-  const handleGoogleSignIn = () => {
-    // Add your Google OAuth logic here
   };
 
   return (

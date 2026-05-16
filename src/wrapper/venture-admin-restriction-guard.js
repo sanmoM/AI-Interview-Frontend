@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { BASE_URL } from "@/config";
 
-export default function RestrictionGuard({ children }) {
+export default function VentureAdminRestrictionGuard({ children }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const pathName = usePathname();
@@ -13,7 +13,9 @@ export default function RestrictionGuard({ children }) {
   useEffect(() => {
     const checkRestriction = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/restriction-policy`);
+        const res = await fetch(
+          `${BASE_URL}/admin/venture-admin-restriction-policy`,
+        );
         const data = await res.json();
 
         if (data?.is_restricted) {

@@ -37,15 +37,10 @@ export default function Page() {
       dispatch(login(res?.data));
       document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
       toast.success("You have successfully signed in!");
-    //   router.replace("/ventures/venture-profile");
     } catch (error) {
       toast.error("Something went wrong!");
     }
     setLoading(false);
-  };
-
-  const handleGoogleSignIn = () => {
-    // Add your Google OAuth logic here
   };
 
   return (

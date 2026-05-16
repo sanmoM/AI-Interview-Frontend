@@ -42,8 +42,9 @@ export default function Page() {
       const res = await axios.post("/auth/white-label-signup", formData);
       dispatch(login(res?.data));
       document.cookie = `token=${res?.data?.token}; path=/; max-age=86400; SameSite=Lax`;
+      const paymentRes = await axios.post("/create-checkout-session", {});
       toast.success("Venture created successfully!");
-      router.push("/ventures/venture-profile");
+      router.push(paymentRes.data.checkout_url);
     } catch (error) {
       toast.error("Something went wrong!");
     } finally {
