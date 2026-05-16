@@ -1,39 +1,64 @@
 const plans = [
   {
     name: "Starter",
-    price: "$19",
-    description: "Perfect for individuals and small projects.",
-    features: ["1 Website", "5 GB Storage", "Basic Analytics", "Email Support"],
-    button: "Get Started",
+    price: "$29",
+    description:
+      "Perfect for startups and small businesses getting started with AI voice agents.",
+
+    features: [
+      "1 AI Voice Agent",
+      "100 Monthly Calls",
+      "Basic Call Analytics",
+      "Web Call Support",
+      "Email Support",
+    ],
+
+    button: "Start Building",
+
     popular: false,
   },
+
   {
-    name: "Pro",
-    price: "$49",
-    description: "Best for growing businesses and teams.",
+    name: "Professional",
+    price: "$99",
+
+    description:
+      "Advanced AI voice automation for growing teams and customer support.",
+
     features: [
-      "10 Websites",
-      "50 GB Storage",
+      "5 AI Voice Agents",
+      "2,000 Monthly Calls",
+      "Phone Number Integration",
       "Advanced Analytics",
+      "Custom Prompts & Flows",
       "Priority Support",
-      "Custom Domains",
     ],
+
     button: "Start Free Trial",
+
     popular: true,
   },
+
   {
     name: "Enterprise",
-    price: "$99",
-    description: "Advanced features for large organizations.",
+    price: "$299",
+
+    description:
+      "Scalable AI voice infrastructure for enterprises and high-volume operations.",
+
     features: [
-      "Unlimited Websites",
-      "500 GB Storage",
-      "AI Insights",
-      "24/7 Dedicated Support",
+      "Unlimited AI Agents",
+      "Unlimited Calls",
+      "Dedicated Phone Numbers",
+      "AI Call Insights",
       "Team Collaboration",
-      "Advanced Security",
+      "API Access",
+      "24/7 Dedicated Support",
+      "Advanced Security & Compliance",
     ],
+
     button: "Contact Sales",
+
     popular: false,
   },
 ];
