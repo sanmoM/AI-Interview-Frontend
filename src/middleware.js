@@ -10,7 +10,7 @@ export function middleware(request) {
     pathname === "/calls" ||
     pathname === "/" ||
     pathname === "/explore" ||
-    pathname === "/no-venture" ||
+    pathname === "/not-found" ||
     /^\/explore\/[^/]+$/.test(pathname) ||
     /^\/chat\/[^/]+$/.test(pathname) ||
     /^\/interview\/.+$/.test(pathname) ||
@@ -34,6 +34,8 @@ export function middleware(request) {
     "/jobs",
     "/questions",
     "/ventures",
+    "/venture-profile",
+    "/pricing",
   ];
 
   const adminRegex = new RegExp(`^(${adminProtectedRoutes.join("|")})$`);

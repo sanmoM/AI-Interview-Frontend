@@ -1,39 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import { BASE_URL } from "@/config";
+import useAuthAxios from "@/hooks/useAuthAxios";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function VentureAdminRestrictionGuard({ children }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const pathName = usePathname();
-  // console.log(pathName);
+  const axios = useAuthAxios();
 
   useEffect(() => {
     const checkRestriction = async () => {
       try {
-        const res = await fetch(
+        const res = await axios.get(
           `${BASE_URL}/admin/venture-admin-restriction-policy`,
         );
-        const data = await res.json();
+        const data = res?.data;
 
         if (data?.is_restricted) {
-          router.replace("/no-venture");
+          router.replace("/pricing");
         } else {
           setLoading(false);
         }
-      } catch (error) {}
+      } catch (error) {
+        router.replace("/not-found");
+      }
     };
 
     checkRestriction();
   }, [router]);
-
-  useEffect(() => {
-    if (pathName === "/no-venture") {
-      setLoading(false);
-    }
-  }, [pathName]);
 
   return <>{loading ? null : children}</>;
 }

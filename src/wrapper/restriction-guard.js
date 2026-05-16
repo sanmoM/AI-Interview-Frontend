@@ -12,26 +12,26 @@ export default function RestrictionGuard({ children }) {
 
   useEffect(() => {
     const checkRestriction = async () => {
+      if (pathName === "/not-found") {
+        setLoading(false);
+        return;
+      }
       try {
         const res = await fetch(`${BASE_URL}/restriction-policy`);
         const data = await res.json();
 
         if (data?.is_restricted) {
-          router.replace("/no-venture");
+          router.replace("/not-found");
         } else {
           setLoading(false);
         }
-      } catch (error) {}
+      } catch (error) {
+        router.replace("/not-found");
+      }
     };
 
     checkRestriction();
-  }, [router]);
-
-  useEffect(() => {
-    if (pathName === "/no-venture") {
-      setLoading(false);
-    }
-  }, [pathName]);
+  }, [router, pathName]);
 
   return <>{loading ? null : children}</>;
 }
