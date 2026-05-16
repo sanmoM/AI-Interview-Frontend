@@ -1,5 +1,3 @@
-// // middleware.js
-
 import { NextResponse } from "next/server";
 
 export function middleware(request) {
@@ -13,19 +11,10 @@ export function middleware(request) {
     pathname === "/not-found" ||
     /^\/explore\/[^/]+$/.test(pathname) ||
     /^\/chat\/[^/]+$/.test(pathname) ||
-    /^\/interview\/.+$/.test(pathname) ||
-    pathname === "/white-label-signup"
+    /^\/interview\/.+$/.test(pathname)
   )
     return NextResponse.next();
-  //   console.log(pathname);
 
-  //   const protectedRoutes = ["/dashboard", "/checkout"];
-
-  //   if (protectedRoutes.some((route) => pathname.startsWith(route)) && !token) {
-  // const loginUrl = new URL(`/login`, request.url);
-  // loginUrl.searchParams.set("redirect", pathname);
-  // return NextResponse.redirect(loginUrl);
-  //   }
   const adminProtectedRoutes = [
     "/call-details",
     "/calls",
@@ -48,10 +37,6 @@ export function middleware(request) {
     }
   }
 }
-
-// export const config = {
-//   matcher: ["*"],
-// };
 
 export const config = {
   matcher: [

@@ -5,7 +5,7 @@ import useAuthAxios from "@/hooks/useAuthAxios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function VentureAdminRestrictionGuard({ children }) {
+export default function AdminRestrictionGuard({ children }) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const axios = useAuthAxios();
@@ -14,7 +14,7 @@ export default function VentureAdminRestrictionGuard({ children }) {
     const checkRestriction = async () => {
       try {
         const res = await axios.get(
-          `${BASE_URL}/admin/venture-admin-restriction-policy`,
+          `${BASE_URL}/admin-restriction-policy`,
         );
         const data = res?.data;
 
@@ -29,7 +29,7 @@ export default function VentureAdminRestrictionGuard({ children }) {
     };
 
     checkRestriction();
-  }, [router]);
+  }, [router, axios]);
 
   return <>{loading ? null : children}</>;
 }

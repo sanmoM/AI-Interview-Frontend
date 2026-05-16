@@ -4,7 +4,7 @@ import NavLink from "@/components/shared/layout/header/components/nav-link";
 import Header from "@/components/shared/layout/header/header";
 import { useState } from "react";
 import { AiOutlineGlobal } from "react-icons/ai";
-import { LuPhoneCall } from "react-icons/lu";
+import { LuPhoneCall, LuUsers } from "react-icons/lu";
 import { MdGridView } from "react-icons/md";
 import { useSelector } from "react-redux";
 import AdminSidebar from "./components/admin-sidebar";
@@ -18,30 +18,14 @@ const adminNavItems = [
       <MdGridView className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
   },
-  // {
-  //   id: "engine",
-  //   name: "Engine",
-  //   href: "/engine",
-  //   Icon: (
-  //     <PiGearFineLight className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
-  //   ),
-  // },
-  // {
-  //   id: "faqs",
-  //   name: "FAQs",
-  //   href: "/faqs",
-  //   Icon: (
-  //     <TfiHelpAlt className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
-  //   ),
-  // },
-  // {
-  //   id: "calls",
-  //   name: "Calls",
-  //   href: "/calls",
-  //   Icon: (
-  //     <LuPhoneCall className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
-  //   ),
-  // },
+  {
+    id: "users",
+    name: "Users",
+    href: "/users",
+    Icon: (
+      <LuUsers className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
+    ),
+  },
 ];
 
 const ventureNavItems = [
@@ -60,7 +44,7 @@ const ventureNavItems = [
     Icon: (
       <LuPhoneCall className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
-  }
+  },
 ];
 
 export default function AdminNavbar() {
