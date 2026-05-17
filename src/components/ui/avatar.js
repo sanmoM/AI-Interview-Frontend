@@ -29,14 +29,5 @@ export default function Avatar({ text = "A", src }) {
         </div>
       )}
     </>
-    // <img
-    //   src={src}
-    //   alt={alt}
-    //   className={cn(
-    //     "w-full h-full object-cove rounded-full border-gray-200 overflow-hidden flex-shrink-0 bg-gray-100",
-    //     sizeClasses[size] || sizeClasses.md,
-    //     className
-    //   )}
-    // />
   );
 }

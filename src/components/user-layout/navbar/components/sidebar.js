@@ -1,10 +1,8 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IoMdNotificationsOutline } from "react-icons/io";
 
 export default function UserSidebar({ navItems }) {
   const pathname = usePathname();

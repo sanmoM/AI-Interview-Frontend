@@ -8,6 +8,7 @@ import { LuPhoneCall, LuUsers } from "react-icons/lu";
 import { MdGridView } from "react-icons/md";
 import { useSelector } from "react-redux";
 import AdminSidebar from "./components/admin-sidebar";
+import { GrTransaction } from "react-icons/gr";
 
 const adminNavItems = [
   {
@@ -24,6 +25,14 @@ const adminNavItems = [
     href: "/users",
     Icon: (
       <LuUsers className="lg:w-4 lg:h-4 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
+    ),
+  },
+  {
+    id: "transactions",
+    name: "Transactions",
+    href: "/transactions",
+    Icon: (
+      <GrTransaction className="lg:w-3 lg:h-3 xl:w-4.5 xl:h-4.5 2xl:w-[24px] 2xl:h-[24px]" />
     ),
   },
 ];

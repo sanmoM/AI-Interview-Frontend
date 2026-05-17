@@ -136,25 +136,7 @@ export default function CallsPage() {
             A focused, visual stream of every call for this venture. Scan
             patterns at a glance and open individual records in one click.
           </SubHeading>
-          {/* <div className="flex flex-wrap gap-2 mt-3">
-            <span className="bg-[#D1FADF] text-[#027A48] text-xs font-bold px-3 py-1 rounded-full">
-              Voice bot live
-            </span>
-            <span className="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-              {calls.length} calls
-            </span>
-          </div> */}
         </div>
-        {/* <div className="flex gap-2 items-center w-full 2xl:w-auto mt-2">
-          <Searchbox
-            placeholder="Search calls by phone, tag, or note"
-            containerClassName={"w-full 2xl:w-[320px]"}
-            size="md"
-          />
-          <Button size="md" className="px-6 w-fit text-nowrap shadow-md">
-            Export logs
-          </Button>
-        </div> */}
       </div>
 
       {/* Main Content Card */}
@@ -177,9 +159,6 @@ export default function CallsPage() {
               </span>
             </div>
           </div>
-          {/* <span className="hidden md:block bg-secondary text-primary text-[11px] font-bold px-3 py-1 rounded-full shadow-sm h-fit mt-2">
-            Showing 1–{filterData?.length} of {calls.length} calls
-          </span> */}
         </div>
 
         {/* Stats Row */}
@@ -197,18 +176,6 @@ export default function CallsPage() {
                   {stat.value}
                 </span>
               </div>
-              {/* <span
-                className={cn(
-                  "text-sm font-medium whitespace-nowrap",
-                  stat.isPositive
-                    ? "text-green-500"
-                    : stat.isNeutral
-                      ? "text-gray-400"
-                      : "text-red-500",
-                )}
-              >
-                {stat.change}
-              </span> */}
             </div>
           ))}
         </div>
@@ -276,60 +243,10 @@ export default function CallsPage() {
               </Link>
             ))
           ) : (
-            // <div className="flex flex-col items-center justify-center gap-4 text-gray-400 text-sm font-medium min-h-[300px]">
-            //   <IoSearchOutline className="w-7 h-7" />
-            //   <p>No results found</p>
-            // </div>
             <NoData />
           )}
         </div>
-
-        {/* Pagination */}
-        {/* <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mt-4 md:mt-6 px-2">
-          <p className="text-gray-400 text-xs md:text-sm font-medium">
-            Showing 1–{filterData?.length} of {calls.length} calls
-          </p>
-          <Pagination
-            size="xs"
-            previous={
-              <button className="text-text-gray text-xs md:text-base px-3 py-1 hover:text-primary">
-                Prev
-              </button>
-            }
-            next={
-              <button className="text-text-gray text-xs md:text-base px-3 py-1 hover:text-primary">
-                Next
-              </button>
-            }
-            containerClassName={"flex-0"}
-          />
-        </div> */}
       </InnerWrapper>
-
-      {/* Bottom Floating Bar */}
-      {/* <div className="flex flex-col lg:flex-row justify-between items-center mt-6 lg:mt-12 gap-6 px-1">
-        <div className="flex flex-col md:flex-row items-center gap-3">
-          <span className="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
-            Calls workspace
-          </span>
-          <p className="text-gray-500 text-xs font-medium text-center md:text-left">
-            A unique, timeline-style view of every call, designed for fast
-            scanning and deep dives.
-          </p>
-        </div>
-        <div className="flex flex-row gap-2 md:gap-3">
-          <BorderButton
-            className={"!py-2 lg:!py-2.5 px-3 lg:px-5 !text-xs lg:!text-sm"}
-          >
-            Export current view
-          </BorderButton>
-          <Button
-            className={"!py-2 lg:!py-2.5 px-3 lg:px-5 !text-xs lg:!text-sm"}
-          >
-            Save filters as default
-          </Button>
-        </div>
-      </div> */}
     </SecondaryWrapper>
   );
 }
