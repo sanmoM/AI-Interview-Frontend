@@ -12,8 +12,8 @@ import useAuthAxios from "@/hooks/useAuthAxios";
 import { cn } from "@/utils/cn";
 import { useEffect, useMemo, useState } from "react";
 
-export default function Users() {
-  const [users, setUsers] = useState([]);
+export default function Transactions() {
+  const [transactions, setTransactions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,11 +22,11 @@ export default function Users() {
   // ✅ Fetch data
   useEffect(() => {
     async function fetchVentures() {
-      const res = await axios.get("/super/users", {
+      const res = await axios.get("/super/transactions", {
         params: { page: currentPage },
       });
 
-      setUsers(res?.data?.users?.data || []);
+      setTransactions(res?.data?.transactions?.data || []);
       setLastPage(res?.data?.last_page || 0);
       setCurrentPage(res?.data?.current_page || 1);
     }
@@ -36,12 +36,14 @@ export default function Users() {
 
   // ✅ Derived state (NO useEffect needed)
   const filteredUsers = useMemo(() => {
-    if (!searchQuery) return users;
+    if (!searchQuery) return transactions;
 
-    return users.filter((user) =>
-      user.name.toLowerCase().includes(searchQuery.toLowerCase()),
+    return transactions.filter((user) =>
+      user.transaction_id?.toLowerCase().includes(searchQuery.toLowerCase()),
     );
-  }, [searchQuery, users]);
+  }, [searchQuery, transactions]);
+
+  console.log(transactions);
 
   return (
     <SecondaryWrapper className="grow min-w-0 !pt-0 flex flex-col">
@@ -49,16 +51,16 @@ export default function Users() {
         <div className="flex flex-col xl:flex-row justify-between gap-4 xl:gap-10">
           <div className="mb-3 max-w-5xl">
             <SectionHeading className={"mb-2 lg:mb-4"}>
-              All Users
+              All Transactions
             </SectionHeading>
             <SubHeading className="2xl:text-lg">
-              Curate, compare, and operationalize live user pipelines in one
+              Curate, compare, and operationalize live transaction pipelines in
             </SubHeading>
           </div>
 
           <div className="flex items-center gap-6 w-full lg:w-auto flex-1 xl:flex-none">
             <Searchbox
-              placeholder="Search ventures"
+              placeholder="Search transactions"
               containerClassName="flex-1 md:min-w-[350px]"
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
@@ -72,88 +74,92 @@ export default function Users() {
           <thead class="bg-secondary/50 border-b border-secondary text-primary font-semibold whitespace-nowrap">
             <tr>
               <th scope="col" class="px-6 py-3">
-                Image
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Name
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Email
+                User
               </th>
               <th scope="col" class="px-6 py-3">
                 Venture
               </th>
               <th scope="col" class="px-6 py-3">
-                Payment Status
+                Transaction ID
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Amount
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Type
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Method
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Status
               </th>
               <th scope="col" class="px-6 py-3 text-right">
-                Venture Status
+                Note
               </th>
             </tr>
           </thead>
           <tbody>
             {filteredUsers.length ? (
-              filteredUsers.map((user) => (
+              filteredUsers.map((transaction) => (
                 <tr
                   class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b last:border-b-0 border-secondary"
-                  key={user.id}
+                  key={transaction.id}
                 >
                   <th
                     scope="row"
                     class="px-6 py-4 font-medium text-heading whitespace-nowrap"
                   >
-                    <Avatar
-                      text={user?.name.slice(0, 2)}
-                      src={
-                        user?.image
-                          ? IMAGE_BASE_URL + user?.image
-                          : "/images/placeholder.jpg"
-                      }
-                    />
+                    {transaction.user?.name}
                   </th>
                   <th
                     scope="row"
                     class="px-6 py-4 font-medium text-heading whitespace-nowrap"
                   >
-                    {user.name}
+                    {transaction.user?.venture?.name}
                   </th>
-                  <td class="px-6 py-4">{user.email}</td>
+                  <td class="px-6 py-4">{transaction.transaction_id}</td>
                   <td
                     scope="row"
                     class="px-6 py-4 font-medium text-heading whitespace-nowrap"
                   >
-                    {user?.venture?.name}
+                    {transaction?.amount}
+                  </td>
+                  <td
+                    scope="row"
+                    class="px-6 py-4 font-medium text-heading whitespace-nowrap"
+                  >
+                    {transaction?.type}
+                  </td>
+                  <td
+                    scope="row"
+                    class="px-6 py-4 font-medium text-heading whitespace-nowrap"
+                  >
+                    {transaction?.payment_method}
                   </td>
                   <td class="px-6 py-4">
                     <span
                       className={cn(
-                        user?.isPaid
-                          ? "text-green-500 bg-green-100"
-                          : "text-red-500 bg-red-100",
+                        transaction?.status === "pending"
+                          ? "text-yellow-500 bg-yellow-100"
+                          : transaction?.status === "failed"
+                            ? "text-red-500 bg-red-100"
+                            : "text-green-500 bg-green-100",
                         "px-3 py-1 rounded-full text-xs font-medium",
                       )}
                     >
-                      {user?.isPaid ? "Paid" : "Free"}
+                      {transaction?.status}
                     </span>
                   </td>
-                  <td class="px-6 py-4 text-right">
-                    <span
-                      className={cn(
-                        user?.status === "active"
-                          ? "text-green-500 bg-green-100"
-                          : "text-red-500 bg-red-100",
-                        "px-3 py-1 rounded-full text-xs font-medium",
-                      )}
-                    >
-                      {user?.status === "active" ? "Active" : "Inactive"}
-                    </span>
+                  <td class="px-6 py-4 text-right whitespace-nowrap">
+                    {transaction?.note}
                   </td>
                 </tr>
               ))
             ) : (
               <td
-                colSpan={6}
-                className="text-center text-lg font-medium text-primary w-full py-4"
+                colSpan={8}
+                className="text-center text-lg font-medium text-primary w-full py-4 text-nowrap"
               >
                 No users found
               </td>
