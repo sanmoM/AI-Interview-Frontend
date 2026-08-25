@@ -49,7 +49,7 @@ export default function Users() {
         <div className="flex flex-col xl:flex-row justify-between gap-4 xl:gap-10">
           <div className="mb-3 max-w-5xl">
             <SectionHeading className={"mb-2 lg:mb-4"}>
-              All Users
+              All Venture Admins
             </SectionHeading>
             <SubHeading className="2xl:text-lg">
               Curate, compare, and operationalize live user pipelines in one
@@ -133,7 +133,7 @@ export default function Users() {
                         "px-3 py-1 rounded-full text-xs font-medium",
                       )}
                     >
-                      {user?.isPaid ? "Paid" : "Free"}
+                      {user?.isPaid ? "Paid" : "Unpaid"}
                     </span>
                   </td>
                   <td class="px-6 py-4 text-right">
